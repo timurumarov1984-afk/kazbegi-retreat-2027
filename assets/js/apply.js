@@ -44,8 +44,8 @@
       fields: [
         { name: 'format', entry: '1453769740', type: 'cards', required: true,
           label: { ru: 'В каком формате хочешь участвовать?', en: 'Which format would you like to join?' },
-          options: [{ v: 'Оффлайн', ru: 'Офлайн — приеду в Казбеги, 1–18 июля', en: 'In person — in Kazbegi, 1–18 July' },
-                    { v: 'Онлайн', ru: 'Онлайн — трансляции в Zoom, 1–18 июля', en: 'Online — live on Zoom, 1–18 July' }] },
+          options: [{ v: 'Оффлайн', ru: 'Офлайн — приеду в Казбеги, 11–18 июля', en: 'In person — in Kazbegi, 11–18 July' },
+                    { v: 'Онлайн', ru: 'Онлайн — трансляции в Zoom, 11–18 июля', en: 'Online — live on Zoom, 11–18 July' }] },
         { name: 'offline', entry: '561608447', type: 'radio', required: true, options: YES_NO,
           label: { ru: 'Есть ли у тебя опыт офлайн-ретритов с&nbsp;Мастером?', en: 'Have you been to in-person retreats with the Master?' } },
         { name: 'offlineTimes', entry: '1333758775', type: 'radio', required: true, options: TIMES,
@@ -74,7 +74,7 @@
       fields: [
         { name: 'dates', entry: '1700040031', type: 'dates', required: true,
           label: { ru: 'Когда приедешь и&nbsp;уедешь?', en: 'When will you arrive and leave?' },
-          hint: { ru: 'Ретрит идёт с&nbsp;1 по&nbsp;18 июля 2027, интенсив — 19–21 июля. Заезд 30 июня с&nbsp;15:00, выезд 19 июля (или 22 июля после интенсива) до&nbsp;12:00', en: 'The retreat runs 1–18 July 2027, the intensive 19–21 July. Check-in on 30 June from 15:00, check-out on 19 July (or 22 July after the intensive) by 12:00' } },
+          hint: { ru: 'Ретрит идёт с&nbsp;11 по&nbsp;18 июля 2027, интенсив — 19–21 июля. Заезд 10 июля с&nbsp;15:00, выезд 19 июля (или 22 июля после интенсива) до&nbsp;12:00', en: 'The retreat runs 11–18 July 2027, the intensive 19–21 July. Check-in on 10 July from 15:00, check-out on 19 July (or 22 July after the intensive) by 12:00' } },
         { name: 'stay', entry: '1508398290', type: 'cards', required: true,
           label: { ru: 'Планируешь жить в&nbsp;Rooms Kazbegi?', en: 'Are you planning to stay at Rooms Kazbegi?' },
           hint: { ru: 'Помимо лучшей кухни, в&nbsp;отеле есть бассейн и&nbsp;сауны. Для нашей группы — скидка до&nbsp;40%', en: 'Besides the best food, the hotel has a pool and saunas. Our group gets up to 40% off' },
@@ -200,7 +200,7 @@
     } else if (f.type === 'dates') {
       html += '<p class="field__label" id="l-' + f.name + '">' + L(f.label) + req + '</p>' + hint +
         '<div class="dates" role="group" aria-labelledby="l-' + f.name + '">' +
-        '<label><span>' + L(UI.arrival) + '</span><input class="input" type="date" name="arrival" value="2027-06-30" min="2027-06-01" max="2027-08-31"></label>' +
+        '<label><span>' + L(UI.arrival) + '</span><input class="input" type="date" name="arrival" value="2027-07-10" min="2027-06-01" max="2027-08-31"></label>' +
         '<label><span>' + L(UI.departure) + '</span><input class="input" type="date" name="departure" value="2027-07-19" min="2027-06-01" max="2027-08-31"></label>' +
         '</div>';
     } else if (f.type === 'consent') {
@@ -421,8 +421,8 @@
 
   /* ---------- language ---------- */
   var TITLES = {
-    ru: 'Анкета участника · Ретрит с Мастером в Казбеги · 1–18 июля 2027',
-    en: 'Application · Retreat with the Master in Kazbegi · 1–18 July 2027'
+    ru: 'Анкета участника · Ретрит с Мастером в Казбеги · 11–18 июля 2027',
+    en: 'Application · Retreat with the Master in Kazbegi · 11–18 July 2027'
   };
   function applyLang(lang) {
     if (!TITLES[lang]) lang = 'ru';

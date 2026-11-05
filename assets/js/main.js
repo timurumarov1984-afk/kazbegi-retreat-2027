@@ -8,12 +8,12 @@
   /* ---------- Language ---------- */
   var META = {
     ru: {
-      title: 'Ретрит с Мастером Камильпашой в Казбеги · 1–18 июля 2027 · Грузия',
-      desc: 'Восемнадцать дней утренних и вечерних медитаций с Мастером Камильпашой в Rooms Kazbegi — у подножия Казбека, в горах Грузии. 1–18 июля 2027, интенсив 19–21 июля.'
+      title: 'Ретрит с Мастером Камильпашой в Казбеги · 11–18 июля 2027 · Грузия',
+      desc: 'Восемь дней утренних и вечерних медитаций с Мастером Камильпашой в Rooms Kazbegi — у подножия Казбека, в горах Грузии. 11–18 июля 2027, интенсив 19–21 июля.'
     },
     en: {
-      title: 'Retreat with Master Kamilpasha in Kazbegi · 1–18 July 2027 · Georgia',
-      desc: 'Eighteen days of morning and evening meditation with Master Kamilpasha at Rooms Kazbegi — at the foot of Mount Kazbek in the mountains of Georgia. 1–18 July 2027, intensive 19–21 July.'
+      title: 'Retreat with Master Kamilpasha in Kazbegi · 11–18 July 2027 · Georgia',
+      desc: 'Eight days of morning and evening meditation with Master Kamilpasha at Rooms Kazbegi — at the foot of Mount Kazbek in the mountains of Georgia. 11–18 July 2027, intensive 19–21 July.'
     }
   };
   var metaDesc = document.querySelector('meta[name="description"]');
