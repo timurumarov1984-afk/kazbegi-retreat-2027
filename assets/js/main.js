@@ -1,4 +1,4 @@
-/* Master's Retreat · DOMA 2027 — interactions */
+/* Master's Retreat · Kazbegi 2027 — interactions */
 (function () {
   'use strict';
 
@@ -8,12 +8,12 @@
   /* ---------- Language ---------- */
   var META = {
     ru: {
-      title: 'Ретрит с Мастером Камильпашой в DOMA · 9–17 мая 2027 · Португалия',
-      desc: 'Девять дней утренних и вечерних медитаций с Мастером Камильпашой в DOMA — сосновый лес в 30 минутах от Лиссабона и в 20 минутах от океана. 9–17 мая 2027.'
+      title: 'Ретрит с Мастером Камильпашой в Казбеги · 1–18 июля 2027 · Грузия',
+      desc: 'Восемнадцать дней утренних и вечерних медитаций с Мастером Камильпашой в Rooms Kazbegi — у подножия Казбека, в горах Грузии. 1–18 июля 2027, интенсив 19–21 июля.'
     },
     en: {
-      title: 'Retreat with Master Kamilpasha at DOMA · 9–17 May 2027 · Portugal',
-      desc: 'Nine days of morning and evening meditation with Master Kamilpasha at DOMA — a pine forest 30 minutes from Lisbon and 20 minutes from the ocean. 9–17 May 2027.'
+      title: 'Retreat with Master Kamilpasha in Kazbegi · 1–18 July 2027 · Georgia',
+      desc: 'Eighteen days of morning and evening meditation with Master Kamilpasha at Rooms Kazbegi — at the foot of Mount Kazbek in the mountains of Georgia. 1–18 July 2027, intensive 19–21 July.'
     }
   };
   var metaDesc = document.querySelector('meta[name="description"]');
@@ -157,6 +157,40 @@
       if (pr && pr.catch) pr.catch(function (e) { if (e && e.name === 'NotAllowedError') useMotionPreview(); });
       setTimeout(function () { if (!heroShown && heroVideo.paused) useMotionPreview(); }, 2500);
     }
+  }
+
+  /* ---------- Hero: photo sequence with a slow drift ----------
+     The first photo is in the HTML; the others load after the page (data-srcset)
+     and join the loop only once they are decoded, so a slide never appears half-loaded. */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero__slide'));
+  if (slides.length > 1 && !reduceMotion) {
+    var SLIDE_MS = 6500, FADE_MS = 1900;
+    var current = 0;
+    var ready = function (s) { var im = s.querySelector('img'); return im.complete && im.naturalWidth > 0 && !im.hasAttribute('data-srcset'); };
+    var loadSlides = function () {
+      slides.slice(1).forEach(function (s) {
+        s.querySelectorAll('[data-srcset]').forEach(function (el) {
+          el.setAttribute('srcset', el.getAttribute('data-srcset'));
+          el.removeAttribute('data-srcset');
+        });
+        var im = s.querySelector('img');
+        if (!im.getAttribute('src')) im.setAttribute('src', im.getAttribute('srcset').split(' ')[0]);
+      });
+    };
+    var advance = function () {
+      if (document.hidden) { setTimeout(advance, SLIDE_MS); return; }
+      var next = (current + 1) % slides.length;
+      if (!ready(slides[next])) { setTimeout(advance, 700); return; }
+      var prev = slides[current];
+      prev.classList.remove('is-active');
+      prev.classList.add('is-prev');
+      slides[next].classList.add('is-active');
+      setTimeout(function () { prev.classList.remove('is-prev'); }, FADE_MS + 100);
+      current = next;
+      setTimeout(advance, SLIDE_MS);
+    };
+    if (document.readyState === 'complete') loadSlides(); else window.addEventListener('load', loadSlides);
+    setTimeout(advance, SLIDE_MS);
   }
 
   /* ---------- Gallery arrows ---------- */

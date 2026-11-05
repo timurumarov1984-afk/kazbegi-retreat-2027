@@ -4,16 +4,16 @@
 (function () {
   'use strict';
 
-  var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScufP0JZy3R-6JEgpHcbot98bKMqCGhywQrjM5NU0Y8SmFUuQ/formResponse';
+  var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdNdcz-bhe11F-3Ln2LerXR3q0brYlOSSoA6LhBOBS9X0bdsg/formResponse';
   var FORM_EXTRA = {
     fvv: '1',
     pageHistory: '0,1,2,3,4',
-    fbzx: '-2259008623288397407',
-    partialResponse: '[null,null,"-2259008623288397407"]',
+    fbzx: '-3094951576178558100',
+    partialResponse: '[null,null,"-3094951576178558100"]',
     submissionTimestamp: '-1'
   };
-  var RULES_URL = 'https://docs.google.com/document/d/12V9Uu-iSyLV4jjdPl43FUXit8KJJa4iMa1bMrvaR1z4/edit?usp=sharing';
-  var DRAFT_KEY = 'retreat-apply-2027';
+  var RULES_URL = 'https://docs.google.com/document/d/1uhkTW_Wl2Kt01I_s67hevnbW48xrJMRSRxvOOjTfRWY/edit?usp=sharing';
+  var DRAFT_KEY = 'retreat-apply-kazbegi-2027';
 
   var YES_NO = [{ v: 'Да', ru: 'Да', en: 'Yes' }, { v: 'Нет', ru: 'Нет', en: 'No' }];
   var TIMES = [{ v: '1' }, { v: '2' }, { v: '3' }, { v: '4' }, { v: '> 5', ru: 'Больше 5', en: 'More than 5' }];
@@ -44,8 +44,8 @@
       fields: [
         { name: 'format', entry: '1453769740', type: 'cards', required: true,
           label: { ru: 'В каком формате хочешь участвовать?', en: 'Which format would you like to join?' },
-          options: [{ v: 'Оффлайн', ru: 'Офлайн — приеду в DOMA, 9–17 мая', en: 'In person — at DOMA, 9–17 May' },
-                    { v: 'Онлайн', ru: 'Онлайн — трансляции в Zoom, 9–16 мая', en: 'Online — live on Zoom, 9–16 May' }] },
+          options: [{ v: 'Оффлайн', ru: 'Офлайн — приеду в Казбеги, 1–18 июля', en: 'In person — in Kazbegi, 1–18 July' },
+                    { v: 'Онлайн', ru: 'Онлайн — трансляции в Zoom, 1–18 июля', en: 'Online — live on Zoom, 1–18 July' }] },
         { name: 'offline', entry: '561608447', type: 'radio', required: true, options: YES_NO,
           label: { ru: 'Есть ли у тебя опыт офлайн-ретритов с&nbsp;Мастером?', en: 'Have you been to in-person retreats with the Master?' } },
         { name: 'offlineTimes', entry: '1333758775', type: 'radio', required: true, options: TIMES,
@@ -63,41 +63,62 @@
           label: { ru: 'Как давно?', en: 'For how long?' },
           options: [{ v: '1 месяц', en: '1 month' }, { v: '3 месяца', en: '3 months' }, { v: '6 месяцев', en: '6 months' },
                     { v: 'Больше 1 года', en: 'Over a year' }, { v: 'Больше 3 лет', en: 'Over 3 years' }] },
-        { name: 'experience', entry: '1168458537', type: 'textarea', required: true,
+        { name: 'experience', entry: '8220411', type: 'textarea', required: false,
           label: { ru: 'Опиши свой опыт медитативных практик', en: 'Describe your meditation experience' },
           hint: { ru: 'Традиции, методы, сколько лет практикуешь', en: 'Traditions, methods, how long you have practised' } }
       ]
     },
     {
       title: { ru: 'Проживание', en: 'Your stay' },
-      intro: { ru: 'Нужны точные даты заезда и&nbsp;выезда, даже если будешь жить не в&nbsp;DOMA.', en: 'We need exact arrival and departure dates, even if you stay outside DOMA.' },
+      intro: { ru: 'Нужны точные даты заезда и&nbsp;выезда, даже если будешь жить не в&nbsp;Rooms Kazbegi.', en: 'We need exact arrival and departure dates, even if you stay outside Rooms Kazbegi.' },
       fields: [
         { name: 'dates', entry: '1700040031', type: 'dates', required: true,
           label: { ru: 'Когда приедешь и&nbsp;уедешь?', en: 'When will you arrive and leave?' },
-          hint: { ru: 'Ретрит идёт с&nbsp;9 по&nbsp;17 мая 2027: заезд 9 мая с&nbsp;14:00, выезд 17 мая до&nbsp;12:00', en: 'The retreat runs 9–17 May 2027: check-in on 9 May from 14:00, check-out on 17 May by 12:00' } },
+          hint: { ru: 'Ретрит идёт с&nbsp;1 по&nbsp;18 июля 2027, интенсив — 19–21 июля. Заезд 30 июня с&nbsp;15:00, выезд 19 июля (или 22 июля после интенсива) до&nbsp;12:00', en: 'The retreat runs 1–18 July 2027, the intensive 19–21 July. Check-in on 30 June from 15:00, check-out on 19 July (or 22 July after the intensive) by 12:00' } },
         { name: 'stay', entry: '1508398290', type: 'cards', required: true,
-          label: { ru: 'Планируешь жить в&nbsp;DOMA?', en: 'Are you planning to stay at DOMA?' },
-          options: [{ v: 'Да, хочу забронировать номер в Doma', ru: 'Да, хочу забронировать номер в&nbsp;DOMA', en: 'Yes, I’d like to book a room at DOMA' },
+          label: { ru: 'Планируешь жить в&nbsp;Rooms Kazbegi?', en: 'Are you planning to stay at Rooms Kazbegi?' },
+          hint: { ru: 'Помимо лучшей кухни, в&nbsp;отеле есть бассейн и&nbsp;сауны. Для нашей группы — скидка до&nbsp;40%', en: 'Besides the best food, the hotel has a pool and saunas. Our group gets up to 40% off' },
+          options: [{ v: 'Да, хочу забронировать номер', ru: 'Да, хочу забронировать номер в&nbsp;Rooms', en: 'Yes, I’d like to book a room at Rooms' },
                     { v: 'Нет, буду жить в другом месте и приходить только на практику с мастером', ru: 'Нет, буду жить в&nbsp;другом месте и&nbsp;приходить на&nbsp;практики', en: 'No, I’ll stay elsewhere and come for the sessions' }] },
+        { name: 'roommate', entry: '1103524626', type: 'checkboxes', required: true,
+          showIf: { name: 'stay', value: 'Да, хочу забронировать номер' }, valueIfHidden: 'Живу в другом месте',
+          label: { ru: 'Будешь жить в&nbsp;номере один или вдвоём?', en: 'Will you stay alone or share a room?' },
+          hint: { ru: 'Если знаешь, с&nbsp;кем хочешь жить, выбери «Другое» и&nbsp;укажи имя и&nbsp;фамилию соседа как в&nbsp;загранпаспорте', en: 'If you know who you’d like to share with, choose “Other” and give their name exactly as in their passport' },
+          options: [{ v: 'Один', ru: 'Один', en: 'Alone' }, { v: 'Вдвоем', ru: 'Вдвоём', en: 'Two of us' }],
+          other: { ru: 'Другое — с конкретным человеком', en: 'Other — with a specific person' } },
+        { name: 'child', entry: '882413745', type: 'textarea', required: false,
+          showIf: { name: 'stay', value: 'Да, хочу забронировать номер' },
+          label: { ru: 'Будешь жить в&nbsp;Rooms с&nbsp;ребёнком?', en: 'Will a child stay with you at Rooms?' },
+          hint: { ru: 'Если да — сколько детей и&nbsp;сколько им лет. Доплата отеля без НДС: доп. кровать — 10&nbsp;$ за&nbsp;ночь, завтрак для ребёнка 7–11 лет — 10&nbsp;$, 12+ лет — 20&nbsp;$', en: 'If so, how many children and their ages. Hotel surcharges excl. VAT: extra bed $10 per night, breakfast for a child aged 7–11 $10, 12+ $20' } },
+        { name: 'roomsWait', entry: '1091618273', type: 'derived',
+          derive: function (val) { return val('stay') === 'Да, хочу забронировать номер' ? 'Хочу жить в Rooms! Сообщите как появится любой свободный номер!' : 'Проживаю в другом месте'; } },
         { type: 'note',
-          text: { ru: 'Номер в&nbsp;DOMA бронируется самостоятельно на&nbsp;сайте отеля. Для нашей группы действуют специальные условия — промокод пришлём подтверждённым участникам.',
-                  en: 'Rooms at DOMA are booked directly on the hotel website. Our group gets special rates — confirmed participants receive a discount code.' } }
+          text: { ru: 'Номер в&nbsp;Rooms Kazbegi бронируют организаторы: передадим твои данные в&nbsp;отель. Для брони нужен депозит 10% от&nbsp;стоимости проживания за&nbsp;все дни, остаток — при заселении.',
+                  en: 'The organisers book your room at Rooms Kazbegi and pass your details to the hotel. Booking needs a 10% deposit of the total stay; the rest is paid at check-in.' } }
       ]
     },
     {
       title: { ru: 'Активности и&nbsp;условия', en: 'Activities & terms' },
       intro: { ru: 'Последний шаг.', en: 'The last step.' },
       fields: [
+        { name: 'kids', entry: '496575736', type: 'radio', required: true, options: YES_NO,
+          label: { ru: 'Интересна детская программа?', en: 'Are you interested in the kids’ programme?' },
+          hint: { ru: 'Оплачивается отдельно, около 40&nbsp;€ в&nbsp;день за&nbsp;ребёнка', en: 'Paid separately, about €40 per child per day' } },
+        { name: 'kidsCount', entry: '2016769807', type: 'radio', required: false,
+          showIf: { name: 'kids', value: 'Да' },
+          label: { ru: 'Сколько детей будет участвовать?', en: 'How many children will take part?' },
+          options: [{ v: '1 ребенок', ru: '1', en: '1' }, { v: '2 ребенка', ru: '2', en: '2' }, { v: '3 ребенка', ru: '3', en: '3' },
+                    { v: '4 ребенка', ru: '4', en: '4' }, { v: '5 детей', ru: '5', en: '5' }] },
         { name: 'activitiesWanted', entry: '2093172798', type: 'radio', required: false, options: YES_NO,
           label: { ru: 'Интересны совместные активности, которые можно организовать заранее?', en: 'Interested in shared activities we can arrange in advance?' } },
         { name: 'activities', entry: '157482944', type: 'checkboxes', required: false,
           showIf: { name: 'activitiesWanted', value: 'Да' },
           label: { ru: 'Какие активности тебе интересны?', en: 'Which activities interest you?' },
-          options: [{ v: 'Хайкинг в заповеднике Тапада де Марфа', ru: 'Хайкинг в&nbsp;Тапада-де-Мафра', en: 'Hiking in Tapada de Mafra' },
-                    { v: 'Банная церемония в центре ATMOS', ru: 'Банная церемония в&nbsp;ATMOS', en: 'Bath ceremony at ATMOS' },
-                    { v: 'Поездки на океан', ru: 'Поездки на&nbsp;океан', en: 'Trips to the ocean' },
-                    { v: 'Саундхилинг', en: 'Sound healing' },
-                    { v: 'Посещение Ки́нта да Регале́йра', ru: 'Кинта-да-Регалейра', en: 'Quinta da Regaleira' },
+          options: [{ v: 'Поездка на внедорожниках к достопримечательностям', ru: 'Поездка на&nbsp;внедорожниках к&nbsp;достопримечательностям', en: 'Off-road trip to the sights' },
+                    { v: 'Конная прогулка по горам', ru: 'Конная прогулка по&nbsp;горам', en: 'Horse ride in the mountains' },
+                    { v: 'Хайкинг с проводником', ru: 'Хайкинг с&nbsp;проводником', en: 'Guided hike' },
+                    { v: 'Кулинарный мастеркласс', ru: 'Кулинарный мастер-класс', en: 'Cooking class' },
+                    { v: 'Прогулки по ближайшим деревням', ru: 'Прогулки по&nbsp;ближайшим деревням', en: 'Walks to nearby villages' },
                     { v: 'Предложу свой вариант в чате', ru: 'Предложу свой вариант в&nbsp;чате', en: 'I’ll suggest my own in the chat' }],
           other: { ru: 'Другое', en: 'Other' } },
         { name: 'propose', entry: '1874340831', type: 'textarea', required: false,
@@ -148,6 +169,7 @@
   function fieldHTML(f, stepIndex) {
     if (f.type === 'note') return '<div class="note-box">' + L(f.text) + '</div>';
     allFields.push(f);
+    if (f.type === 'derived') return '';
     var id = 'f-' + f.name;
     var req = f.required ? '<span class="req" aria-hidden="true">*</span>' : '';
     var hint = f.hint ? '<p class="field__hint">' + L(f.hint) + '</p>' : '';
@@ -178,8 +200,8 @@
     } else if (f.type === 'dates') {
       html += '<p class="field__label" id="l-' + f.name + '">' + L(f.label) + req + '</p>' + hint +
         '<div class="dates" role="group" aria-labelledby="l-' + f.name + '">' +
-        '<label><span>' + L(UI.arrival) + '</span><input class="input" type="date" name="arrival" value="2027-05-09" min="2027-04-01" max="2027-06-30"></label>' +
-        '<label><span>' + L(UI.departure) + '</span><input class="input" type="date" name="departure" value="2027-05-17" min="2027-04-01" max="2027-06-30"></label>' +
+        '<label><span>' + L(UI.arrival) + '</span><input class="input" type="date" name="arrival" value="2027-06-30" min="2027-06-01" max="2027-08-31"></label>' +
+        '<label><span>' + L(UI.departure) + '</span><input class="input" type="date" name="departure" value="2027-07-19" min="2027-06-01" max="2027-08-31"></label>' +
         '</div>';
     } else if (f.type === 'consent') {
       html += '<label class="consent"><input type="checkbox" name="' + f.name + '" value="1"><span>' + L(f.text) + req + '</span></label>';
@@ -210,6 +232,7 @@
 
   /* ---------- values ---------- */
   function getValue(f) {
+    if (f.type === 'derived') return f.derive(function (n) { var d = allFields.filter(function (x) { return x.name === n; })[0]; return d ? getValue(d) : ''; });
     if (f.type === 'radio' || f.type === 'cards') {
       var c = form.querySelector('input[name="' + f.name + '"]:checked');
       return c ? c.value : '';
@@ -270,7 +293,7 @@
   function validateStep(i) {
     var ok = true, first = null;
     STEPS[i].fields.forEach(function (f) {
-      if (f.type === 'note') return;
+      if (f.type === 'note' || f.type === 'derived') return;
       if (!validateField(f)) { ok = false; if (!first) first = f; }
     });
     if (first) {
@@ -346,6 +369,7 @@
     allFields.forEach(function (f) {
       var key = 'entry.' + f.entry, visible = isVisible(f), v = visible ? getValue(f) : null;
       if (f.type === 'checkboxes') {
+        if (!visible && f.valueIfHidden) body.append(key, f.valueIfHidden);
         (v || []).forEach(function (x) { body.append(key, x); });
         if (v && v.indexOf('__other_option__') > -1) body.append(key + '.other_option_response', otherText(f));
       } else if (f.type === 'dates') {
@@ -397,8 +421,8 @@
 
   /* ---------- language ---------- */
   var TITLES = {
-    ru: 'Анкета участника · Ретрит с Мастером в DOMA · 9–17 мая 2027',
-    en: 'Application · Retreat with the Master at DOMA · 9–17 May 2027'
+    ru: 'Анкета участника · Ретрит с Мастером в Казбеги · 1–18 июля 2027',
+    en: 'Application · Retreat with the Master in Kazbegi · 1–18 July 2027'
   };
   function applyLang(lang) {
     if (!TITLES[lang]) lang = 'ru';

@@ -1,26 +1,30 @@
 /* ==========================================================================
-   Master's Retreat · DOMA · 9–17 May 2027
-   Palette taken from the DOMA pergola photo: warm wood, terracotta,
-   olive, dried grass and linen.
+   Master's Retreat · Rooms Kazbegi · 1–18 July 2027
+   Palette taken from Rooms Kazbegi: spruce forest and alpine meadow,
+   cognac wood, mountain stone and the amber glow on Mount Kazbek.
    ========================================================================== */
 
 :root {
-  --cream: #f7f2ea;
-  --linen: #efe6d8;
-  --sand: #e4d6c0;
-  --straw: #cfb68e;
-  --wood: #a57b52;
-  --accent: #7d6036;
-  --accent-dark: #634b29;
-  --accent-soft: #b89562;
-  --peach: #e8dcc6;
-  --olive: #6c7351;
-  --forest: #2d3226;
-  --forest-2: #363c2e;
-  --ink: #2a231d;
-  --ink-soft: #5e5247;
-  --line: rgba(42, 35, 29, 0.14);
-  --line-light: rgba(247, 242, 234, 0.18);
+  /* Палитра Rooms Kazbegi: ель и альпийский луг, коньячное дерево интерьеров,
+     камень и лишайник, янтарный закат на Казбеке */
+  --cream: #f3f1ea;
+  --linen: #e8e6dc;
+  --sand: #d9d5c5;
+  --straw: #c3b28a;
+  --wood: #9b6a42;
+  --accent: #85582f;
+  --accent-dark: #6a4524;
+  --accent-soft: #b88a5c;
+  --peach: #ecd3ad;
+  --olive: #5d6b4b;
+  --moss: #7f8f5e;
+  --slate: #5e6a72;
+  --forest: #1e2a23;
+  --forest-2: #26342b;
+  --ink: #1c211d;
+  --ink-soft: #545b53;
+  --line: rgba(28, 33, 29, 0.14);
+  --line-light: rgba(243, 241, 234, 0.18);
 
   --font-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -205,13 +209,13 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
     color 0.35s var(--ease), border-color 0.35s var(--ease);
 }
 .btn svg { width: 18px; height: 18px; flex: none; transition: transform 0.35s var(--ease); }
-.btn:hover { transform: translateY(-2px); background: #1c2018; }
+.btn:hover { transform: translateY(-2px); background: #141d18; }
 .btn:hover svg { transform: translateX(4px); }
 
-.btn--ghost { --bg: transparent; --bd: rgba(247, 242, 234, 0.55); }
-.btn--ghost:hover { background: rgba(247, 242, 234, 0.14); }
+.btn--ghost { --bg: transparent; --bd: rgba(243, 241, 234, 0.55); }
+.btn--ghost:hover { background: rgba(243, 241, 234, 0.14); }
 
-.btn--outline { --bg: transparent; --fg: var(--ink); --bd: rgba(42, 35, 29, 0.28); }
+.btn--outline { --bg: transparent; --fg: var(--ink); --bd: rgba(28, 33, 29, 0.28); }
 .btn--outline:hover { background: var(--ink); color: var(--cream); }
 
 .btn--light { --bg: var(--cream); --fg: var(--ink); }
@@ -248,7 +252,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
 .header.is-scrolled {
   --h-fg: var(--ink);
   --h-contrast: var(--cream);
-  background: rgba(247, 242, 234, 0.88);
+  background: rgba(243, 241, 234, 0.88);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   backdrop-filter: saturate(1.4) blur(14px);
   box-shadow: 0 1px 0 var(--line);
@@ -405,7 +409,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   min-height: 100svh;
   overflow: hidden;
   color: var(--cream);
-  background: #3b3a2c;
+  background: #26342b;
 }
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__media video,
@@ -451,7 +455,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
 .hero h1 em { color: var(--peach); }
 .hero__lead {
   max-width: 560px;
-  color: rgba(247, 242, 234, 0.9);
+  color: rgba(243, 241, 234, 0.9);
   font-size: clamp(16px, 1.35vw, 19px);
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
@@ -517,7 +521,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   overflow: hidden;
   border-radius: var(--radius);
   border: 8px solid var(--cream);
-  box-shadow: 0 30px 60px -30px rgba(42, 35, 29, 0.45);
+  box-shadow: 0 30px 60px -30px rgba(28, 33, 29, 0.45);
 }
 .about__small img { width: 100%; height: 100%; object-fit: cover; }
 .about__caption {
@@ -569,7 +573,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
 /* ---------- Schedule ---------- */
 .schedule { background: var(--forest); color: var(--cream); overflow: hidden; }
 .schedule .kicker { color: var(--straw); }
-.schedule .lead { color: rgba(247, 242, 234, 0.72); }
+.schedule .lead { color: rgba(243, 241, 234, 0.72); }
 .days {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr) minmax(0, 1fr);
@@ -581,7 +585,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   border: 1px solid var(--line-light);
   border-radius: var(--radius);
 }
-.day--main { background: rgba(247, 242, 234, 0.05); }
+.day--main { background: rgba(243, 241, 234, 0.05); }
 .day__label {
   color: var(--straw);
   font-size: 12px;
@@ -602,8 +606,8 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
 .timeline time { color: var(--peach); font-weight: 600; font-variant-numeric: tabular-nums; }
 .timeline .hl { display: flex; align-items: center; gap: 10px; }
 .timeline .hl svg { width: 18px; height: 18px; color: var(--peach); flex: none; }
-.day__note { margin-top: 16px; font-size: 13.5px; color: rgba(247, 242, 234, 0.62); }
-.schedule .note { color: rgba(247, 242, 234, 0.6); }
+.day__note { margin-top: 16px; font-size: 13.5px; color: rgba(243, 241, 234, 0.62); }
+.schedule .note { color: rgba(243, 241, 234, 0.6); }
 
 /* ---------- Place ---------- */
 .place__grid {
@@ -667,7 +671,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: 1px solid rgba(42, 35, 29, 0.25);
+  border: 1px solid rgba(28, 33, 29, 0.25);
   background: transparent;
   color: var(--ink);
   cursor: pointer;
@@ -704,7 +708,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   bottom: 14px;
   padding: 7px 13px;
   border-radius: 999px;
-  background: rgba(247, 242, 234, 0.88);
+  background: rgba(243, 241, 234, 0.88);
   font-size: 13px;
   font-weight: 600;
 }
@@ -779,7 +783,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(20, 15, 10, 0) 35%, rgba(20, 15, 10, 0.86) 100%);
+  background: linear-gradient(180deg, rgba(12, 16, 13, 0) 35%, rgba(12, 16, 13, 0.86) 100%);
 }
 .act__body { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(20px, 2vw, 28px); }
 .act h3 { font-size: clamp(18px, 1.5vw, 21px); }
@@ -800,11 +804,11 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; list-style: none; }
 .chips li {
   padding: 10px 18px;
-  border: 1px solid rgba(42, 35, 29, 0.22);
+  border: 1px solid rgba(28, 33, 29, 0.22);
   border-radius: 999px;
   font-size: 14.5px;
   font-weight: 500;
-  background: rgba(247, 242, 234, 0.5);
+  background: rgba(243, 241, 234, 0.5);
 }
 
 /* ---------- Pricing ---------- */
@@ -827,14 +831,14 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   align-self: flex-start;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(125, 96, 54, 0.1);
+  background: rgba(133, 88, 47, 0.1);
   color: var(--accent);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
-.plan--main .plan__tag { background: rgba(241, 214, 180, 0.14); color: var(--peach); }
+.plan--main .plan__tag { background: rgba(236, 211, 173, 0.14); color: var(--peach); }
 .plan h3 { margin-top: 22px; font-size: clamp(22px, 2vw, 28px); }
 .plan__price {
   margin-top: 18px;
@@ -859,7 +863,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
 .plan__list svg { width: 18px; height: 18px; flex: none; margin-top: 4px; color: var(--accent); }
 .plan--main .plan__list svg { color: var(--peach); }
 .plan--main .plan__list li,
-.plan--main .plan__fine { color: rgba(247, 242, 234, 0.82); }
+.plan--main .plan__fine { color: rgba(243, 241, 234, 0.82); }
 .plan__fine { margin-top: 18px; font-size: 13.5px; color: var(--ink-soft); }
 .plan .btn { margin-top: auto; align-self: flex-start; }
 .plan__spacer { flex: 1; min-height: 28px; }
@@ -969,10 +973,10 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 300; }
   gap: 14px;
   padding: 18px 20px;
   border-radius: var(--radius);
-  background: rgba(247, 242, 234, 0.95);
+  background: rgba(243, 241, 234, 0.95);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px -20px rgba(42, 35, 29, 0.4);
+  box-shadow: 0 20px 40px -20px rgba(28, 33, 29, 0.4);
 }
 .map__card b { display: block; font-size: 17px; font-weight: 600; line-height: 1.2; }
 .map__card > div > span { font-size: 14px; color: var(--ink-soft); }
@@ -1088,7 +1092,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
 .footer {
   padding: 72px 0 calc(32px + env(safe-area-inset-bottom));
   background: var(--forest);
-  color: rgba(247, 242, 234, 0.8);
+  color: rgba(243, 241, 234, 0.8);
   font-size: 14.5px;
 }
 .footer__grid {
@@ -1136,7 +1140,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
   gap: 12px;
   padding: 8px 8px 8px 20px;
   border-radius: 999px;
-  background: rgba(45, 50, 38, 0.94);
+  background: rgba(30, 42, 35, 0.94);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   color: var(--cream);
@@ -1315,7 +1319,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(42, 35, 29, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(28, 33, 29, 0.06);
   pointer-events: none;
 }
 .memories__foot {
@@ -1336,7 +1340,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
   display: grid;
   place-items: center;
   padding: 64px 72px;
-  background: rgba(24, 20, 16, 0.94);
+  background: rgba(14, 19, 16, 0.94);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.35s var(--ease), visibility 0.35s;
@@ -1358,15 +1362,15 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
   height: 50px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(247, 242, 234, 0.3);
+  border: 1px solid rgba(243, 241, 234, 0.3);
   border-radius: 50%;
-  background: rgba(247, 242, 234, 0.06);
+  background: rgba(243, 241, 234, 0.06);
   color: var(--cream);
   cursor: pointer;
   font-size: 26px;
   line-height: 1;
 }
-.lightbox button:hover { background: rgba(247, 242, 234, 0.16); }
+.lightbox button:hover { background: rgba(243, 241, 234, 0.16); }
 .lightbox button svg { width: 18px; height: 18px; }
 .lightbox__close { top: 16px; right: 16px; }
 .lightbox__prev { left: 16px; top: 50%; transform: translateY(-50%); }
@@ -1377,7 +1381,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
   left: 50%;
   bottom: 20px;
   transform: translateX(-50%);
-  color: rgba(247, 242, 234, 0.7);
+  color: rgba(243, 241, 234, 0.7);
   font-size: 13px;
   letter-spacing: 0.1em;
 }
@@ -1426,7 +1430,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
   text-decoration: none;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
 }
-.guide-card:hover { transform: translateY(-3px); border-color: transparent; box-shadow: 0 24px 40px -28px rgba(42, 35, 29, 0.45); }
+.guide-card:hover { transform: translateY(-3px); border-color: transparent; box-shadow: 0 24px 40px -28px rgba(28, 33, 29, 0.45); }
 .guide-card__img { width: 104px; height: 104px; overflow: hidden; border-radius: 16px; background: var(--sand); }
 .guide-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .guide-card:hover .guide-card__img img { transform: scale(1.06); }
@@ -1448,7 +1452,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
 .header--solid {
   --h-fg: var(--ink);
   --h-contrast: var(--cream);
-  background: rgba(247, 242, 234, 0.92);
+  background: rgba(243, 241, 234, 0.92);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   backdrop-filter: saturate(1.4) blur(14px);
   box-shadow: 0 1px 0 var(--line);
@@ -1492,7 +1496,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
     grid-template-rows: min(80svh, 720px) auto;
     min-height: 0;
     align-items: end;
-    background: #171a13;
+    background: #121915;
   }
   .hero__media { position: relative; inset: auto; grid-area: 1 / 1; height: 100%; }
   .hero::before {
@@ -1515,7 +1519,7 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
    Hero start: instant blurred preview → first frame with a slow drone-like
    pull-back → the video fades in as soon as it actually plays (no dark flash, no freeze)
    ========================================================================== */
-.hero__media { overflow: hidden; background: #23261d; }
+.hero__media { overflow: hidden; background: #1b2620; }
 .hero__media::before {
   content: "";
   position: absolute;
@@ -1536,3 +1540,75 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
 .hero.is-playing .hero__media video { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero__poster img { animation: none; } }
 .hero__poster.is-motion img { animation: none; }
+
+/* ==========================================================================
+   Kazbegi: hero photo sequence — instant blurred preview, then 4 photos
+   crossfade with a slow drone-like drift (main.js switches .is-active)
+   ========================================================================== */
+.hero__slides { position: absolute; inset: 0; }
+.hero__slide { position: absolute; inset: 0; opacity: 0; }
+.hero__slide img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 45%; }
+.hero__slide.is-prev { opacity: 1; z-index: 1; }
+.hero__slide.is-active { opacity: 1; z-index: 2; transition: opacity 1.8s ease; }
+.hero__slide.is-active img,
+.hero__slide.is-prev img { animation: hero-drift 10s linear both; }
+.hero__slide:nth-child(even).is-active img,
+.hero__slide:nth-child(even).is-prev img { animation-name: hero-drift-in; }
+.hero__slide:first-child.is-active img { animation: hero-pullback-long 10s cubic-bezier(0.2, 0.6, 0.3, 1) both; }
+@keyframes hero-drift { from { transform: scale(1.1) translate3d(1.2%, 0, 0); } to { transform: scale(1.01) translate3d(0, 0, 0); } }
+@keyframes hero-drift-in { from { transform: scale(1.01) translate3d(0, 0, 0); } to { transform: scale(1.1) translate3d(-1.2%, 0, 0); } }
+@keyframes hero-pullback-long { from { transform: scale(1.1); } to { transform: scale(1.01); } }
+.js .hero__slide.is-active.is-first { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero__slide img, .hero__slide.is-active img, .hero__slide.is-prev img { animation: none !important; }
+}
+
+/* Final CTA background photo (in a <picture>) with a very slow drift */
+.final > picture { position: absolute; inset: 0; z-index: -2; }
+.final > picture img { width: 100%; height: 100%; object-fit: cover; animation: final-drift 26s ease-in-out infinite alternate; }
+@keyframes final-drift { from { transform: scale(1.02); } to { transform: scale(1.1); } }
+@media (prefers-reduced-motion: reduce) { .final > picture img { animation: none; } }
+
+/* Schedule with four cards: arrival · practice days · intensive · departure */
+.days--4 { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 0.95fr); }
+.day--intensive { border-color: rgba(236, 211, 173, 0.45); background: rgba(236, 211, 173, 0.06); }
+.day__tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 9px;
+  border: 1px solid rgba(236, 211, 173, 0.5);
+  border-radius: 999px;
+  color: var(--peach);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  vertical-align: 1px;
+}
+.schedule .note + .note { margin-top: 10px; }
+@media (max-width: 1100px) {
+  .days--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .days--4 .day--main { grid-column: 1 / -1; grid-row: 1; }
+}
+@media (max-width: 760px) {
+  .days--4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Room rates: mountain / forest view, single / double */
+.room__rates { list-style: none; margin: 0; padding: 0 clamp(18px, 2vw, 24px) clamp(18px, 2vw, 24px); }
+.room__rates li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.room__rates b { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.stay .note { margin-top: 18px; color: var(--ink-soft); }
+
+/* Body practices under the "included" cards */
+.practices { margin-top: clamp(28px, 3vw, 44px); }
+/* Narrow schedule cards: time above the text instead of a side column */
+.days--4 .day:not(.day--main) .timeline li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.days--4 .day:not(.day--main) .timeline .hl { align-items: flex-start; }
+.days--4 .day:not(.day--main) .timeline .hl svg { margin-top: 3px; }
