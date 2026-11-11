@@ -59,6 +59,19 @@ retreat:
       d: "UklGRhoBAABXRUJQVlA4IA4BAABQBgCdASogABYAPu1gqE2ppaOiMAgBMB2JZQC4S1HKsEc6pd1zk26Dx7aNtcTO7o6Y4qMUTdNokfsSKAD+td15ugE5930e8aEpWuYcR0aM6Py08JW5HstehXovFqfa8UdyDHMTyZ+NmS+xaYDEAbWugN0USqasxCJfeixrBacDekaLQpb5omTEjTt/wv7+z98eoONNHn2kVi3RZpVtJaduhJ+hPxUjhbLtxUUg+IqZW2FwQRQnEFD1+zMw7EcNJJZ/uyfaEjVRfTyIlo8KzCippaASYWLezdu/8uxnjyrSRcA8qleXHTeSFOh54l2tuL4Jwj3rp5JWlfRnuFGZSgeili/VnJTeyfPfXOSjQAA="
       m: "UklGRtgAAABXRUJQVlA4IMwAAAAwBgCdASoSAB4APu1krE+ppSQiMBgIATAdiWUAsQzu3AAlcCTmky3KUL7lF80lk9d+LtqeZq2svgkAAP7rPYhXJAn859f7y57Ab1FdUA1yV0+2KamoeDHmxk3Ofe/55j3JUyvoT5fhXljB3DAsWP8Zh1cco+uSlFBGqwHVIFjeyHGmU482FDVVlDWR6y6Fir9NYrgL91wOoHOl3LXjvpUMh+gf52qK+Sah/WcVj7jsb5opJch9F1L+mYo9zxQi2i2vuLOgKRzsA5MgHAA="
 
+# ----------------------------------------------------------------------------- характер места
+#  Графика и детали, которые есть только у этого ретрита: линия Казбека, грузинские буквы, дерево и лофт.
+#  Сама графика — в _includes/identity/, стили — в assets/css/identity.css. Удалите раздел — сайт станет нейтральным.
+identity:
+  css: "identity.css"
+  font: "Noto Serif Georgian"  # шрифт для грузинских слов; грузятся только нужные буквы
+  watermark: "ყაზბეგი"           # «Казбеги» по-грузински — большое бледное слово за заголовком «Место»
+  panorama:                    # линия Казбека внизу «Расписания»
+    peak: { ru: "Казбек · 5 054 м", en: "Mount Kazbek · 5,054 m" }
+    peak_ka: "მყინვარწვერი"     # грузинское имя Казбека — «ледяная вершина»
+    church: { ru: "Гергети · 2 170 м", en: "Gergeti · 2,170 m" }
+    church_ka: "გერგეტის სამება" # церковь Святой Троицы в Гергети
+
 # ----------------------------------------------------------------------------- о ретрите
 about:
   kicker: { ru: "О ретрите", en: "About the retreat" }
@@ -218,7 +231,7 @@ venue:
     - { ru: "Специальные сниженные цены для всех участников группы", en: "Special reduced rates for everyone in the group" }
     - { ru: "Единственное спа в округе — бассейн с панорамой гор и сауны", en: "The only spa around — a pool with a mountain panorama and saunas" }
   photo: { src: "facade.webp", alt: { ru: "Rooms Kazbegi на фоне гор", en: "Rooms Kazbegi against the mountains" } }
-  ring: "ROOMS KAZBEGI ✦ GEORGIA ✦ KAZBEK ✦"
+  ring: "ROOMS KAZBEGI ✦ მყინვარწვერი ✦ 5054 M ✦"   # текст на вращающемся круге
   gallery:
     title: { ru: "Атмосфера Rooms", en: "The feel of Rooms" }
     photos:

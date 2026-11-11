@@ -1,0 +1,16 @@
+{%- comment -%} Линия Казбека (обведена по фото заката из Степанцминды) и церковь Гергети. Подписи — в _data/retreat.yml: identity.panorama {%- endcomment -%}
+{%- assign IP = R.identity.panorama -%}
+{%- if IP -%}
+      <figure class="kz-panorama" aria-hidden="true">
+        <svg viewBox="0 0 960 315" preserveAspectRatio="xMidYMax meet" fill="none" stroke-linejoin="round" stroke-linecap="round">
+          <path class="kz-panorama__sky" d="M0 168.2 L30 164.3 L36 166.1 L52 179.4 L62 198.6 L80 214.7 L94 232.8 L106 238.6 L136 239.3 L166 234.3 L192 242 L214 234.4 L238 233.7 L268 217.5 L286 202.7 L314 188.6 L346 161.8 L370 146.2 L384 122.1 L412 90.7 L432 63.8 L446 37.5 L462 20.4 L492 10.2 L508 10 L528 18.9 L572 59.5 L604 80.1 L640 126.8 L660 142.9 L672 144.4 L688 152.2 L728 150.4 L738 162.9 L744 166 L762 157.8 L772 161.8 L786 158.9 L794 164.2 L810 158.8 L824 166.8 L844 191.7 L868 209.5 L880 226.1 L894 230.9 L910 241.6 L924 243.8 L958 258.8"/>
+          <path class="kz-panorama__ground" d="M0 300.8 C55 300.8 55 286.8 110 286.8 C160 286.8 160 270.8 210 270.8 C243 270.8 243 258.8 276 258.8 C297 258.8 297 255.8 318 255.8 C337 255.8 337 258.8 356 258.8 C398 258.8 398 276.8 440 276.8 C500 276.8 500 296.8 560 296.8 C625 296.8 625 304.8 690 304.8 C755 304.8 755 296.8 820 296.8 C890 296.8 890 288.8 960 288.8 L960 315 L0 315 Z"/>
+          <path class="kz-panorama__hill" d="M0 300.8 C55 300.8 55 286.8 110 286.8 C160 286.8 160 270.8 210 270.8 C243 270.8 243 258.8 276 258.8 C297 258.8 297 255.8 318 255.8 C337 255.8 337 258.8 356 258.8 C398 258.8 398 276.8 440 276.8 C500 276.8 500 296.8 560 296.8 C625 296.8 625 304.8 690 304.8 C755 304.8 755 296.8 820 296.8 C890 296.8 890 288.8 960 288.8"/>
+          <g class="kz-panorama__church" transform="translate(318 255.7545941558442) scale(1.15)"><path d="M-9 0V-9l7-4.5L5-9V0z"/><path d="M-4.3-20h4.6v7.5h-4.6z"/><path d="M-5.4-20 -2-27.5 1.4-20z"/><path d="M-18-8.5h4.2V0H-18z"/><path d="M-18.9-8.5l3-4.7 3 4.7z"/></g>
+        </svg>
+        <figcaption>
+          <span class="kz-label kz-label--peak" style="left:52.92%;top:3.17%"><b>{% include t.html v=IP.peak %}</b>{% if IP.peak_ka %}<i lang="ka">{{ IP.peak_ka }}</i>{% endif %}</span>
+          <span class="kz-label kz-label--church" style="left:32.92%;top:71.15%"><b>{% include t.html v=IP.church %}</b>{% if IP.church_ka %}<i lang="ka">{{ IP.church_ka }}</i>{% endif %}</span>
+        </figcaption>
+      </figure>
+{%- endif -%}

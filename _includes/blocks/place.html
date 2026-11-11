@@ -16,12 +16,13 @@
               <defs><path id="ring-path" d="M66,66 m-51,0 a51,51 0 1,1 102,0 a51,51 0 1,1 -102,0"/></defs>
               <text><textPath href="#ring-path" textLength="318" lengthAdjust="spacing">{{ V.ring }}</textPath></text>
             </svg>
-            <svg class="badge__mark"><use href="#i-logo"/></svg>
+            <svg class="badge__mark"><use href="#i-badge"/></svg>
           </div>
           {%- endif %}
         </div>
 
         <div class="place__text">
+          {% include identity/place.html %}
           <p class="kicker reveal">{% include t.html v=V.kicker %}</p>
           <h2 class="h2 reveal" data-delay="1">{% include t.html v=V.title %}</h2>
           <p class="lead reveal" data-delay="2">{% include t.html v=V.lead %}</p>
