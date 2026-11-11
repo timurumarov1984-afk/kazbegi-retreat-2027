@@ -27,6 +27,9 @@ name_en: Application
     <section class="form-card" aria-live="polite">
       <div class="progress" aria-hidden="true"><span></span></div>
 
+      {%- if Fm.enabled == false %}
+      <p class="note-box form-draft-note"><span lang="ru"><b>Черновик для согласования.</b> Анкету можно посмотреть и&nbsp;заполнить, но&nbsp;заявки пока не&nbsp;отправляются.</span><span lang="en"><b>Draft for review.</b> You can look through and fill in the form, but applications aren’t sent yet.</span></p>
+      {%- endif %}
       <form id="apply-form" novalidate>
         <!-- шаги рисует assets/js/apply.js -->
       </form>
@@ -45,6 +48,12 @@ name_en: Application
           <span lang="ru">Вернуться на&nbsp;сайт</span><span lang="en">Back to the site</span>
           <svg aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
+      </div>
+
+      <div class="form-state form-state--preview" hidden>
+        <h2><span lang="ru">Это черновик для согласования</span><span lang="en">This is a draft for review</span></h2>
+        <p><span lang="ru">Анкету можно посмотреть и&nbsp;заполнить, но&nbsp;заявки пока не&nbsp;отправляются. Приём заявок откроем после публикации сайта.</span><span lang="en">You can look through and fill in the form, but applications aren’t sent yet. Applications open once the site is published.</span></p>
+        <button class="btn" type="button" data-back-to-form><span lang="ru">Вернуться к&nbsp;анкете</span><span lang="en">Back to the form</span></button>
       </div>
 
       <div class="form-state form-state--error" hidden>

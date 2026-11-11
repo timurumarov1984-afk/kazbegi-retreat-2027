@@ -65,6 +65,9 @@
 
 <body class="{{ page.body_class }}" data-title-ru="{{ tt_ru | escape }}" data-title-en="{{ tt_en | escape }}" data-desc-ru="{{ ds_ru | escape }}" data-desc-en="{{ ds_en | escape }}">
   {% include icons.html %}
+{%- if R.site.draft %}
+  <div class="draft-ribbon" role="note"><span lang="ru">Черновик для согласования</span><span lang="en">Draft for review</span></div>
+{%- endif %}
 {%- if page.apply %}
   {% include apply-header.html %}
 {%- else %}

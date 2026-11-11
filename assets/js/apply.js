@@ -335,10 +335,10 @@
     return m;
   }
 
-  var states = { success: $('.form-state--success'), error: $('.form-state--error') };
+  var states = { success: $('.form-state--success'), error: $('.form-state--error'), preview: $('.form-state--preview') };
   function showState(name) {
     form.hidden = !!name;
-    Object.keys(states).forEach(function (k) { states[k].hidden = k !== name; });
+    Object.keys(states).forEach(function (k) { if (states[k]) states[k].hidden = k !== name; });
     if (name === 'success') {
       progress.style.width = '100%';
       $$('li', nav).forEach(function (li) { li.classList.remove('is-current'); li.classList.add('is-done'); });
@@ -363,6 +363,7 @@
   }
   function send() {
     if (sending) return;
+    if (FORM.enabled === false) { track('apply-preview'); showState('preview'); return; }   // черновик: ничего не отправляем
     sending = true;
     var btn = form.querySelector('[data-submit]');
     btn.disabled = true;
@@ -389,6 +390,8 @@
     if (validateStep(current)) send();
   });
   $('[data-retry]').addEventListener('click', function () { showState(null); goTo(STEPS.length - 1); });
+  var backBtn = $('[data-back-to-form]');
+  if (backBtn) backBtn.addEventListener('click', function () { showState(null); goTo(STEPS.length - 1); });
 
   /* ---------- language ---------- */
   var bd = document.body.dataset;

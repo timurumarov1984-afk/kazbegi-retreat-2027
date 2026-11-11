@@ -121,3 +121,14 @@ tools/check-form.mjs    — сверка анкеты с Google-формой
 ```
 jekyll build && cd _site && python3 -m http.server 8777
 ```
+
+## Публикация
+
+Сайт опубликован на GitHub Pages: **https://timurumarov1984-afk.github.io/kazbegi-retreat-2027/**
+(репозиторий `timurumarov1984-afk/kazbegi-retreat-2027`, ветка `main`). Сайт собирает сам GitHub, через 1–2 минуты после изменения.
+
+Сейчас это **черновик для согласования** (с отелем и организаторами):
+- `site.draft: true` — поисковики сайт не видят, в углу пометка «Черновик для согласования»;
+- `form.enabled: false` — анкету можно посмотреть и заполнить, но заявки не отправляются.
+
+Когда страница согласована: `site.draft: false`, `form.enabled: true`, приёмник заявок по `apps-script/README.md` и тестовая заявка по чек-листу выше.

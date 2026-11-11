@@ -17,8 +17,8 @@
 # =============================================================================
 
 site:
-  url: ""                      # полный адрес сайта после публикации, со слешем в конце, например "https://masters-retreat.github.io/kazbegi-2027/"
-  draft: true                  # true — поисковики сайт не видят (пока согласуем страницу с отелем)
+  url: "https://timurumarov1984-afk.github.io/kazbegi-retreat-2027/"   # полный адрес сайта, со слешем в конце — нужен для превью ссылки
+  draft: true                  # true — черновик: поисковики сайт не видят, в углу пометка «Черновик для согласования»
   brand:
     name: "Master’s Retreat"
     sub: "Kazbegi · Georgia · 2027"
@@ -547,6 +547,7 @@ footer:
 #  Проверка: node tools/check-form.mjs _site/apply.html (после сборки) или адрес опубликованной анкеты.
 form:
   google_form: "https://docs.google.com/forms/d/e/1FAIpQLSdNdcz-bhe11F-3Ln2LerXR3q0brYlOSSoA6LhBOBS9X0bdsg/formResponse"
+  enabled: false               # false — анкету можно посмотреть, но заявки не отправляются (черновик). true — принимаем заявки
   endpoint: ""                 # адрес Apps Script (см. apps-script/README.md). Пока пусто — заявка уходит напрямую в форму без подтверждения
   extra: { fvv: "1", pageHistory: "0,1,2,3,4", fbzx: "-3094951576178558100", partialResponse: "[null,null,\"-3094951576178558100\"]", submissionTimestamp: "-1" }
   draft_key: "retreat-apply-kazbegi-2027"

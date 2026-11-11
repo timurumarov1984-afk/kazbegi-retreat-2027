@@ -1831,3 +1831,23 @@ h2.gallery__title { font-size: clamp(22px, 2vw, 28px); }
   .event-tile { background: var(--forest-2); border-color: rgba(243, 241, 234, 0.14); }
   .guide-cards--n2, .guide-cards--n4, .guide-cards--n5, .guide-cards--n6 { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Draft for review (site.draft: true) */
+.draft-ribbon {
+  position: fixed;
+  left: 14px;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  z-index: 95;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(14, 19, 16, 0.84);
+  color: #f3f1ea;
+  font: 600 10.5px/1.2 var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+@media (max-width: 760px) { .draft-ribbon { bottom: calc(92px + env(safe-area-inset-bottom)); } }
+.form-draft-note { margin: 0 0 18px; }
