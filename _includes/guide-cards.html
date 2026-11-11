@@ -1,0 +1,33 @@
+{%- comment -%} Карточки-ссылки на join / travel / faq. skip — какую не показывать (текущую страницу) {%- endcomment -%}
+<div class="guide-cards{% if include.skip != '' %} guide-cards--2{% endif %}">
+          {%- unless include.skip == "join" %}
+          <a class="guide-card reveal" href="join.html">
+            <span class="guide-card__img">{% include img.html p=R.guide.join %}</span>
+            <span class="guide-card__body">
+              <b><span lang="ru">Как попасть на&nbsp;ретрит</span><span lang="en">How to join</span></b>
+              <span class="guide-card__text"><span lang="ru">{{ R.join.steps.size }} шагов — от&nbsp;заявки до&nbsp;чата участников</span><span lang="en">{{ R.join.steps.size }} steps — from the application to the participants’ chat</span></span>
+            </span>
+            <span class="guide-card__arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+          </a>
+          {%- endunless %}
+          {%- unless include.skip == "travel" %}
+          <a class="guide-card reveal" href="travel.html">
+            <span class="guide-card__img">{% include img.html p=R.guide.travel %}</span>
+            <span class="guide-card__body">
+              <b><span lang="ru">Как добраться</span><span lang="en">Getting there</span></b>
+              <span class="guide-card__text"><span lang="ru">Дорога, карта и&nbsp;что взять с&nbsp;собой</span><span lang="en">The route, the map and what to bring</span></span>
+            </span>
+            <span class="guide-card__arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+          </a>
+          {%- endunless %}
+          {%- unless include.skip == "faq" %}
+          <a class="guide-card reveal" href="faq.html">
+            <span class="guide-card__img">{% include img.html p=R.guide.faq %}</span>
+            <span class="guide-card__body">
+              <b><span lang="ru">Частые вопросы</span><span lang="en">FAQ</span></b>
+              <span class="guide-card__text"><span lang="ru">Оплата, проживание, организация и&nbsp;связь</span><span lang="en">Payment, accommodation, organisation and contact</span></span>
+            </span>
+            <span class="guide-card__arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+          </a>
+          {%- endunless %}
+        </div>

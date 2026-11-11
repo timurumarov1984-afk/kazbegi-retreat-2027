@@ -1,0 +1,37 @@
+{%- assign M = R.memories -%}
+{%- if M and M.photos -%}
+{%- assign mem_slots = "group,master,yoga,hug,hall" | split: "," -%}
+    <!-- ===================== MEMORIES: «Как это было» (memories) ===================== -->
+    <section class="section memories" id="memories">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker reveal">{% include t.html v=M.kicker %}</p>
+            <h2 class="h2 reveal" data-delay="1">{% include t.html v=M.title %}</h2>
+          </div>
+          <p class="lead reveal" data-delay="2">{% include t.html v=M.lead %}</p>
+        </div>
+
+        <div class="mosaic">
+          {%- for p in M.photos limit: 5 %}
+          <button class="mosaic__item mosaic__item--{{ mem_slots[forloop.index0] }} reveal" type="button" data-full="assets/img/{{ p.src }}">{% include img.html p=p %}</button>
+          {%- endfor %}
+        </div>
+
+        <div class="memories__foot reveal">
+          {%- if M.video and M.video != "" %}
+          <button class="btn btn--outline memories__video" type="button" data-video="assets/video/{{ M.video }}"{% if M.video_poster %} data-poster="assets/img/{{ M.video_poster }}"{% endif %}>
+            <svg aria-hidden="true"><use href="#i-play"/></svg>
+            <span lang="ru">Смотреть видео</span><span lang="en">Watch the video</span>
+          </button>
+          {%- else %}
+          <span></span>
+          {%- endif %}
+          <a class="btn" href="apply.html">
+            <span lang="ru">Хочу на&nbsp;ретрит</span><span lang="en">I want to join</span>
+            <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+{%- endif -%}

@@ -1,0 +1,82 @@
+{%- assign H = R.retreat -%}
+    <!-- ===================== HERO: фото сменяют друг друга (retreat.hero.photos) ===================== -->
+    <section class="hero" aria-label="Retreat">
+      <div class="hero__media"{% if H.hero.lqip %} style="--lqip-d:url(data:image/webp;base64,{{ H.hero.lqip.d }});--lqip-m:url(data:image/webp;base64,{{ H.hero.lqip.m | default: H.hero.lqip.d }})"{% endif %}>
+        {%- if H.hero.video %}
+        {%- assign HV = H.hero.video %}
+        <picture class="hero__poster">
+          {%- if HV.poster_m %}
+          <source media="(max-aspect-ratio: 4/5)" srcset="assets/video/{{ HV.poster_m }}">
+          {%- endif %}
+          <img src="assets/video/{{ HV.poster }}" alt="" fetchpriority="high">
+        </picture>
+        <video autoplay muted loop playsinline preload="auto" data-autoplay{% if HV.intro %} data-intro="assets/video/{{ HV.intro }}"{% endif %}{% if HV.intro_m %} data-intro-m="assets/video/{{ HV.intro_m }}"{% endif %}>
+          {%- if HV.mobile %}
+          <source src="assets/video/{{ HV.mobile }}" type="video/mp4" media="(max-aspect-ratio: 4/5)">
+          {%- endif %}
+          <source src="assets/video/{{ HV.src }}" type="video/mp4">
+        </video>
+        {%- else %}
+        <div class="hero__slides">
+          {%- for p in H.hero.photos %}
+          <picture class="hero__slide{% if forloop.first %} is-active{% endif %}">
+            {%- if forloop.first %}
+            {%- if p.m %}
+            <source media="(max-aspect-ratio: 4/5)" srcset="assets/img/{{ p.m }}">
+            {%- endif %}
+            <img src="assets/img/{{ p.src }}" alt="" fetchpriority="high"{% if p.pos %} style="object-position:{{ p.pos }}"{% endif %}>
+            {%- else %}
+            {%- if p.m %}
+            <source media="(max-aspect-ratio: 4/5)" data-srcset="assets/img/{{ p.m }}">
+            {%- endif %}
+            <img data-srcset="assets/img/{{ p.src }}" alt=""{% if p.pos %} style="object-position:{{ p.pos }}"{% endif %}>
+            {%- endif %}
+          </picture>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </div>
+
+      <div class="container hero__content">
+        <div class="hero__headline">
+          <div class="hero__top reveal">
+            {%- if H.badge %}
+            <p class="hero__badge">{% include t.html v=H.badge %}</p>
+            {%- endif %}
+            <p class="hero__eyebrow">
+              <span lang="ru">{{ g_dates_ru }}</span><span lang="en">{{ g_dates_en }}</span>
+              <span class="dot" aria-hidden="true"></span>
+              {% include t.html v=R.venue.short %}
+            </p>
+          </div>
+
+          <h1 class="reveal" data-delay="1">{% include t.html v=H.title %}</h1>
+          {%- if g_int and R.intensive.plus %}
+          <p class="hero__plus reveal" data-delay="1"><a href="#intensive">{% include t.html v=R.intensive.plus %}</a></p>
+          {%- endif %}
+
+          <p class="hero__lead reveal" data-delay="2">{% include t.html v=H.lead %}</p>
+        </div>
+
+        <div class="hero__bottom">
+          <div class="hero__actions reveal" data-delay="3">
+            <a class="btn btn--lg btn--light" href="apply.html">
+              <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            <a class="btn btn--lg btn--ghost" href="#about">
+              <span lang="ru">Подробнее о&nbsp;ретрите</span><span lang="en">Learn more</span>
+            </a>
+          </div>
+
+          <div class="hero__facts reveal" data-delay="4">
+            {%- for f in H.facts %}
+            <div class="fact">
+              <b>{% include t.html v=f.value %}</b>
+              {% include t.html v=f.text %}
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    </section>

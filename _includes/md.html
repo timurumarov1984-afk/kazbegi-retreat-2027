@@ -1,0 +1,15 @@
+{%- comment -%}
+  Двуязычный текст абзацами (Markdown: абзацы, списки "- ", **жирный**, [ссылки](адрес)).
+  «include md.html v=текст» → <div lang="ru">…</div><div lang="en">…</div>
+{%- endcomment -%}
+{%- assign m_v = include.v -%}
+{%- if m_v.ru or m_v.en -%}
+  {%- assign m_src_ru = m_v.ru | default: m_v.en -%}
+  {%- assign m_src_en = m_v.en | default: m_v.ru -%}
+  {%- capture m_ru -%}{% include tx.html s=m_src_ru lang="ru" md="y" %}{%- endcapture -%}
+  {%- capture m_en -%}{% include tx.html s=m_src_en lang="en" md="y" %}{%- endcapture -%}
+<div lang="ru">{{ m_ru | markdownify | replace: '<a href="http', '<a target="_blank" rel="noopener" href="http' }}</div><div lang="en">{{ m_en | markdownify | replace: '<a href="http', '<a target="_blank" rel="noopener" href="http' }}</div>
+{%- elsif m_v -%}
+  {%- capture m_ru -%}{% include tx.html s=m_v lang="ru" md="y" %}{%- endcapture -%}
+{{ m_ru | markdownify | replace: '<a href="http', '<a target="_blank" rel="noopener" href="http' }}
+{%- endif -%}

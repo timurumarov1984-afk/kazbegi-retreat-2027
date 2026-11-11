@@ -1,0 +1,87 @@
+{%- assign Rm = R.rooms -%}
+{%- if Rm -%}
+    <!-- ===================== STAY: rooms.mode = through_us (бронь через нас) или hotel_site (на сайте отеля) ===================== -->
+    <section class="section stay" id="stay">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker reveal">{% include t.html v=Rm.kicker %}</p>
+            <h2 class="h2 reveal" data-delay="1">{% include t.html v=Rm.title %}</h2>
+          </div>
+          <div class="reveal" data-delay="2">
+            <p class="lead">{% include t.html v=Rm.lead %}</p>
+            {%- if Rm.nearby %}
+            <p class="stay__nearby"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>{% include t.html v=Rm.nearby %}</span></p>
+            {%- endif %}
+          </div>
+        </div>
+
+        <div class="rooms">
+          {%- for c in Rm.categories %}
+          {%- assign cd = forloop.index0 | modulo: 3 %}
+          <article class="room reveal"{% if cd > 0 %} data-delay="{{ cd }}"{% endif %}>
+            <div class="room__img">{% include img.html p=c.photo %}</div>
+            <div class="room__body">
+              <div>
+                <h3>{{ c.name }}</h3>
+                {%- if c.type %}
+                <p class="room__type">{% include t.html v=c.type %}</p>
+                {%- endif %}
+              </div>
+              <div class="room__price">
+                {%- if c.night and c.night != "" -%}
+                <b><span lang="ru">от </span><span lang="en">from </span>{% include money.html n=c.night %}&nbsp;{{ Rm.currency }}</b>{% include t.html v=Rm.price_label %}
+                {%- else -%}
+                <b class="room__tbd"><span lang="ru">цена уточняется</span><span lang="en">price tbc</span></b>
+                {%- endif -%}
+              </div>
+            </div>
+            {%- if c.text %}
+            <p class="room__text">{% include t.html v=c.text %}</p>
+            {%- endif %}
+            {%- if Rm.mode == "through_us" and c.night and c.night != "" %}
+            {%- assign c_total = c.night | times: g_nights %}
+            <p class="room__total"><span lang="ru">За {{ g_nights }} ночей, {{ g_checkin_ru }} – {{ g_checkout_ru }}:</span><span lang="en">For {{ g_nights }} nights, {{ g_checkin_en }} – {{ g_checkout_en }}:</span> <b><span lang="ru">от </span><span lang="en">from </span>{% include money.html n=c_total %}&nbsp;{{ Rm.currency }}</b></p>
+            {%- endif %}
+          </article>
+          {%- endfor %}
+        </div>
+
+        {%- if Rm.price_note %}
+        <p class="note reveal">{% include t.html v=Rm.price_note %}</p>
+        {%- endif %}
+
+        {%- if Rm.mode == "through_us" and Rm.steps %}
+        <ol class="booking-steps reveal">
+          {%- for s in Rm.steps %}
+          <li><span class="booking-steps__n">{{ forloop.index }}</span><span>{% include t.html v=s %}</span></li>
+          {%- endfor %}
+        </ol>
+        {%- endif %}
+
+        {%- if Rm.mode == "hotel_site" and Rm.hotel_site.promo %}
+        <p class="note reveal">{% include t.html v=Rm.hotel_site.promo %}</p>
+        {%- endif %}
+
+        {%- if Rm.info %}
+        <div class="stay__info reveal">
+          {%- for b in Rm.info %}
+          <div>
+            <b>{% include t.html v=b.title %}</b>
+            {% include t.html v=b.text %}
+          </div>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+
+        <div class="stay__cta reveal">
+          {%- if Rm.mode == "hotel_site" and Rm.hotel_site.url and Rm.hotel_site.url != "" %}
+          <a class="btn" href="{{ Rm.hotel_site.url }}" target="_blank" rel="noopener"><span lang="ru">Забронировать на&nbsp;сайте отеля</span><span lang="en">Book on the hotel website</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          {%- endif %}
+          {%- if Rm.link and Rm.link.url %}
+          <a class="btn btn--outline" href="{{ Rm.link.url }}" target="_blank" rel="noopener">{% include t.html v=Rm.link.label %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+{%- endif -%}

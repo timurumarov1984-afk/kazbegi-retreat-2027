@@ -1,0 +1,15 @@
+# Настройки сборки. Обычно их не трогают: всё содержание ретрита — в _data/retreat.yml,
+# оформление — в _layouts, _includes и assets/. GitHub Pages собирает сайт сам при каждом изменении.
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  smart_quotes: ["apos", "apos", "quot", "quot"]   # не менять кавычки в текстах
+exclude:
+  - README.md
+  - tools
+  - apps-script
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

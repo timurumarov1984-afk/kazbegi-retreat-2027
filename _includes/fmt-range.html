@@ -1,0 +1,10 @@
+{%- comment -%} Диапазон дат: 12–19 июля 2027 · 30 июня – 3 июля 2027 {%- endcomment -%}
+{%- if include.a and include.a != "" -%}
+{%- assign fr_ma = include.a | date: "%Y-%m" -%}
+{%- assign fr_mb = include.b | date: "%Y-%m" -%}
+{%- if fr_ma == fr_mb -%}
+{{ include.a | date: "%-d" }}–{% include fmt-date.html d=include.b lang=include.lang year=include.year %}
+{%- else -%}
+{% include fmt-date.html d=include.a lang=include.lang %} – {% include fmt-date.html d=include.b lang=include.lang year=include.year %}
+{%- endif -%}
+{%- endif -%}

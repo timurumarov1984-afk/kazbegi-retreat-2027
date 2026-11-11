@@ -1,0 +1,54 @@
+{%- assign I = R.included -%}
+    <!-- ===================== INCLUDED: карточки из каталога practices ===================== -->
+    <section class="section included" id="included">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker reveal">{% include t.html v=I.kicker %}</p>
+            <h2 class="h2 reveal" data-delay="1">{% include t.html v=I.title %}</h2>
+          </div>
+          <p class="lead reveal" data-delay="2">{% include t.html v=I.lead %}</p>
+        </div>
+
+        <div class="cards">
+          {%- assign card_n = 0 -%}
+          {%- for key in I.cards %}
+          {%- assign c = R.practices[key] -%}
+          {%- if c -%}
+          {%- assign card_n = card_n | plus: 1 -%}
+          {%- assign card_d = card_n | minus: 1 | modulo: 3 %}
+          <article class="card reveal"{% if card_d > 0 %} data-delay="{{ card_d }}"{% endif %}>
+            <div class="card__img">{% include img.html p=c.photo %}</div>
+            <div class="card__body">
+              <span class="card__num">{% if card_n < 10 %}0{% endif %}{{ card_n }}</span>
+              <h3>{% include t.html v=c.title %}</h3>
+              {%- if c.tag %}
+              <p class="card__tag">{% include t.html v=c.tag %}</p>
+              {%- endif %}
+              <p>{% include t.html v=c.text %}</p>
+              {%- assign c_lead = c.lead.name.ru | default: c.lead.name -%}
+              {%- if c.more or c_lead and c_lead != "" %}
+              <details class="card__more">
+                <summary>
+                  {%- if c_lead and c_lead != "" -%}
+                  <span><span lang="ru">Ведущий: </span><span lang="en">Teacher: </span>{% include t.html v=c.lead.name %}</span>
+                  {%- else -%}
+                  <span><span lang="ru">Подробнее</span><span lang="en">More</span></span>
+                  {%- endif -%}
+                  <span class="plus" aria-hidden="true"></span>
+                </summary>
+                {%- if c.lead.about and c.lead.about != "" %}
+                {% include md.html v=c.lead.about %}
+                {%- endif %}
+                {%- if c.more %}
+                {% include md.html v=c.more %}
+                {%- endif %}
+              </details>
+              {%- endif %}
+            </div>
+          </article>
+          {%- endif -%}
+          {%- endfor %}
+        </div>
+      </div>
+    </section>

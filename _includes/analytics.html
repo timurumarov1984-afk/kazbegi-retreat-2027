@@ -1,0 +1,12 @@
+{%- comment -%}
+  Статистика. rt('имя-события') можно вызывать из скриптов в любом случае: без счётчика ничего не происходит.
+  GoatCounter не ставит cookie, поэтому баннер согласия не нужен.
+{%- endcomment -%}
+<script>
+    window.rt = function (name) {
+      try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {}
+    };
+  </script>
+{%- if R.site.analytics.goatcounter and R.site.analytics.goatcounter != "" %}
+  <script data-goatcounter="https://{{ R.site.analytics.goatcounter }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{%- endif %}

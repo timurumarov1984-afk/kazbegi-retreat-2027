@@ -1,0 +1,9 @@
+{%- comment -%} Число с пробелом между тысячами: 1000 → 1 000 (неразрывный пробел) {%- endcomment -%}
+{%- assign mn = include.n | plus: 0 -%}
+{%- if mn >= 1000 -%}
+{%- assign mk = mn | divided_by: 1000 -%}{%- assign mr = mn | modulo: 1000 -%}
+{%- if mr < 10 -%}{%- assign mr = mr | prepend: "00" -%}{%- elsif mr < 100 -%}{%- assign mr = mr | prepend: "0" -%}{%- endif -%}
+{{ mk }}&nbsp;{{ mr }}
+{%- else -%}
+{{ mn }}
+{%- endif -%}

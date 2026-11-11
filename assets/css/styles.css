@@ -1612,3 +1612,129 @@ details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
 .days--4 .day:not(.day--main) .timeline li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 .days--4 .day:not(.day--main) .timeline .hl { align-items: flex-start; }
 .days--4 .day:not(.day--main) .timeline .hl svg { margin-top: 3px; }
+
+/* ==========================================================================
+   Template: elements switched on and off from _data/retreat.yml
+   ========================================================================== */
+
+/* First screen: "Meditation retreat" badge and the optional intensive line */
+.hero__badge {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 7px 14px;
+  border: 1px solid rgba(243, 241, 234, 0.35);
+  border-radius: 999px;
+  background: rgba(14, 19, 16, 0.28);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.hero__top { display: flex; flex-direction: column; align-items: flex-start; }
+.hero__plus { margin: -8px 0 18px; font-size: clamp(14px, 1.15vw, 16px); font-weight: 500; }
+.hero__plus a { color: var(--peach); text-decoration: none; border-bottom: 1px solid rgba(236, 211, 173, 0.45); }
+.hero__plus a:hover { border-bottom-color: currentColor; }
+
+/* Cards: tag and an expandable description of the teacher */
+.cards .card { grid-column: span 2; }
+.cards .card:nth-child(n + 4) { grid-column: span 2; }
+.cards .card:nth-child(n + 4) .card__img { aspect-ratio: 5 / 4; }
+.cards .card:nth-last-child(1):nth-child(3n + 1) { grid-column: 3 / span 2; }
+.cards .card:nth-last-child(2):nth-child(3n + 1) { grid-column: 2 / span 2; }
+.card__tag { margin: -2px 0 8px !important; color: var(--accent) !important; font-size: 12px !important; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.card__more { margin-top: 14px; border-top: 1px solid var(--line); }
+.card__more summary { padding: 12px 0 4px; font-size: 14.5px; }
+.card__more summary .plus { width: 26px; height: 26px; }
+.card__more[open] summary .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+.card__more > div { padding: 6px 0 2px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; }
+.card__more > div p { margin: 0 0 0.7em; }
+
+/* Schedule: small note next to a row ("not every day") */
+.timeline__note { display: inline-block; margin-left: 6px; padding: 1px 8px; border: 1px solid var(--line-light); border-radius: 999px; color: rgba(243, 241, 234, 0.7); font-size: 11.5px; letter-spacing: 0.04em; vertical-align: 1px; }
+.day__note a { color: var(--peach); text-underline-offset: 3px; }
+
+/* Intensive: its own block right after the schedule */
+.intensive { background: var(--forest-2); color: var(--cream); }
+.intensive .kicker { color: var(--straw); }
+.intensive .lead { color: rgba(243, 241, 234, 0.78); }
+.intensive .note { color: rgba(243, 241, 234, 0.6); }
+.intensive .btn--outline { color: var(--cream); border-color: rgba(243, 241, 234, 0.4); }
+.intensive .btn--outline:hover { background: var(--cream); color: var(--ink); }
+.intensive__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.intensive h2 { margin: 18px 0 20px; }
+.intensive__facts { margin: 0; border-top: 1px solid var(--line-light); }
+.intensive__facts > div { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-light); }
+.intensive__facts dt { color: rgba(243, 241, 234, 0.62); font-size: 14px; }
+.intensive__facts dd { margin: 0; font-weight: 600; }
+.tbd { color: rgba(243, 241, 234, 0.5); font-weight: 400; font-style: italic; }
+
+/* Accommodation: "you can stay nearby", room text and total, booking steps */
+.stay__nearby { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; padding: 14px 16px; border-radius: 14px; background: var(--linen); color: var(--ink); font-size: 15px; font-weight: 500; }
+.stay__nearby svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--accent); }
+.room__text { margin: 0; padding: 0 clamp(18px, 2vw, 24px) 6px; color: var(--ink-soft); font-size: 14.5px; }
+.room__total { margin: 0; padding: 10px clamp(18px, 2vw, 24px) clamp(18px, 2vw, 24px); color: var(--ink-soft); font-size: 14px; }
+.room__total b { color: var(--ink); }
+.room__tbd { font-size: 15px !important; font-weight: 500 !important; color: var(--ink-soft); }
+.booking-steps { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: clamp(28px, 3vw, 40px) 0 0; padding: 0; counter-reset: none; }
+.booking-steps li { display: flex; gap: 12px; align-items: flex-start; padding: 18px; border: 1px solid var(--line); border-radius: 16px; font-size: 14.5px; line-height: 1.5; }
+.booking-steps__n { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--forest); color: var(--cream); font-size: 13px; font-weight: 600; }
+
+/* Pricing: early-bird steps by payment date, refund terms as a second card */
+.tiers .tier { align-items: baseline; }
+.tiers .tier.is-past { opacity: 0.45; text-decoration: line-through; text-decoration-thickness: 1px; }
+.tiers .tier.is-current { color: var(--peach); }
+.tiers .tier.is-current b::after { content: " ✦"; font-size: 11px; vertical-align: 2px; }
+.tier__countdown, .tier__closed { margin: 14px 0 0; color: var(--peach); font-size: 14px; font-weight: 600; }
+.plan--terms .faq__a { margin-top: 20px; font-size: 15px; line-height: 1.6; }
+.plan--terms .faq__a p { margin: 0 0 0.8em; }
+.plan--terms .faq__a ul { list-style: none; margin: 4px 0 14px; padding: 0; }
+.plan--terms .faq__a li { position: relative; padding: 4px 0 4px 18px; }
+.plan--terms .faq__a li::before { content: ""; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--straw); }
+.plan__price { margin-bottom: 0; }
+.plan__price .day__tag { font-size: 11px; font-weight: 600; vertical-align: 6px; }
+
+/* "How it felt": video button, video in the lightbox */
+.memories__video svg { width: 14px; height: 14px; }
+.lightbox video { max-width: min(100%, 1400px); max-height: calc(100svh - 128px); border-radius: 12px; background: #000; }
+.lightbox.is-video .lightbox__prev,
+.lightbox.is-video .lightbox__next,
+.lightbox.is-video .lightbox__count { display: none; }
+
+/* Application: "what happens next" after sending, spam trap */
+.next-steps { list-style: none; margin: 18px 0 22px; padding: 0; counter-reset: ns; text-align: left; }
+.next-steps li { counter-increment: ns; display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.next-steps li::before { content: counter(ns); grid-row: span 2; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--forest); color: var(--cream); font-size: 12.5px; font-weight: 600; }
+.next-steps b { font-size: 15px; }
+.next-steps span { color: var(--ink-soft); font-size: 14px; }
+.form-state__contact { color: var(--ink-soft); font-size: 14px; }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Join: lead as Markdown */
+.section-head .lead p { margin: 0; }
+
+@media (max-width: 1100px) {
+  .booking-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .intensive__grid { grid-template-columns: minmax(0, 1fr); }
+  /* two columns (set above): an odd last card takes the full row */
+  .cards .card,
+  .cards .card:nth-child(n + 4),
+  .cards .card:nth-last-child(1):nth-child(3n + 1),
+  .cards .card:nth-last-child(2):nth-child(3n + 1),
+  .cards .card:last-child:nth-child(even) { grid-column: span 1; }
+  .cards .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .cards .card:last-child:nth-child(even) .card__img { aspect-ratio: 5 / 4; }
+}
+@media (max-width: 600px) {
+  .cards .card,
+  .cards .card:nth-child(n + 4),
+  .cards .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .booking-steps { grid-template-columns: minmax(0, 1fr); }
+  .intensive__facts > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+
+.nowrap { white-space: nowrap; }
+.intensive .kicker { flex-wrap: wrap; row-gap: 6px; }

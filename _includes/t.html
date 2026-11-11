@@ -1,0 +1,16 @@
+{%- comment -%}
+  Двуязычный текст в строку: «include t.html v=текст» → <span lang="ru">…</span><span lang="en">…</span>.
+  Простая строка выводится один раз (одинакова на обоих языках).
+{%- endcomment -%}
+{%- assign t_v = include.v -%}
+{%- if t_v.ru or t_v.en -%}
+  {%- assign t_src_ru = t_v.ru | default: t_v.en -%}
+  {%- assign t_src_en = t_v.en | default: t_v.ru -%}
+  {%- capture t_ru -%}{% include tx.html s=t_src_ru lang="ru" %}{%- endcapture -%}
+  {%- capture t_en -%}{% include tx.html s=t_src_en lang="en" %}{%- endcapture -%}
+  {%- if t_ru == t_en -%}{{ t_ru }}{%- else -%}<span lang="ru">{{ t_ru }}</span><span lang="en">{{ t_en }}</span>{%- endif -%}
+{%- elsif t_v -%}
+  {%- capture t_ru -%}{% include tx.html s=t_v lang="ru" %}{%- endcapture -%}
+  {%- capture t_en -%}{% include tx.html s=t_v lang="en" %}{%- endcapture -%}
+  {%- if t_ru == t_en -%}{{ t_ru }}{%- else -%}<span lang="ru">{{ t_ru }}</span><span lang="en">{{ t_en }}</span>{%- endif -%}
+{%- endif -%}

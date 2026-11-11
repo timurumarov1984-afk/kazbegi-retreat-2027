@@ -1,0 +1,6 @@
+<footer class="apply-footer">
+    <div class="container">
+      <span lang="ru">Вопросы: {% if g_email != "" %}<a href="mailto:{{ g_email }}">{{ g_email }}</a>{% endif %}{% if g_rules != "" %} · Отправляя анкету, вы принимаете <a href="{{ g_rules }}" target="_blank" rel="noopener">Условия и&nbsp;правила</a>{% endif %}</span>
+      <span lang="en">Questions: {% if g_email != "" %}<a href="mailto:{{ g_email }}">{{ g_email }}</a>{% endif %}{% if g_rules != "" %} · By applying you accept the <a href="{{ g_rules }}" target="_blank" rel="noopener">Terms and Rules</a>{% endif %}</span>
+    </div>
+  </footer>

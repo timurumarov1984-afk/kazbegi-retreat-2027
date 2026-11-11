@@ -1,137 +1,83 @@
-<!doctype html>
-<html lang="ru" data-lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Анкета участника · Ретрит с Мастером в Казбеги · 11–18 июля 2027</title>
-  <meta name="description" content="Анкета участника ретрита с Мастером Камильпашой в Rooms Kazbegi, 11–18 июля 2027.">
-  <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#e8e6dc">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e2a23'/%3E%3Cpath d='M5 24l7.5-11 4 5.5 3-4L27 24z' fill='none' stroke='%23f3f1ea' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='9' r='2.2' fill='%23ecd3ad'/%3E%3C/svg%3E">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/apply.css">
-
-  <script>
-    (function () {
-      var d = document.documentElement, l = null;
-      d.classList.add('js');
-      try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('lang'); } catch (e) {}
-      if (l === 'en' || l === 'ru') { d.setAttribute('data-lang', l); d.setAttribute('lang', l); }
-    })();
-  </script>
-</head>
-
-<body class="apply-page">
-  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <symbol id="i-logo" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3.5 26.5 12.5 12l5 7.5 3.5-5 7.5 12z"/><path d="M10.2 15.7l2.3 1.8 2.1-1.6"/><circle cx="23" cy="7.5" r="2.3"/>
-    </symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 12h15M13 6l6 6-6 6"/>
-    </symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12.5l4.5 4.5L19 7.5"/>
-    </symbol>
-  </svg>
-
-  <!-- ===================== HEADER ===================== -->
-  <header class="apply-header">
-    <div class="container apply-header__inner">
-      <a class="brand" href="index.html" aria-label="Master's Retreat · Kazbegi">
-        <svg aria-hidden="true"><use href="#i-logo"/></svg>
-        <span>
-          <span class="brand__name">Master’s Retreat</span>
-          <span class="brand__sub">Kazbegi · Georgia · 2027</span>
-        </span>
-      </a>
-      <div class="apply-header__actions">
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-set-lang="ru" aria-pressed="true">RU</button>
-          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
-        </div>
-        <a class="apply-back" href="index.html">
-          <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-          <span lang="ru">На сайт</span><span lang="en">Back to site</span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main class="container apply">
+---
+layout: default
+apply: true
+noindex: true
+body_class: apply-page
+theme_color: "#e8e6dc"
+name_ru: Анкета участника
+name_en: Application
+---
+{%- include globals.html -%}
+{%- assign Fm = R.form -%}
+{%- capture raw_form -%}{{ Fm.google_form | replace: "formResponse", "viewform" }}{%- endcapture -%}
+<main class="container apply">
     <!-- ===================== ASIDE ===================== -->
     <aside class="apply__aside">
-      <p class="kicker"><span lang="ru">Анкета участника</span><span lang="en">Application</span></p>
-      <h1>
-        <span lang="ru">Заявка <em>на&nbsp;ретрит</em></span>
-        <span lang="en">Apply for <em>the retreat</em></span>
-      </h1>
-      <p class="apply__meta">
-        <span lang="ru">11–18 июля 2027 · Rooms Kazbegi, Степанцминда, Грузия</span>
-        <span lang="en">11–18 July 2027 · Rooms Kazbegi, Stepantsminda, Georgia</span>
-      </p>
-      <p class="apply__intro">
-        <span lang="ru">Заполни анкету максимально подробно и&nbsp;осознанно. После неё команда организаторов свяжется с&nbsp;тобой по&nbsp;почте или в&nbsp;Telegram.</span>
-        <span lang="en">Please fill in the form as fully and thoughtfully as you can. The organising team will then contact you by email or Telegram.</span>
-      </p>
-
+      <p class="kicker">{% include t.html v=Fm.kicker %}</p>
+      <h1>{% include t.html v=Fm.title %}</h1>
+      <p class="apply__meta">{% include t.html v=Fm.meta %}</p>
+      <p class="apply__intro">{% include t.html v=Fm.intro %}</p>
       <ol class="steps-nav" aria-label="Steps"></ol>
-
-      <figure class="apply__photo arch">
-        <img src="assets/img/kz-slope-700.webp" width="700" height="876" alt="" loading="lazy">
-      </figure>
+      {%- if Fm.photo %}
+      <figure class="apply__photo arch">{% include img.html p=Fm.photo %}</figure>
+      {%- endif %}
     </aside>
 
-    <!-- ===================== FORM ===================== -->
+    <!-- ===================== FORM: вопросы — в _data/retreat.yml (form.steps) ===================== -->
     <section class="form-card" aria-live="polite">
       <div class="progress" aria-hidden="true"><span></span></div>
 
       <form id="apply-form" novalidate>
-        <!-- шаги рендерит assets/js/apply.js из списка вопросов -->
+        <!-- шаги рисует assets/js/apply.js -->
       </form>
 
       <div class="form-state form-state--success" hidden>
         <div class="form-state__icon"><svg aria-hidden="true"><use href="#i-check"/></svg></div>
-        <h2>
-          <span lang="ru">Спасибо, заявка отправлена!</span>
-          <span lang="en">Thank you, your application is in!</span>
-        </h2>
-        <p lang="ru">Очень рады тебе, дорогой друг! Команда организаторов свяжется с&nbsp;тобой по&nbsp;почте или в&nbsp;Telegram. С&nbsp;каждым новичком мы знакомимся лично — это короткий разговор перед подтверждением участия.</p>
-        <p lang="en">We’re so glad you’re here! The organising team will contact you by email or Telegram. We have a short personal conversation with every newcomer before confirming their place.</p>
+        <h2><span lang="ru">Спасибо, заявка получена!</span><span lang="en">Thank you, your application is in!</span></h2>
+        <p><span lang="ru">Очень рады тебе! Вот что будет дальше:</span><span lang="en">We’re so glad you’re here! Here’s what happens next:</span></p>
+        <ol class="next-steps">
+          {%- for s in R.join.steps offset: 2 %}
+          <li><b>{% include t.html v=s.title %}</b><span>{% include t.html v=s.text %}</span></li>
+          {%- endfor %}
+        </ol>
+        <p class="form-state__contact"><span lang="ru">Вопросы — </span><span lang="en">Questions — </span>{% if g_telegram != "" %}<a href="https://t.me/{{ R.site.telegram }}" target="_blank" rel="noopener">{{ g_telegram }}</a>{% endif %}{% if g_telegram != "" and g_email != "" %} · {% endif %}{% if g_email != "" %}<a href="mailto:{{ g_email }}">{{ g_email }}</a>{% endif %}</p>
         <a class="btn btn--lg" href="index.html">
-          <span lang="ru">Вернуться на сайт</span><span lang="en">Back to the site</span>
+          <span lang="ru">Вернуться на&nbsp;сайт</span><span lang="en">Back to the site</span>
           <svg aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
       </div>
 
       <div class="form-state form-state--error" hidden>
-        <h2>
-          <span lang="ru">Не получилось отправить</span>
-          <span lang="en">Couldn’t send the form</span>
-        </h2>
-        <p lang="ru">Проверь подключение к интернету и попробуй ещё раз. Ответы сохранились. Если не выходит — заполни <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNdcz-bhe11F-3Ln2LerXR3q0brYlOSSoA6LhBOBS9X0bdsg/viewform" target="_blank" rel="noopener">Google-форму</a> или напиши на <a href="mailto:alxndrsmi@gmail.com">alxndrsmi@gmail.com</a>.</p>
-        <p lang="en">Please check your connection and try again — your answers are saved. If it still fails, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNdcz-bhe11F-3Ln2LerXR3q0brYlOSSoA6LhBOBS9X0bdsg/viewform" target="_blank" rel="noopener">Google Form</a> or email <a href="mailto:alxndrsmi@gmail.com">alxndrsmi@gmail.com</a>.</p>
+        <h2><span lang="ru">Не получилось отправить</span><span lang="en">Couldn’t send the form</span></h2>
+        <p lang="ru">Ответы сохранились — попробуй ещё раз через минуту. Если не выходит, напиши нам{% if g_telegram != "" %} в&nbsp;Telegram <a href="https://t.me/{{ R.site.telegram }}" target="_blank" rel="noopener">{{ g_telegram }}</a>{% endif %}{% if g_email != "" %} или на&nbsp;<a href="mailto:{{ g_email }}">{{ g_email }}</a>{% endif %}, или заполни <a href="{{ raw_form }}" target="_blank" rel="noopener">Google-форму</a>.</p>
+        <p lang="en">Your answers are saved — please try again in a minute. If it still fails, write to us{% if g_telegram != "" %} on Telegram <a href="https://t.me/{{ R.site.telegram }}" target="_blank" rel="noopener">{{ g_telegram }}</a>{% endif %}{% if g_email != "" %} or at <a href="mailto:{{ g_email }}">{{ g_email }}</a>{% endif %}, or use the <a href="{{ raw_form }}" target="_blank" rel="noopener">Google Form</a>.</p>
         <button class="btn" type="button" data-retry>
           <span lang="ru">Попробовать ещё раз</span><span lang="en">Try again</span>
         </button>
       </div>
 
       <noscript>
-        <p class="noscript">Для анкеты нужен JavaScript. Заполните, пожалуйста, <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNdcz-bhe11F-3Ln2LerXR3q0brYlOSSoA6LhBOBS9X0bdsg/viewform">Google-форму</a>.</p>
+        <p class="noscript">Для анкеты нужен JavaScript. Заполните, пожалуйста, <a href="{{ raw_form }}">Google-форму</a>.</p>
       </noscript>
     </section>
   </main>
 
-  <footer class="apply-footer">
-    <div class="container">
-      <span lang="ru">Вопросы: <a href="mailto:alxndrsmi@gmail.com">alxndrsmi@gmail.com</a> · Отправляя анкету, вы принимаете <a href="https://docs.google.com/document/d/1uhkTW_Wl2Kt01I_s67hevnbW48xrJMRSRxvOOjTfRWY/edit?usp=sharing" target="_blank" rel="noopener">Условия и правила</a></span>
-      <span lang="en">Questions: <a href="mailto:alxndrsmi@gmail.com">alxndrsmi@gmail.com</a> · By applying you accept the <a href="https://docs.google.com/document/d/1uhkTW_Wl2Kt01I_s67hevnbW48xrJMRSRxvOOjTfRWY/edit?usp=sharing" target="_blank" rel="noopener">Terms and Rules</a></span>
-    </div>
-  </footer>
-
-  <script src="assets/js/apply.js" defer></script>
-</body>
-</html>
+  <!-- Настройки анкеты для apply.js: собираются из _data/retreat.yml -->
+  <script id="form-config" type="application/json">{
+    "form": {{ Fm | jsonify }},
+    "tokens": {
+      "dates": { "ru": {{ g_dates_ru | jsonify }}, "en": {{ g_dates_en | jsonify }} },
+      "dates_short": { "ru": {{ g_dshort_ru | jsonify }}, "en": {{ g_dshort_en | jsonify }} },
+      "start": { "ru": {{ g_start_ru | jsonify }}, "en": {{ g_start_en | jsonify }} },
+      "checkin": { "ru": {{ g_checkin_ru | jsonify }}, "en": {{ g_checkin_en | jsonify }} },
+      "checkout": { "ru": {{ g_checkout_ru | jsonify }}, "en": {{ g_checkout_en | jsonify }} },
+      "intensive_dates": { "ru": {{ g_int_ru | jsonify }}, "en": {{ g_int_en | jsonify }} },
+      "intensive_checkout": { "ru": {{ g_intout_ru | jsonify }}, "en": {{ g_intout_en | jsonify }} },
+      "checkin_time": {{ g_checkin_time | jsonify }},
+      "checkout_time": {{ g_checkout_time | jsonify }},
+      "rules": {{ g_rules | jsonify }},
+      "email": {{ g_email | jsonify }},
+      "telegram": {{ g_telegram | jsonify }}
+    },
+    "dates": { "arrival": {{ R.retreat.checkin.date | jsonify }}, "departure": {{ R.retreat.checkout.date | jsonify }} }
+  }</script>

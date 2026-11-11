@@ -1,0 +1,23 @@
+{%- comment -%}
+  Обработка одной строки: подстановки {dates} и т. п. → неразрывные пробелы после коротких слов → *выделение*.
+  Параметры: s — строка, lang — ru/en, md="y" — не трогать звёздочки (их обработает Markdown).
+{%- endcomment -%}
+{%- assign tx = include.s | append: "" -%}
+{%- if tx contains "{" -%}
+  {%- if include.lang == "en" -%}
+    {%- assign tx = tx | replace: "{dates}", g_dates_en | replace: "{dates_short}", g_dshort_en | replace: "{start}", g_start_en | replace: "{checkin}", g_checkin_en | replace: "{checkout}", g_checkout_en | replace: "{intensive_dates}", g_int_en | replace: "{intensive_checkout}", g_intout_en | replace: "{private}", g_private_en -%}
+  {%- else -%}
+    {%- assign tx = tx | replace: "{dates}", g_dates_ru | replace: "{dates_short}", g_dshort_ru | replace: "{start}", g_start_ru | replace: "{checkin}", g_checkin_ru | replace: "{checkout}", g_checkout_ru | replace: "{intensive_dates}", g_int_ru | replace: "{intensive_checkout}", g_intout_ru | replace: "{private}", g_private_ru -%}
+  {%- endif -%}
+  {%- assign tx = tx | replace: "{checkin_time}", g_checkin_time | replace: "{checkout_time}", g_checkout_time | replace: "{nights}", g_nights | replace: "{email}", g_email | replace: "{telegram}", g_telegram | replace: "{rules}", g_rules -%}
+{%- endif -%}
+{%- assign tx = tx | replace: " — ", "&nbsp;— " -%}
+{%- if include.lang != "en" -%}
+  {%- assign tx = tx | replace: " а ", " а&nbsp;" | replace: " и ", " и&nbsp;" | replace: " в ", " в&nbsp;" | replace: " к ", " к&nbsp;" | replace: " о ", " о&nbsp;" | replace: " с ", " с&nbsp;" | replace: " у ", " у&nbsp;" | replace: " во ", " во&nbsp;" | replace: " до ", " до&nbsp;" | replace: " за ", " за&nbsp;" | replace: " из ", " из&nbsp;" | replace: " ко ", " ко&nbsp;" | replace: " на ", " на&nbsp;" | replace: " не ", " не&nbsp;" | replace: " ни ", " ни&nbsp;" | replace: " но ", " но&nbsp;" | replace: " об ", " об&nbsp;" | replace: " от ", " от&nbsp;" | replace: " по ", " по&nbsp;" | replace: " со ", " со&nbsp;" | replace: " без ", " без&nbsp;" | replace: " для ", " для&nbsp;" | replace: " над ", " над&nbsp;" | replace: " под ", " под&nbsp;" | replace: " при ", " при&nbsp;" | replace: " про ", " про&nbsp;" -%}
+  {%- assign tx = tx | replace: "А ", "А&nbsp;" | replace: "И ", "И&nbsp;" | replace: "В ", "В&nbsp;" | replace: "К ", "К&nbsp;" | replace: "О ", "О&nbsp;" | replace: "С ", "С&nbsp;" | replace: "У ", "У&nbsp;" | replace: " До ", " До&nbsp;" | replace: " За ", " За&nbsp;" | replace: " Из ", " Из&nbsp;" | replace: " На ", " На&nbsp;" | replace: " Не ", " Не&nbsp;" | replace: " По ", " По&nbsp;" | replace: " Для ", " Для&nbsp;" | replace: " При ", " При&nbsp;" -%}
+{%- endif -%}
+{%- if include.md != "y" and tx contains "*" -%}
+  {%- assign tx_parts = tx | split: "*" -%}
+  {%- capture tx -%}{%- for tx_p in tx_parts -%}{%- assign tx_m = forloop.index0 | modulo: 2 -%}{%- if tx_m == 1 -%}<em>{{ tx_p }}</em>{%- else -%}{{ tx_p }}{%- endif -%}{%- endfor -%}{%- endcapture -%}
+{%- endif -%}
+{{- tx -}}

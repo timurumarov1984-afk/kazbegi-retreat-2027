@@ -1,0 +1,32 @@
+{%- if page.home -%}{%- assign nb = "" -%}{%- else -%}{%- assign nb = "index.html" -%}{%- endif -%}
+<header class="header{% unless page.home %} header--solid{% endunless %}" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="{% if page.home %}#top{% else %}index.html{% endif %}" aria-label="{{ R.site.brand.name }} · {{ R.site.brand.sub }}">
+        <svg aria-hidden="true"><use href="#i-logo"/></svg>
+        <span>
+          <span class="brand__name">{{ R.site.brand.name }}</span>
+          <span class="brand__sub">{{ R.site.brand.sub }}</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <a href="{{ nb }}#about"><span lang="ru">О ретрите</span><span lang="en">About</span></a>
+        <a href="{{ nb }}#place"><span lang="ru">Место</span><span lang="en">Venue</span></a>
+        <a href="{{ nb }}#pricing"><span lang="ru">Стоимость</span><span lang="en">Pricing</span></a>
+        <a href="join.html"><span lang="ru">Как попасть</span><span lang="en">How to join</span></a>
+        <a href="travel.html"><span lang="ru">Как добраться</span><span lang="en">Getting there</span></a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-set-lang="ru" aria-pressed="true">RU</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--apply" href="apply.html">
+          <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
+        </a>
+        <button class="burger" type="button" aria-label="Menu" aria-controls="menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>

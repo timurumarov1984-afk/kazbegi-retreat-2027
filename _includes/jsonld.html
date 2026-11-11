@@ -1,0 +1,27 @@
+{%- comment -%} Разметка для поисковиков: событие, место, цена, ссылка на анкету {%- endcomment -%}
+{%- assign jl_tier = R.pricing.tiers | last -%}
+{%- if jl_tier -%}{%- assign jl_price = jl_tier.price -%}{%- else -%}{%- assign jl_price = 0 -%}{%- for p in R.pricing.parts -%}{%- assign jl_price = jl_price | plus: p.price -%}{%- endfor -%}{%- endif -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": {{ R.retreat.name.ru | jsonify }},
+    "alternateName": {{ R.retreat.name.en | jsonify }},
+    "description": {{ ds_ru | jsonify }},
+    "startDate": "{{ R.retreat.start }}",
+    "endDate": "{{ R.retreat.end }}",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "inLanguage": ["ru", "en"],
+    "image": ["{{ g_base }}assets/img/og.jpg"],
+    "location": {
+      "@type": "Place",
+      "name": {{ R.venue.name | jsonify }},
+      "address": {{ R.venue.address | jsonify }},
+      "geo": { "@type": "GeoCoordinates", "latitude": {{ R.venue.geo.lat }}, "longitude": {{ R.venue.geo.lng }} }
+    },
+    "offers": { "@type": "Offer", "price": "{{ jl_price }}", "priceCurrency": "EUR", "availability": "https://schema.org/LimitedAvailability", "url": "{{ g_base }}apply.html" },
+    "performer": { "@type": "Person", "name": "Мастер Камильпаша" },
+    "organizer": { "@type": "Organization", "name": {{ R.site.brand.name | jsonify }}{% if g_email != "" %}, "email": "{{ g_email }}"{% endif %}{% if R.site.method_url and R.site.method_url != "" %}, "url": "{{ R.site.method_url }}"{% endif %} }
+  }
+  </script>

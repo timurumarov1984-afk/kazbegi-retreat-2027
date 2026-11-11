@@ -1,0 +1,43 @@
+<footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="brand" href="{% if page.home %}#top{% else %}index.html{% endif %}">
+            <svg aria-hidden="true"><use href="#i-logo"/></svg>
+            <span><span class="brand__name">{{ R.site.brand.name }}</span><span class="brand__sub">{{ R.site.brand.sub }}</span></span>
+          </a>
+          <p class="footer__about">{% include t.html v=R.footer.about %}</p>
+        </div>
+        <div>
+          <h4><span lang="ru">Контакты</span><span lang="en">Contact</span></h4>
+          <ul>
+            {%- if g_telegram != "" %}
+            <li><a href="https://t.me/{{ R.site.telegram }}" target="_blank" rel="noopener">Telegram: {{ g_telegram }}</a></li>
+            {%- endif %}
+            {%- if g_email != "" %}
+            <li><a href="mailto:{{ g_email }}">{{ g_email }}</a></li>
+            {%- endif %}
+            {%- if R.site.method_url and R.site.method_url != "" %}
+            <li><a href="{{ R.site.method_url }}" target="_blank" rel="noopener"><span lang="ru">О методе Мастера</span><span lang="en">The Master’s method</span></a></li>
+            {%- endif %}
+          </ul>
+        </div>
+        <div>
+          <h4><span lang="ru">Полезное</span><span lang="en">Useful</span></h4>
+          <ul>
+            {%- if g_rules != "" %}
+            <li><a href="{{ g_rules }}" target="_blank" rel="noopener"><span lang="ru">Условия и&nbsp;правила</span><span lang="en">Terms and Rules</span></a></li>
+            {%- endif %}
+            {%- if R.venue.website %}
+            <li><a href="{{ R.venue.website }}" target="_blank" rel="noopener">{{ R.venue.name }}</a></li>
+            {%- endif %}
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query={{ R.venue.geo.lat }},{{ R.venue.geo.lng }}" target="_blank" rel="noopener"><span lang="ru">Место на&nbsp;карте</span><span lang="en">On the map</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© {{ R.retreat.start | date: "%Y" }} {{ R.site.brand.name }}</span>
+        <span lang="ru">Глубокой и&nbsp;качественной практики!</span><span lang="en">Deep and true practice to you!</span>
+      </div>
+    </div>
+  </footer>

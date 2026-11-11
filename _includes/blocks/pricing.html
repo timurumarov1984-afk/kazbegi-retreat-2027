@@ -1,0 +1,67 @@
+{%- assign Pr = R.pricing -%}
+{%- assign pr_now = site.time | date: "%Y-%m-%d" -%}
+    <!-- ===================== PRICING: ранние цены (tiers) переключаются сами по дате ===================== -->
+    <section class="section pricing" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker reveal">{% include t.html v=Pr.kicker %}</p>
+            <h2 class="h2 reveal" data-delay="1">{% include t.html v=Pr.title %}</h2>
+          </div>
+          <p class="lead reveal" data-delay="2">{% include t.html v=Pr.lead %}</p>
+        </div>
+
+        <div class="plans">
+          <article class="plan plan--main reveal">
+            <span class="plan__tag">{% include t.html v=Pr.tag %}</span>
+            <h3>{% include t.html v=Pr.plan_title %}</h3>
+            {%- if Pr.tiers and Pr.tiers.size > 0 %}
+            {%- assign pr_cur = nil -%}
+            {%- for t in Pr.tiers -%}{%- if pr_cur == nil and t.until >= pr_now -%}{%- assign pr_cur = t -%}{%- endif -%}{%- endfor -%}
+            {%- if pr_cur == nil -%}{%- assign pr_cur = Pr.tiers | last -%}{%- endif %}
+            <p class="plan__price"><span data-tier-price>{% include money.html n=pr_cur.price %}</span>&nbsp;{{ Pr.currency }}{% if Pr.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</p>
+            <ul class="plan__rows tiers" data-tiers{% if Pr.after_last == "closed" %} data-after="closed"{% endif %}>
+              {%- for t in Pr.tiers %}
+              <li class="tier{% if t.until < pr_now %} is-past{% elsif t == pr_cur %} is-current{% endif %}" data-until="{{ t.until }}" data-price="{{ t.price }}"><span><span lang="ru">при оплате до&nbsp;{{ t.until | date: "%d.%m.%Y" }}</span><span lang="en">if paid by {{ t.until | date: "%d.%m.%Y" }}</span></span><b>{% include money.html n=t.price %}&nbsp;{{ Pr.currency }}</b></li>
+              {%- endfor %}
+            </ul>
+            <p class="tier__countdown" data-tier-countdown hidden></p>
+            <p class="tier__closed" data-tier-closed hidden><span lang="ru">Приём заявок закрыт</span><span lang="en">Applications are closed</span></p>
+            {%- if Pr.tiers_note %}
+            <p class="plan__fine">{% include t.html v=Pr.tiers_note %}</p>
+            {%- endif %}
+            {%- else %}
+            {%- assign pr_sum = 0 -%}{%- for p in Pr.parts -%}{%- assign pr_sum = pr_sum | plus: p.price -%}{%- endfor %}
+            <p class="plan__price">{% include money.html n=pr_sum %}&nbsp;{{ Pr.currency }}</p>
+            {%- if Pr.parts.size > 1 %}
+            <ul class="plan__rows">
+              {%- for p in Pr.parts %}
+              <li>{% include t.html v=p.name %}<b>{% include money.html n=p.price %}&nbsp;{{ Pr.currency }}</b></li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+            {%- endif %}
+            <ul class="plan__list">
+              {%- for n in Pr.list %}
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>{% include t.html v=n %}</span></li>
+              {%- endfor %}
+            </ul>
+            {%- if Pr.fine %}
+            <p class="plan__fine">{% include t.html v=Pr.fine %}</p>
+            {%- endif %}
+            <div class="plan__spacer"></div>
+            <a class="btn btn--light" href="apply.html">
+              <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </article>
+
+          {%- if Pr.refund %}
+          <article class="plan plan--terms reveal" data-delay="1">
+            <span class="plan__tag">{% include t.html v=Pr.refund_title %}</span>
+            <div class="faq__a">{% include md.html v=Pr.refund %}</div>
+          </article>
+          {%- endif %}
+        </div>
+      </div>
+    </section>

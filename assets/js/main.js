@@ -1,4 +1,4 @@
-/* Master's Retreat · Kazbegi 2027 — interactions */
+/* Master's Retreat — interactions (shared by every retreat site) */
 (function () {
   'use strict';
 
@@ -6,27 +6,17 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Language ---------- */
-  var META = {
-    ru: {
-      title: 'Ретрит с Мастером Камильпашой в Казбеги · 11–18 июля 2027 · Грузия',
-      desc: 'Восемь дней утренних и вечерних медитаций с Мастером Камильпашой в Rooms Kazbegi — у подножия Казбека, в горах Грузии. 11–18 июля 2027, интенсив 19–21 июля.'
-    },
-    en: {
-      title: 'Retreat with Master Kamilpasha in Kazbegi · 11–18 July 2027 · Georgia',
-      desc: 'Eight days of morning and evening meditation with Master Kamilpasha at Rooms Kazbegi — at the foot of Mount Kazbek in the mountains of Georgia. 11–18 July 2027, intensive 19–21 July.'
-    }
-  };
   var metaDesc = document.querySelector('meta[name="description"]');
   var altImages = document.querySelectorAll('img[data-alt-en]');
   altImages.forEach(function (img) { img.dataset.altRu = img.getAttribute('alt') || ''; });
 
   function applyLang(lang) {
-    if (!META[lang]) lang = 'ru';
+    if (lang !== 'en') lang = 'ru';
     root.setAttribute('data-lang', lang);
     root.setAttribute('lang', lang);
     var bd = document.body.dataset;
-    document.title = bd.titleRu ? (lang === 'en' ? bd.titleEn : bd.titleRu) : META[lang].title;
-    if (metaDesc) metaDesc.setAttribute('content', META[lang].desc);
+    if (bd.titleRu) document.title = lang === 'en' ? (bd.titleEn || bd.titleRu) : bd.titleRu;
+    if (metaDesc && bd.descRu) metaDesc.setAttribute('content', lang === 'en' ? (bd.descEn || bd.descRu) : bd.descRu);
     document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(btn.dataset.setLang === lang));
     });
@@ -49,6 +39,14 @@
   });
 
   applyLang(root.getAttribute('data-lang') || 'ru');
+
+  /* ---------- Where the visitor came from (utm_*) — passed on with the application ---------- */
+  try {
+    var qs = new URLSearchParams(location.search), utm = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (qs.get(k)) utm[k] = qs.get(k); });
+    if (Object.keys(utm).length) sessionStorage.setItem('utm', JSON.stringify(utm));
+    if (!sessionStorage.getItem('landing')) sessionStorage.setItem('landing', JSON.stringify({ page: location.pathname, ref: document.referrer || '' }));
+  } catch (e) { /* private mode */ }
 
   /* ---------- Header state ---------- */
   var header = document.querySelector('.header');
@@ -137,15 +135,15 @@
     };
     // autoplay blocked → swap the still first frame for a moving preview
     var useMotionPreview = function () {
-      if (heroShown || !heroPoster || heroPoster.classList.contains('is-motion')) return;
+      if (heroShown || !heroPoster || heroPoster.classList.contains('is-motion') || !heroVideo.dataset.intro) return;
       heroPoster.classList.add('is-motion');
       var mob = document.createElement('source');
       mob.type = 'image/avif';
       mob.media = '(max-aspect-ratio: 4/5)';
-      mob.srcset = 'assets/video/hero-intro-m.avif';
+      mob.srcset = heroVideo.dataset.introM || heroVideo.dataset.intro || '';
       var desk = document.createElement('source');
       desk.type = 'image/avif';
-      desk.srcset = 'assets/video/hero-intro.avif';
+      desk.srcset = heroVideo.dataset.intro || '';
       heroPoster.insertBefore(desk, heroPoster.firstChild);
       heroPoster.insertBefore(mob, desk);
     };
@@ -174,7 +172,7 @@
           el.removeAttribute('data-srcset');
         });
         var im = s.querySelector('img');
-        if (!im.getAttribute('src')) im.setAttribute('src', im.getAttribute('srcset').split(' ')[0]);
+        if (!im.getAttribute('src') && im.getAttribute('srcset')) { im.setAttribute('src', im.getAttribute('srcset').split(' ')[0]); im.removeAttribute('srcset'); }
       });
     };
     var advance = function () {
@@ -193,6 +191,40 @@
     setTimeout(advance, SLIDE_MS);
   }
 
+  /* ---------- Early-bird prices: highlight the current step, count the days to the next price ---------- */
+  var tiersEl = document.querySelector('[data-tiers]');
+  if (tiersEl) {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var tiers = Array.prototype.slice.call(tiersEl.querySelectorAll('.tier'));
+    var cur = null;
+    tiers.forEach(function (t) {
+      var until = new Date(t.dataset.until + 'T23:59:59');
+      var past = until < today;
+      t.classList.toggle('is-past', past);
+      t.classList.remove('is-current');
+      if (!past && !cur) cur = t;
+    });
+    var priceEl = document.querySelector('[data-tier-price]');
+    var countEl = document.querySelector('[data-tier-countdown]');
+    var closedEl = document.querySelector('[data-tier-closed]');
+    if (cur) {
+      cur.classList.add('is-current');
+      if (priceEl) priceEl.textContent = money(cur.dataset.price);
+      var idx = tiers.indexOf(cur), next = tiers[idx + 1];
+      var days = Math.ceil((new Date(cur.dataset.until + 'T23:59:59') - today) / 86400000);
+      if (countEl && next && days <= 60) {
+        countEl.innerHTML = '<span lang="ru">До повышения цены — ' + days + ' ' + ruDays(days) + '</span><span lang="en">' + days + ' day' + (days === 1 ? '' : 's') + ' until the price goes up</span>';
+        countEl.hidden = false;
+      }
+    } else if (tiers.length) {
+      var lastT = tiers[tiers.length - 1];
+      if (tiersEl.dataset.after === 'closed') { if (closedEl) closedEl.hidden = false; }
+      else { lastT.classList.remove('is-past'); lastT.classList.add('is-current'); if (priceEl) priceEl.textContent = money(lastT.dataset.price); }
+    }
+  }
+  function money(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
+  function ruDays(n) { var a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'день' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'дня' : 'дней'; }
+
   /* ---------- Gallery arrows ---------- */
   document.querySelectorAll('[data-scroll]').forEach(function (btn) {
     var track = document.querySelector(btn.dataset.target);
@@ -201,6 +233,12 @@
       var dir = btn.dataset.scroll === 'next' ? 1 : -1;
       track.scrollBy({ left: dir * track.clientWidth * 0.7, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
+  });
+
+  /* ---------- Statistics: clicks on any "apply" button ---------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="apply.html"]');
+    if (a && window.rt) window.rt('apply-click');
   });
 
   /* ---------- Mobile sticky CTA ---------- */
@@ -238,10 +276,12 @@
   var mosaicItems = Array.prototype.slice.call(document.querySelectorAll('.mosaic__item'));
   if (lb && mosaicItems.length) {
     var lbImg = lb.querySelector('img');
+    var lbVideo = lb.querySelector('video');
     var lbCount = lb.querySelector('.lightbox__count');
     var lbIndex = 0;
     var lastFocus = null;
     var lbShow = function (i) {
+      if (lbVideo) { lbVideo.pause(); lbVideo.hidden = true; lbImg.hidden = false; lb.classList.remove('is-video'); }
       lbIndex = (i + mosaicItems.length) % mosaicItems.length;
       var item = mosaicItems[lbIndex];
       lbImg.src = item.dataset.full;
@@ -257,6 +297,7 @@
       lb.querySelector('.lightbox__close').focus();
     };
     var lbClose = function () {
+      if (lbVideo) { lbVideo.pause(); lbVideo.removeAttribute('src'); lbVideo.load(); }
       lb.classList.remove('is-open');
       lb.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
@@ -266,19 +307,37 @@
       item.addEventListener('click', function () { lbOpen(i); });
     });
     lb.querySelector('.lightbox__close').addEventListener('click', lbClose);
+    var videoBtn = document.querySelector('[data-video]');
+    if (videoBtn && lbVideo) {
+      videoBtn.addEventListener('click', function () {
+        lastFocus = document.activeElement;
+        lbImg.hidden = true;
+        lbVideo.hidden = false;
+        if (videoBtn.dataset.poster) lbVideo.poster = videoBtn.dataset.poster;
+        lbVideo.src = videoBtn.dataset.video;
+        lbCount.textContent = '';
+        lb.classList.add('is-open', 'is-video');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        var p = lbVideo.play(); if (p && p.catch) p.catch(function () {});
+        lb.querySelector('.lightbox__close').focus();
+        if (window.rt) window.rt('memories-video');
+      });
+    }
     lb.querySelector('.lightbox__prev').addEventListener('click', function () { lbShow(lbIndex - 1); });
     lb.querySelector('.lightbox__next').addEventListener('click', function () { lbShow(lbIndex + 1); });
     lb.addEventListener('click', function (e) { if (e.target === lb) lbClose(); });
     document.addEventListener('keydown', function (e) {
       if (!lb.classList.contains('is-open')) return;
       if (e.key === 'Escape') lbClose();
+      if (lb.classList.contains('is-video')) return;
       if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
       if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
     });
     var touchX = null;
     lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend', function (e) {
-      if (touchX === null) return;
+      if (touchX === null || lb.classList.contains('is-video')) return;
       var dx = e.changedTouches[0].clientX - touchX;
       if (Math.abs(dx) > 40) lbShow(lbIndex + (dx < 0 ? 1 : -1));
       touchX = null;

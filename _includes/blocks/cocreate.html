@@ -1,0 +1,19 @@
+{%- assign Co = R.cocreate -%}
+{%- if Co -%}
+    <!-- ===================== CO-CREATION ===================== -->
+    <section class="section cocreate" id="cocreate">
+      <div class="container cocreate__grid">
+        <figure class="cocreate__img arch reveal">{% include img.html p=Co.photo %}</figure>
+        <div>
+          <p class="kicker reveal">{% include t.html v=Co.kicker %}</p>
+          <h2 class="h2 reveal" data-delay="1">{% include t.html v=Co.title %}</h2>
+          <p class="lead reveal" data-delay="2">{% include t.html v=Co.lead %}</p>
+          <ul class="chips reveal" data-delay="3">
+            {%- for c in Co.chips %}
+            <li>{% include t.html v=c %}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+{%- endif -%}

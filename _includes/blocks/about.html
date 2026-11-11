@@ -1,0 +1,34 @@
+{%- assign A = R.about -%}
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div class="about__text">
+          <p class="kicker reveal">{% include t.html v=A.kicker %}</p>
+          <h2 class="h2 reveal" data-delay="1">{% include t.html v=A.title %}</h2>
+          {%- if A.quote %}
+          <p class="about__quote reveal" data-delay="2">{% include t.html v=A.quote %}</p>
+          {%- endif %}
+          {%- for p in A.text %}
+          <p class="lead reveal" data-delay="2">{% include t.html v=p %}</p>
+          {%- endfor %}
+          {%- if R.site.method_url and R.site.method_url != "" %}
+          <p class="about__link reveal" data-delay="3">
+            <a class="link-arrow" href="{{ R.site.method_url }}" target="_blank" rel="noopener">
+              <span lang="ru">О методе Мастера</span><span lang="en">About the Master’s method</span>
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </p>
+          {%- endif %}
+        </div>
+
+        <div class="about__media reveal" data-delay="1">
+          <figure class="about__main arch">{% include img.html p=A.photo %}</figure>
+          {%- if A.photo_small %}
+          <figure class="about__small">{% include img.html p=A.photo_small %}</figure>
+          {%- endif %}
+          {%- if A.caption %}
+          <p class="about__caption"><b>{% include t.html v=A.caption %}</b></p>
+          {%- endif %}
+        </div>
+      </div>
+    </section>

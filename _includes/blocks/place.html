@@ -1,0 +1,60 @@
+{%- assign V = R.venue -%}
+    <!-- ===================== PLACE ===================== -->
+    <section class="section place" id="place">
+      <div class="container place__grid">
+        <div class="place__media reveal">
+          <div class="arch-frame">
+            {%- if V.video %}
+            <video autoplay muted loop playsinline preload="none" poster="assets/video/{{ V.video.poster }}" data-autoplay aria-label="{{ V.name | escape }}"><source src="assets/video/{{ V.video.src }}" type="video/mp4"></video>
+            {%- else %}
+            {% include img.html p=V.photo %}
+            {%- endif %}
+          </div>
+          {%- if V.ring %}
+          <div class="badge" aria-hidden="true">
+            <svg class="badge__ring" viewBox="0 0 132 132">
+              <defs><path id="ring-path" d="M66,66 m-51,0 a51,51 0 1,1 102,0 a51,51 0 1,1 -102,0"/></defs>
+              <text><textPath href="#ring-path" textLength="318" lengthAdjust="spacing">{{ V.ring }}</textPath></text>
+            </svg>
+            <svg class="badge__mark"><use href="#i-logo"/></svg>
+          </div>
+          {%- endif %}
+        </div>
+
+        <div class="place__text">
+          <p class="kicker reveal">{% include t.html v=V.kicker %}</p>
+          <h2 class="h2 reveal" data-delay="1">{% include t.html v=V.title %}</h2>
+          <p class="lead reveal" data-delay="2">{% include t.html v=V.lead %}</p>
+          <ul class="features reveal" data-delay="3">
+            {%- for f in V.features %}
+            <li><svg aria-hidden="true"><use href="#i-spark"/></svg><span>{% include t.html v=f %}</span></li>
+            {%- endfor %}
+          </ul>
+          {%- if V.website %}
+          <p class="place__more reveal">
+            <a class="link-arrow" href="{{ V.website }}" target="_blank" rel="noopener">
+              {% include t.html v=V.website_label %}
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </p>
+          {%- endif %}
+        </div>
+      </div>
+
+      {%- if V.gallery and V.gallery.photos %}
+      <div class="gallery">
+        <div class="container gallery__bar">
+          <h3 class="gallery__title">{% include t.html v=V.gallery.title %}</h3>
+          <div class="gallery__nav">
+            <button class="round-btn round-btn--prev" type="button" data-scroll="prev" data-target="#gallery-track" aria-label="Previous"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="round-btn" type="button" data-scroll="next" data-target="#gallery-track" aria-label="Next"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+        <div class="gallery__track" id="gallery-track">
+          {%- for p in V.gallery.photos %}
+          <figure class="gallery__item">{% include img.html p=p %}{% if p.caption %}<figcaption>{% include t.html v=p.caption %}</figcaption>{% endif %}</figure>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+    </section>

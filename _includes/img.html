@@ -1,0 +1,12 @@
+{%- comment -%}
+  Фото из assets/img: «include img.html p=фото», где фото — { src, alt: {ru, en}, pos, w, h } или просто имя файла.
+  lazy="n" — грузить сразу; priority="y" — грузить первым.
+{%- endcomment -%}
+{%- assign i_p = include.p -%}
+{%- if i_p.src -%}{%- assign i_src = i_p.src -%}{%- else -%}{%- assign i_src = i_p -%}{%- endif -%}
+{%- if i_p.alt.ru or i_p.alt.en -%}
+  {%- assign i_alt = i_p.alt.ru | default: i_p.alt.en -%}{%- assign i_alt_en = i_p.alt.en | default: "" -%}
+{%- else -%}
+  {%- assign i_alt = i_p.alt | default: "" -%}{%- assign i_alt_en = "" -%}
+{%- endif -%}
+<img src="assets/img/{{ i_src }}"{% if i_p.w %} width="{{ i_p.w }}" height="{{ i_p.h }}"{% endif %}{% unless include.lazy == "n" %} loading="lazy"{% endunless %}{% if include.priority == "y" %} fetchpriority="high"{% endif %} alt="{{ i_alt | escape }}"{% if i_alt_en != "" %} data-alt-en="{{ i_alt_en | escape }}"{% endif %}{% if i_p.pos %} style="object-position:{{ i_p.pos }}"{% endif %}{% if include.cls %} class="{{ include.cls }}"{% endif %}>

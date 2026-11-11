@@ -1,0 +1,30 @@
+{%- if g_int -%}
+{%- assign N = R.intensive -%}
+    <!-- ===================== INTENSIVE: отдельный блок (intensive) ===================== -->
+    <section class="section intensive" id="intensive">
+      <div class="container intensive__grid">
+        <div>
+          <p class="kicker reveal">{% include t.html v=N.name %} · <span class="nowrap"><span lang="ru">{{ g_int_ru }}</span><span lang="en">{{ g_int_en }}</span></span>{% if N.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</p>
+          <h2 class="h2 reveal" data-delay="1">{% include t.html v=N.title %}</h2>
+          <p class="lead reveal" data-delay="2">{% include t.html v=N.lead %}</p>
+          {%- if N.note %}
+          <p class="note reveal" data-delay="2">{% include t.html v=N.note %}</p>
+          {%- endif %}
+          <p class="reveal" data-delay="3">
+            <a class="btn btn--outline" href="apply.html">
+              <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </p>
+        </div>
+        <dl class="intensive__facts reveal" data-delay="1">
+          {%- for f in N.facts %}
+          <div>
+            <dt>{% include t.html v=f.label %}</dt>
+            <dd>{% assign f_v = f.value.ru | default: f.value %}{% if f_v and f_v != "" %}{% include t.html v=f.value %}{% else %}<span class="tbd"><span lang="ru">уточняется</span><span lang="en">to be confirmed</span></span>{% endif %}</dd>
+          </div>
+          {%- endfor %}
+        </dl>
+      </div>
+    </section>
+{%- endif -%}

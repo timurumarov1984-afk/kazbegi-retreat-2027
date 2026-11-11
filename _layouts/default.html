@@ -1,0 +1,87 @@
+{%- include globals.html -%}
+{%- capture tt_ru -%}{% if page.name_ru %}{{ page.name_ru }} · {% endif %}{{ R.retreat.name.ru }} · {{ g_dates_ru }}{%- endcapture -%}
+{%- capture tt_en -%}{% if page.name_en %}{{ page.name_en }} · {% endif %}{{ R.retreat.name.en | default: R.retreat.name.ru }} · {{ g_dates_en }}{%- endcapture -%}
+{%- capture ds_ru -%}{% include tx.html s=R.retreat.share.ru lang="ru" %}{%- endcapture -%}
+{%- capture ds_en -%}{% include tx.html s=R.retreat.share.en lang="en" %}{%- endcapture -%}
+{%- assign ds_ru = ds_ru | strip_html | replace: "&nbsp;", " " -%}
+{%- assign ds_en = ds_en | strip_html | replace: "&nbsp;", " " -%}
+{%- assign tt_ru = tt_ru | strip_html -%}{%- assign tt_en = tt_en | strip_html -%}
+{%- assign page_path = page.url | remove_first: "/" | replace: "index.html", "" -%}
+<!doctype html>
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ tt_ru }}</title>
+  <meta name="description" content="{{ ds_ru | escape }}">
+{%- if R.site.draft or page.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+{%- endif %}
+  <meta name="theme-color" content="{{ page.theme_color | default: '#1e2a23' }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ R.retreat.name.ru | escape }} · {{ g_dates_ru }}">
+  <meta property="og:description" content="{{ ds_ru | escape }}">
+  <meta property="og:image" content="{{ g_base }}assets/img/og.jpg">
+{%- if g_base != "" %}
+  <meta property="og:url" content="{{ g_base }}{{ page_path }}">
+{%- endif %}
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e2a23'/%3E%3Cpath d='M5 24l7.5-11 4 5.5 3-4L27 24z' fill='none' stroke='%23f3f1ea' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='9' r='2.2' fill='%23ecd3ad'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+{%- if page.home %}
+  {%- assign hp = R.retreat.hero.photos | first %}
+  <link rel="preload" as="image" href="assets/img/{{ hp.src }}" media="(min-aspect-ratio: 4/5)" fetchpriority="high">
+  {%- if hp.m %}
+  <link rel="preload" as="image" href="assets/img/{{ hp.m }}" media="(max-aspect-ratio: 4/5)" fetchpriority="high">
+  {%- endif %}
+  {% include jsonld.html %}
+{%- endif %}
+  <link rel="stylesheet" href="assets/css/styles.css">
+{%- if page.apply %}
+  <link rel="stylesheet" href="assets/css/apply.css">
+{%- endif %}
+
+  <!-- Язык до первой отрисовки: ?lang=en → сохранённый выбор → русский -->
+  <script>
+    (function () {
+      var d = document.documentElement, l = null;
+      d.classList.add('js');
+      try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('lang'); } catch (e) {}
+      if (l === 'en' || l === 'ru') { d.setAttribute('data-lang', l); d.setAttribute('lang', l); }
+    })();
+  </script>
+</head>
+
+<body class="{{ page.body_class }}" data-title-ru="{{ tt_ru | escape }}" data-title-en="{{ tt_en | escape }}" data-desc-ru="{{ ds_ru | escape }}" data-desc-en="{{ ds_en | escape }}">
+  {% include icons.html %}
+{%- if page.apply %}
+  {% include apply-header.html %}
+{%- else %}
+  <a class="skip-link" href="#main"><span lang="ru">К содержанию</span><span lang="en">Skip to content</span></a>
+  {% include header.html %}
+  {% include menu.html %}
+{%- endif %}
+
+{{ content }}
+
+{%- if page.apply %}
+  {% include apply-footer.html %}
+{%- else %}
+  {% include footer.html %}
+{%- endif %}
+{%- if page.home %}
+  {% include lightbox.html %}
+  {% include mcta.html %}
+{%- endif %}
+  {% include analytics.html %}
+{%- if page.apply %}
+  <script src="assets/js/apply.js" defer></script>
+{%- else %}
+  <script src="assets/js/main.js" defer></script>
+{%- endif %}
+</body>
+</html>

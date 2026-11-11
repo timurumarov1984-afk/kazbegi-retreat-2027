@@ -1,0 +1,37 @@
+{%- comment -%}
+  Общие значения для всех страниц: R — содержание ретрита, g_* — готовые даты и подстановки для {dates} и т. п.
+  Подключается в начале каждой страницы и шаблона.
+{%- endcomment -%}
+{%- assign R = site.data.retreat -%}
+{%- capture g_dates_ru -%}{% include fmt-range.html a=R.retreat.start b=R.retreat.end lang="ru" year="y" %}{%- endcapture -%}
+{%- capture g_dates_en -%}{% include fmt-range.html a=R.retreat.start b=R.retreat.end lang="en" year="y" %}{%- endcapture -%}
+{%- capture g_dshort_ru -%}{% include fmt-range.html a=R.retreat.start b=R.retreat.end lang="ru" %}{%- endcapture -%}
+{%- capture g_dshort_en -%}{% include fmt-range.html a=R.retreat.start b=R.retreat.end lang="en" %}{%- endcapture -%}
+{%- capture g_start_ru -%}{% include fmt-date.html d=R.retreat.start lang="ru" %}{%- endcapture -%}
+{%- capture g_start_en -%}{% include fmt-date.html d=R.retreat.start lang="en" %}{%- endcapture -%}
+{%- capture g_checkin_ru -%}{% include fmt-date.html d=R.retreat.checkin.date lang="ru" %}{%- endcapture -%}
+{%- capture g_checkin_en -%}{% include fmt-date.html d=R.retreat.checkin.date lang="en" %}{%- endcapture -%}
+{%- capture g_checkout_ru -%}{% include fmt-date.html d=R.retreat.checkout.date lang="ru" %}{%- endcapture -%}
+{%- capture g_checkout_en -%}{% include fmt-date.html d=R.retreat.checkout.date lang="en" %}{%- endcapture -%}
+{%- assign g_checkin_time = R.retreat.checkin.time | default: "" -%}
+{%- assign g_checkout_time = R.retreat.checkout.time | default: "" -%}
+{%- assign g_int = false -%}
+{%- assign g_int_ru = "" -%}{%- assign g_int_en = "" -%}{%- assign g_intout_ru = "" -%}{%- assign g_intout_en = "" -%}
+{%- if R.intensive and R.intensive.start -%}
+  {%- assign g_int = true -%}
+  {%- capture g_int_ru -%}{% include fmt-range.html a=R.intensive.start b=R.intensive.end lang="ru" %}{%- endcapture -%}
+  {%- capture g_int_en -%}{% include fmt-range.html a=R.intensive.start b=R.intensive.end lang="en" %}{%- endcapture -%}
+  {%- if R.intensive.checkout.date -%}
+    {%- capture g_intout_ru -%}{% include fmt-date.html d=R.intensive.checkout.date lang="ru" %}{%- endcapture -%}
+    {%- capture g_intout_en -%}{% include fmt-date.html d=R.intensive.checkout.date lang="en" %}{%- endcapture -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign g_email = R.site.email | default: "" -%}
+{%- if R.site.telegram and R.site.telegram != "" -%}{%- assign g_telegram = R.site.telegram | prepend: "@" -%}{%- else -%}{%- assign g_telegram = "" -%}{%- endif -%}
+{%- assign g_rules = R.site.rules_url | default: "" -%}
+{%- assign g_private_ru = R.pricing.private.ru | default: "" -%}
+{%- assign g_private_en = R.pricing.private.en | default: g_private_ru -%}
+{%- assign g_s1 = R.retreat.checkin.date | date: "%s" | plus: 0 -%}
+{%- assign g_s2 = R.retreat.checkout.date | date: "%s" | plus: 0 -%}
+{%- assign g_nights = g_s2 | minus: g_s1 | plus: 3600 | divided_by: 86400 -%}
+{%- if R.site.url and R.site.url != "" -%}{%- assign g_base = R.site.url -%}{%- else -%}{%- assign g_base = "" -%}{%- endif -%}

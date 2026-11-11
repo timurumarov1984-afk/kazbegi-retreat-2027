@@ -1,0 +1,28 @@
+{%- assign F = R.final -%}
+    <!-- ===================== FINAL CTA ===================== -->
+    <section class="final" id="final">
+      {%- if F.video %}
+      <video autoplay muted loop playsinline preload="none" poster="assets/video/{{ F.video.poster }}" data-autoplay aria-hidden="true">
+        {%- if F.video.mobile %}
+        <source src="assets/video/{{ F.video.mobile }}" type="video/mp4" media="(max-aspect-ratio: 4/5)">
+        {%- endif %}
+        <source src="assets/video/{{ F.video.src }}" type="video/mp4">
+      </video>
+      {%- else %}
+      <picture>
+        {%- if F.photo.m %}
+        <source media="(max-aspect-ratio: 4/5)" srcset="assets/img/{{ F.photo.m }}">
+        {%- endif %}
+        <img src="assets/img/{{ F.photo.src }}" loading="lazy" alt=""{% if F.photo.pos %} style="object-position:{{ F.photo.pos }}"{% endif %}>
+      </picture>
+      {%- endif %}
+      <div class="container">
+        <p class="kicker reveal">{% include t.html v=F.kicker %}</p>
+        <h2 class="reveal" data-delay="1">{% include t.html v=F.title %}</h2>
+        <p class="reveal" data-delay="2">{% include t.html v=F.text %}</p>
+        <a class="btn btn--lg btn--light reveal" data-delay="3" href="apply.html">
+          <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </section>

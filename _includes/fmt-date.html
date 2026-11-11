@@ -1,0 +1,12 @@
+{%- comment -%} Дата словами: «include fmt-date.html d="2027-07-12" lang="ru" year="y"» → 12 июля 2027 {%- endcomment -%}
+{%- if include.d and include.d != "" -%}
+{%- assign fd_day = include.d | date: "%-d" -%}
+{%- assign fd_y = include.d | date: "%Y" -%}
+{%- if include.lang == "en" -%}
+{{ fd_day }} {{ include.d | date: "%B" }}{% if include.year == "y" %} {{ fd_y }}{% endif %}
+{%- else -%}
+{%- assign fd_mi = include.d | date: "%-m" | minus: 1 -%}
+{%- assign fd_months = "января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря" | split: "," -%}
+{{ fd_day }} {{ fd_months[fd_mi] }}{% if include.year == "y" %} {{ fd_y }}{% endif %}
+{%- endif -%}
+{%- endif -%}

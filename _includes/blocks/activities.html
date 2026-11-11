@@ -1,0 +1,28 @@
+{%- assign Ac = R.activities -%}
+{%- if Ac and Ac.items -%}
+    <!-- ===================== ACTIVITIES ===================== -->
+    <section class="section activities" id="activities">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker reveal">{% include t.html v=Ac.kicker %}</p>
+            <h2 class="h2 reveal" data-delay="1">{% include t.html v=Ac.title %}</h2>
+          </div>
+          <p class="lead reveal" data-delay="2">{% include t.html v=Ac.lead %}</p>
+        </div>
+
+        <div class="acts">
+          {%- for a in Ac.items %}
+          {%- assign ad = forloop.index0 | modulo: 3 %}
+          <article class="act reveal"{% if ad > 0 %} data-delay="{{ ad }}"{% endif %}>
+            <img src="assets/img/{{ a.photo }}" loading="lazy" alt=""{% if a.pos %} style="object-position:{{ a.pos }}"{% endif %}>
+            <div class="act__body">
+              <h3>{% include t.html v=a.title %}</h3>
+              <p>{% include t.html v=a.text %}</p>
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+{%- endif -%}
