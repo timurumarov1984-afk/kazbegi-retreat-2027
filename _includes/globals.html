@@ -29,6 +29,7 @@
 {%- assign g_email = R.site.email | default: "" -%}
 {%- if R.site.telegram and R.site.telegram != "" -%}{%- assign g_telegram = R.site.telegram | prepend: "@" -%}{%- else -%}{%- assign g_telegram = "" -%}{%- endif -%}
 {%- assign g_rules = R.site.rules_url | default: "" -%}
+{%- assign g_steps = R.join.steps.size | default: 0 -%}
 {%- assign g_private_ru = R.pricing.private.ru | default: "" -%}
 {%- assign g_private_en = R.pricing.private.en | default: g_private_ru -%}
 {%- assign g_s1 = R.retreat.checkin.date | date: "%s" | plus: 0 -%}

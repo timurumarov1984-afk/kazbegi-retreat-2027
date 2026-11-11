@@ -4,18 +4,8 @@ home: true
 ---
 {%- include globals.html -%}
 <main id="main">
-{% include blocks/hero.html %}
-{% include blocks/about.html %}
-{% include identity/divider.html %}
-{% include blocks/memories.html %}
-{% include blocks/included.html %}
-{% include blocks/schedule.html %}
-{% include blocks/intensive.html %}
-{% include blocks/place.html %}
-{% include blocks/stay.html %}
-{% include blocks/activities.html %}
-{% include blocks/cocreate.html %}
-{% include blocks/pricing.html %}
-{% include blocks/guide.html %}
-{% include blocks/final.html %}
+{%- comment -%} Блоки главной и их порядок — в _data/retreat.yml: home.blocks {%- endcomment -%}
+{%- for b in R.home.blocks %}
+{% include blocks/{{ b }}.html %}
+{%- endfor %}
 </main>

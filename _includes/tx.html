@@ -9,7 +9,7 @@
   {%- else -%}
     {%- assign tx = tx | replace: "{dates}", g_dates_ru | replace: "{dates_short}", g_dshort_ru | replace: "{start}", g_start_ru | replace: "{checkin}", g_checkin_ru | replace: "{checkout}", g_checkout_ru | replace: "{intensive_dates}", g_int_ru | replace: "{intensive_checkout}", g_intout_ru | replace: "{private}", g_private_ru -%}
   {%- endif -%}
-  {%- assign tx = tx | replace: "{checkin_time}", g_checkin_time | replace: "{checkout_time}", g_checkout_time | replace: "{nights}", g_nights | replace: "{email}", g_email | replace: "{telegram}", g_telegram | replace: "{rules}", g_rules -%}
+  {%- assign tx = tx | replace: "{checkin_time}", g_checkin_time | replace: "{checkout_time}", g_checkout_time | replace: "{nights}", g_nights | replace: "{email}", g_email | replace: "{telegram}", g_telegram | replace: "{rules}", g_rules | replace: "{steps}", g_steps -%}
 {%- endif -%}
 {%- assign tx = tx | replace: " — ", "&nbsp;— " -%}
 {%- if include.lang != "en" -%}

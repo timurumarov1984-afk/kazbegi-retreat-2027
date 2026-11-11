@@ -1,0 +1,25 @@
+{%- assign V = R.venue -%}
+{%- if V.gallery and V.gallery.photos -%}
+    <!-- ===================== GALLERY: атмосфера отеля (venue.gallery) ===================== -->
+    <section class="section gallery-section">
+      <div class="gallery">
+        <div class="container gallery__bar">
+          <h2 class="gallery__title">{% include t.html v=V.gallery.title %}</h2>
+          <div class="gallery__nav">
+            <button class="round-btn round-btn--prev" type="button" data-scroll="prev" data-target="#gallery-track" aria-label="Previous"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="round-btn" type="button" data-scroll="next" data-target="#gallery-track" aria-label="Next"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+        <div class="gallery__track" id="gallery-track">
+          {%- for p in V.gallery.photos %}
+          <figure class="gallery__item">{% include img.html p=p %}{% if p.caption %}<figcaption>{% include t.html v=p.caption %}</figcaption>{% endif %}</figure>
+          {%- endfor %}
+        </div>
+        {%- if V.website %}
+        <div class="container gallery__more">
+          <a class="link-arrow" href="{{ V.website }}" target="_blank" rel="noopener">{% include t.html v=V.website_label %}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        {%- endif %}
+      </div>
+    </section>
+{%- endif -%}

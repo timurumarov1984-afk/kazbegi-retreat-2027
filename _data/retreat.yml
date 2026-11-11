@@ -29,22 +29,42 @@ site:
   analytics:
     goatcounter: ""            # имя счётчика GoatCounter (статистика без cookie), например "kazbegi2027"
 
+# ----------------------------------------------------------------------------- главная страница и главы
+home:                          # блоки главной и их порядок; уберите имя — блока не будет
+  blocks: [hero, about, divider, memories, included, schedule, place, pricing, chapters, final]
+
+chapters:                      # главы — отдельные страницы (кнопки в меню и на главной); удалите строку — кнопок не будет
+  intensive: { title: { ru: "Интенсив", en: "Intensive" }, text: { ru: "{intensive_dates} · три дня углублённой практики с Мастером", en: "{intensive_dates} · three days of deeper practice with the Master" }, photo: { src: "card-breathwork.webp", pos: "50% 35%" } }
+  stay: { title: { ru: "Проживание", en: "Accommodation" }, text: { ru: "Номера Rooms Kazbegi, бронь через нас, атмосфера отеля", en: "Rooms at Rooms Kazbegi, booking through us, the feel of the hotel" }, photo: { src: "room-view.webp", pos: "30% 50%" } }
+  leisure: { title: { ru: "Досуг", en: "Leisure" }, text: { ru: "Горы, кухня, спа и вечера сотворчества", en: "Mountains, food, the spa and evenings of co-creation" }, photo: { src: "hiking.webp" } }
+  join: { title: { ru: "Как попасть на ретрит", en: "How to join" }, text: { ru: "{steps} шагов — от заявки до чата участников", en: "{steps} steps — from the application to the participants’ chat" }, photo: { src: "card-mentors.webp" } }
+  travel: { title: { ru: "Как добраться", en: "Getting there" }, text: { ru: "Дорога из Тбилиси, карта и что взять с собой", en: "The road from Tbilisi, the map and what to bring" }, photo: { src: "hero-2.webp", pos: "45% 50%" } }
+  faq: { title: { ru: "Частые вопросы", en: "FAQ" }, text: { ru: "Оплата, проживание, организация и связь", en: "Payment, accommodation, organisation and contact" }, photo: { src: "breakfast.webp" } }
+
 # ----------------------------------------------------------------------------- первый экран
 retreat:
   name: { ru: "Ретрит с Мастером Камильпашой в Казбеги", en: "Retreat with Master Kamilpasha in Kazbegi" }
   title: { ru: "Ретрит с Мастером *Камильпашой*", en: "Retreat with Master *Kamilpasha*" }
   badge: { ru: "Медитационный ретрит", en: "Meditation retreat" }
+  eyebrow: { ru: "Июль 2027 · Rooms Kazbegi · Грузия", en: "July 2027 · Rooms Kazbegi · Georgia" }
+  live:                        # «только вживую»: первый экран, «О ретрите», стоимость
+    badge: { ru: "Только вживую · без онлайн-трансляции", en: "In person only · no live stream" }
+    title: { ru: "Только вживую", en: "In person only" }
+    text: { ru: "Онлайн-трансляции не будет. Присутствие Мастера, общее поле и ритм практики — здесь, в зале, а не на экране.", en: "There will be no live stream. The Master’s presence, the shared field and the rhythm of practice happen here, in the hall, not on a screen." }
+  tile:                        # карточка ретрита на первом экране (рядом с карточкой интенсива)
+    label: { ru: "Ретрит", en: "Retreat" }
+    text: { ru: "8 дней · 2 практики с Мастером каждый день", en: "8 days · 2 sessions with the Master every day" }
   start: "2027-07-12"          # первый день практики
   end: "2027-07-19"            # последний день практики
   checkin: { date: "2027-07-11", time: "15:00" }
   checkout: { date: "2027-07-20", time: "12:00" }
   lead:
-    ru: "Восемь дней утренних и вечерних медитаций по методу Мастера в горах Грузии, у подножия Казбека — о чистоте внимания, безусильном присутствии и возвращении к прямому переживанию."
-    en: "Eight days of morning and evening meditation in the Master’s method, in the mountains of Georgia at the foot of Mount Kazbek — on clarity of attention, effortless presence and a return to direct experience."
+    ru: "Восемь дней ретрита и три дня интенсива — утренние и вечерние медитации по методу Мастера в горах Грузии, у подножия Казбека."
+    en: "Eight days of retreat and three days of intensive — morning and evening meditation in the Master’s method, in the mountains of Georgia at the foot of Mount Kazbek."
   share:                       # описание для поиска и превью ссылки в мессенджерах
     ru: "Восемь дней медитаций с Мастером Камильпашой в Rooms Kazbegi — у подножия Казбека, в горах Грузии. {dates}, интенсив {intensive_dates}."
     en: "Eight days of meditation with Master Kamilpasha at Rooms Kazbegi — at the foot of Mount Kazbek in the mountains of Georgia. {dates}, intensive {intensive_dates}."
-  facts:                       # 4 цифры внизу первого экрана
+  facts:                       # 4 цифры внизу первого экрана — если интенсива нет (с интенсивом там карточки двух событий)
     - { value: { ru: "8 дней", en: "8 days" }, text: { ru: "практики с Мастером", en: "of practice with the Master" } }
     - { value: { ru: "2 практики", en: "2 sessions" }, text: { ru: "каждый день — утром и вечером", en: "every day, morning and evening" } }
     - { value: { ru: "1 750 м", en: "1,750 m" }, text: { ru: "над уровнем моря, у подножия Казбека", en: "above sea level, at the foot of Kazbek" } }
@@ -192,12 +212,14 @@ intensive:
   end: "2027-07-22"
   checkout: { date: "2027-07-23", time: "12:00" }
   provisional: true            # true — рядом пометка «предварительно»
-  plus: { ru: "+ 3 дня интенсива по желанию · {intensive_dates}", en: "+ an optional 3-day intensive · {intensive_dates}" }
-  schedule_text: { ru: "Углублённая практика с Мастером после основного ретрита", en: "Deeper practice with the Master after the main retreat" }
-  title: { ru: "Ещё три дня — *глубже*", en: "Three more days — *deeper*" }
+  tile:                        # карточка интенсива на первом экране
+    label: { ru: "Интенсив", en: "Intensive" }
+    text: { ru: "3 дня углублённой практики с Мастером", en: "3 days of deeper practice with the Master" }
+  schedule_text: { ru: "Три дня углублённой практики с Мастером — сразу после ретрита", en: "Three days of deeper practice with the Master — right after the retreat" }
+  title: { ru: "Интенсив с *Мастером*", en: "Intensive with *the Master*" }
   lead:
-    ru: "Для тех, кто хочет остаться после основного ретрита: углублённая практика с Мастером в малой группе. Интенсив выбирают отдельно — основной ретрит самодостаточен."
-    en: "For those who want to stay on after the main retreat: deeper practice with the Master in a small group. The intensive is chosen separately — the main retreat is complete on its own."
+    ru: "Полноценное событие сразу после ретрита: три дня углублённой практики с Мастером в малой группе, там же, в Rooms Kazbegi."
+    en: "A full event right after the retreat: three days of deeper practice with the Master in a small group, in the same place — Rooms Kazbegi."
   note: { ru: "Формат, расписание и стоимость интенсива уточняются.", en: "The format, schedule and price of the intensive are to be confirmed." }
   facts:                       # пустое значение — «уточняется»
     - { label: { ru: "Даты", en: "Dates" }, value: { ru: "{intensive_dates}", en: "{intensive_dates}" } }
@@ -224,12 +246,10 @@ venue:
     ru: "Бывший советский санаторий, ставший одним из самых красивых горных отелей Грузии: дерево, кирпич и кожа цвета коньяка, длинная терраса с видом на Казбек и церковь Гергети. Для нашей группы — специальные условия проживания."
     en: "A former Soviet sanatorium turned one of Georgia’s most beautiful mountain hotels: wood, brick and cognac leather, and a long terrace facing Mount Kazbek and Gergeti Church. Special rates for our group."
   features:
-    - { ru: "Номера с одноместным или двухместным размещением и завтраками", en: "Single or double rooms with breakfast" }
-    - { ru: "Вкуснейшая кухня от лучших мастеров локальной кухни", en: "Delicious food from the best local cooks" }
-    - { ru: "Потрясающий вид на горы и лесные массивы", en: "Stunning views of the mountains and forests" }
-    - { ru: "Неповторимая атмосфера и аутентичный стиль пространства", en: "A one-of-a-kind atmosphere and authentic style" }
-    - { ru: "Специальные сниженные цены для всех участников группы", en: "Special reduced rates for everyone in the group" }
-    - { ru: "Единственное спа в округе — бассейн с панорамой гор и сауны", en: "The only spa around — a pool with a mountain panorama and saunas" }
+    - { ru: "1 750 м над уровнем моря — у подножия Казбека", en: "1,750 m above sea level — at the foot of Kazbek" }
+    - { ru: "≈3 часа на машине от Тбилиси", en: "≈3 hours by car from Tbilisi" }
+    - { ru: "Номера с завтраком и специальные цены для группы", en: "Rooms with breakfast and special rates for the group" }
+    - { ru: "Единственное спа в округе — бассейн с панорамой гор", en: "The only spa around — a pool with a mountain panorama" }
   photo: { src: "facade.webp", alt: { ru: "Rooms Kazbegi на фоне гор", en: "Rooms Kazbegi against the mountains" } }
   ring: "ROOMS KAZBEGI ✦ მყინვარწვერი ✦ 5054 M ✦"   # текст на вращающемся круге
   gallery:
@@ -290,9 +310,9 @@ rooms:
   link: { url: "https://drive.google.com/drive/folders/177Qdydk48egib21E2DL-T3Oa7qNrJIGa?usp=sharing", label: { ru: "Все фото номеров", en: "All room photos" } }
   hotel_site: { url: "", promo: "" }   # только для hotel_site: ссылка на бронирование и текст про промокод
 
-# ----------------------------------------------------------------------------- вокруг практики
+# ----------------------------------------------------------------------------- глава «Досуг» (leisure.html): активности и сотворчество
 activities:
-  kicker: { ru: "Вокруг практики", en: "Beyond the practice" }
+  kicker: { ru: "Досуг", en: "Leisure" }
   title: { ru: "Горы, кухня *и простор*", en: "Mountains, food *and open space*" }
   lead:
     ru: "Примеры дополнительных активностей за отдельную плату. Их организуют отель или местные турагентства — на месте вариантов будет гораздо больше."
@@ -343,7 +363,16 @@ pricing:
     - { ru: "Оплата в течение 7 дней после подтверждения заявки", en: "Payment within 7 days of your application being confirmed" }
     - { ru: "Криптовалюта или перевод в евро, долларах, рублях — заранее", en: "Crypto or a transfer in euros, dollars or roubles — in advance" }
     - { ru: "Приоритет на ранние цены — у тех, кто живёт в отеле ретрита", en: "Early-bird priority goes to those staying at the retreat hotel" }
-  fine: { ru: "Проживание и питание не входят в стоимость. Интенсив оплачивается отдельно, стоимость уточняется.", en: "Accommodation and meals are not included. The intensive is paid separately; its price is to be confirmed." }
+    - { ru: "Только очное участие — онлайн-трансляции не будет", en: "In person only — there will be no live stream" }
+  fine: { ru: "Проживание и питание не входят в стоимость.", en: "Accommodation and meals are not included." }
+  intensive:                   # карточка интенсива рядом с ценой ретрита
+    tag: { ru: "Rooms Kazbegi · {intensive_dates}", en: "Rooms Kazbegi · {intensive_dates}" }
+    title: { ru: "Интенсив", en: "Intensive" }
+    price: ""                  # число; пусто — «стоимость уточняется»
+    list:
+      - { ru: "Три дня углублённой практики с Мастером в малой группе", en: "Three days of deeper practice with the Master in a small group" }
+      - { ru: "Заявка — та же анкета, что и на ретрит", en: "Apply with the same form as for the retreat" }
+      - { ru: "Проживание на ночи интенсива бронируем через нас", en: "We book your room for the intensive nights" }
   private: { ru: "100 € / час или 50 € / 30 минут", en: "€100 per hour or €50 per 30 minutes" }
   refund_title: { ru: "Отмена и возврат", en: "Cancellation and refunds" }
   refund:                      # один текст — на главной и в FAQ
@@ -464,6 +493,8 @@ faq:
         a: { ru: "Да — отметьте это в анкете. Отель берёт доплату без НДС: дополнительная кровать — 10 $ за ночь, завтрак для ребёнка 7–11 лет — 10 $, от 12 лет — 20 $. Детский клуб планируем ежедневно, около 40 € в день за ребёнка.", en: "Yes — mention it in the application. The hotel charges extra, excl. VAT: an extra bed is $10 per night, breakfast for a child aged 7–11 is $10, 12 and over $20. A daily kids’ club is planned at about €40 per child per day." }
   - title: { ru: "Организация", en: "Organisation" }
     items:
+      - q: { ru: "Будет ли онлайн-трансляция?", en: "Will there be a live stream?" }
+        a: { ru: "Нет. Ретрит и интенсив проходят только вживую: присутствие Мастера, общее поле и ритм практики — в зале, а не на экране.", en: "No. The retreat and the intensive are in person only: the Master’s presence, the shared field and the rhythm of practice happen in the hall, not on a screen." }
       - q: { ru: "Почему ретрит могут отменить?", en: "Why might the retreat be cancelled?" }
         a:
           ru: |
@@ -510,11 +541,6 @@ final:
 
 footer:
   about: { ru: "Ретрит с Мастером Камильпашой в Rooms Kazbegi. {dates}, интенсив {intensive_dates}. Степанцминда, Грузия.", en: "Retreat with Master Kamilpasha at Rooms Kazbegi. {dates}, intensive {intensive_dates}. Stepantsminda, Georgia." }
-
-guide:                         # фото на карточках «Как попасть», «Как добраться», «Частые вопросы»
-  join: { src: "card-mentors.webp" }
-  travel: { src: "hero-2.webp", pos: "45% 50%" }
-  faq: { src: "room-view.webp", pos: "30% 50%" }
 
 # ----------------------------------------------------------------------------- анкета (apply.html)
 #  Вопросы должны совпадать с Google-формой: entry — номер поля, v — вариант ответа слово в слово.

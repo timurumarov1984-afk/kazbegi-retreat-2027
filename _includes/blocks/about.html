@@ -8,6 +8,9 @@
           {%- if A.quote %}
           <p class="about__quote reveal" data-delay="2">{% include t.html v=A.quote %}</p>
           {%- endif %}
+          {%- if R.retreat.live.title %}
+          <p class="about__live reveal" data-delay="2"><span class="live-dot" aria-hidden="true"></span><span><b>{% include t.html v=R.retreat.live.title %}.</b> {% include t.html v=R.retreat.live.text %}</span></p>
+          {%- endif %}
           {%- for p in A.text %}
           <p class="lead reveal" data-delay="2">{% include t.html v=p %}</p>
           {%- endfor %}

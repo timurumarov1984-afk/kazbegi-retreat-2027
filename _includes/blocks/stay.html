@@ -6,7 +6,7 @@
         <div class="section-head">
           <div>
             <p class="kicker reveal">{% include t.html v=Rm.kicker %}</p>
-            <h2 class="h2 reveal" data-delay="1">{% include t.html v=Rm.title %}</h2>
+            {% if include.h1 %}<h1 class="h2 reveal" data-delay="1">{% include t.html v=Rm.title %}</h1>{% else %}<h2 class="h2 reveal" data-delay="1">{% include t.html v=Rm.title %}</h2>{% endif %}
           </div>
           <div class="reveal" data-delay="2">
             <p class="lead">{% include t.html v=Rm.lead %}</p>

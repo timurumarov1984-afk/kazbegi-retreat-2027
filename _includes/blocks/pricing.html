@@ -56,12 +56,41 @@
             </a>
           </article>
 
-          {%- if Pr.refund %}
+          {%- if g_int and Pr.intensive %}
+          {%- assign PI = Pr.intensive %}
+          <article class="plan plan--intensive reveal" data-delay="1">
+            <span class="plan__tag">{% include t.html v=PI.tag %}</span>
+            <h3>{% include t.html v=PI.title %}{% if R.intensive.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</h3>
+            {%- if PI.price and PI.price != "" %}
+            <p class="plan__price">{% include money.html n=PI.price %}&nbsp;{{ Pr.currency }}</p>
+            {%- else %}
+            <p class="plan__price plan__price--tbd"><span lang="ru">стоимость уточняется</span><span lang="en">price to be confirmed</span></p>
+            {%- endif %}
+            <ul class="plan__list">
+              {%- for n in PI.list %}
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>{% include t.html v=n %}</span></li>
+              {%- endfor %}
+            </ul>
+            <div class="plan__spacer"></div>
+            <div class="plan__actions">
+              <a class="btn" href="apply.html"><span lang="ru">Подать заявку</span><span lang="en">Apply</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              {%- if R.chapters.intensive %}
+              <a class="link-arrow" href="intensive.html"><span lang="ru">Об интенсиве</span><span lang="en">About the intensive</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              {%- endif %}
+            </div>
+          </article>
+          {%- elsif Pr.refund %}
           <article class="plan plan--terms reveal" data-delay="1">
             <span class="plan__tag">{% include t.html v=Pr.refund_title %}</span>
             <div class="faq__a">{% include md.html v=Pr.refund %}</div>
           </article>
           {%- endif %}
         </div>
+        {%- if g_int and Pr.intensive and Pr.refund %}
+        <details class="refund reveal">
+          <summary><span>{% include t.html v=Pr.refund_title %}</span><span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq__a">{% include md.html v=Pr.refund %}</div>
+        </details>
+        {%- endif %}
       </div>
     </section>

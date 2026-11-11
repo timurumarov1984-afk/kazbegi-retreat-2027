@@ -40,20 +40,26 @@
       <div class="container hero__content">
         <div class="hero__headline">
           <div class="hero__top reveal">
-            {%- if H.badge %}
-            <p class="hero__badge">{% include t.html v=H.badge %}</p>
-            {%- endif %}
+            <div class="hero__badges">
+              {%- if H.badge %}
+              <p class="hero__badge">{% include t.html v=H.badge %}</p>
+              {%- endif %}
+              {%- if H.live.badge %}
+              <p class="hero__badge hero__badge--live"><span class="live-dot" aria-hidden="true"></span>{% include t.html v=H.live.badge %}</p>
+              {%- endif %}
+            </div>
             <p class="hero__eyebrow">
+              {%- if H.eyebrow %}
+              {% include t.html v=H.eyebrow %}
+              {%- else %}
               <span lang="ru">{{ g_dates_ru }}</span><span lang="en">{{ g_dates_en }}</span>
               <span class="dot" aria-hidden="true"></span>
               {% include t.html v=R.venue.short %}
+              {%- endif %}
             </p>
           </div>
 
           <h1 class="reveal" data-delay="1">{% include t.html v=H.title %}</h1>
-          {%- if g_int and R.intensive.plus %}
-          <p class="hero__plus reveal" data-delay="1"><a href="#intensive">{% include t.html v=R.intensive.plus %}</a></p>
-          {%- endif %}
 
           <p class="hero__lead reveal" data-delay="2">{% include t.html v=H.lead %}</p>
         </div>
@@ -69,6 +75,22 @@
             </a>
           </div>
 
+          {%- if g_int %}
+          <div class="hero__events reveal" data-delay="4">
+            <a class="event-tile" href="#schedule">
+              <span class="event-tile__label">{% include t.html v=H.tile.label %}</span>
+              <b class="event-tile__dates"><span lang="ru">{{ g_dshort_ru }}</span><span lang="en">{{ g_dshort_en }}</span></b>
+              <span class="event-tile__text">{% include t.html v=H.tile.text %}</span>
+              <span class="event-tile__more"><span lang="ru">Расписание</span><span lang="en">Schedule</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+            <a class="event-tile" href="{% if R.chapters.intensive %}intensive.html{% else %}#schedule{% endif %}">
+              <span class="event-tile__label">{% include t.html v=R.intensive.tile.label %}{% if R.intensive.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</span>
+              <b class="event-tile__dates"><span lang="ru">{{ g_int_ru }}</span><span lang="en">{{ g_int_en }}</span></b>
+              <span class="event-tile__text">{% include t.html v=R.intensive.tile.text %}</span>
+              <span class="event-tile__more"><span lang="ru">Подробнее</span><span lang="en">Details</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </div>
+          {%- else %}
           <div class="hero__facts reveal" data-delay="4">
             {%- for f in H.facts %}
             <div class="fact">
@@ -77,6 +99,7 @@
             </div>
             {%- endfor %}
           </div>
+          {%- endif %}
         </div>
       </div>
     </section>

@@ -8,13 +8,15 @@
       <button class="menu__close" type="button" aria-label="Close">×</button>
     </div>
     <nav aria-label="Mobile">
-      <a href="{{ nb }}#about"><span lang="ru">О ретрите</span><span lang="en">About</span></a>
+      <a href="{{ nb }}#about"><span lang="ru">Ретрит</span><span lang="en">Retreat</span></a>
       <a href="{{ nb }}#schedule"><span lang="ru">Расписание</span><span lang="en">Schedule</span></a>
-      <a href="{{ nb }}#place"><span lang="ru">Место</span><span lang="en">Venue</span></a>
+      {%- for c in R.chapters %}
+      {%- assign c_t = c[1].title %}
+      <a href="{{ c[0] }}.html">{% include t.html v=c_t %}</a>
+      {%- if forloop.index == 3 %}
       <a href="{{ nb }}#pricing"><span lang="ru">Стоимость</span><span lang="en">Pricing</span></a>
-      <a href="join.html"><span lang="ru">Как попасть на ретрит</span><span lang="en">How to join</span></a>
-      <a href="travel.html"><span lang="ru">Как добраться</span><span lang="en">Getting there</span></a>
-      <a href="faq.html"><span lang="ru">Частые вопросы</span><span lang="en">FAQ</span></a>
+      {%- endif %}
+      {%- endfor %}
     </nav>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-set-lang="ru" aria-pressed="true">RU</button>

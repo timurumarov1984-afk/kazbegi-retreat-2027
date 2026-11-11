@@ -37,9 +37,9 @@
             <p class="day__label">{% include t.html v=R.intensive.name %}{% if R.intensive.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</p>
             <h3 class="day__date"><span lang="ru">{{ g_int_ru }}</span><span lang="en">{{ g_int_en }}</span></h3>
             <ul class="timeline">
-              <li><time><span lang="ru">по&nbsp;желанию</span><span lang="en">optional</span></time><span class="hl"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>{% include t.html v=R.intensive.schedule_text %}</span></span></li>
+              <li><time><span lang="ru">3 дня</span><span lang="en">3 days</span></time><span class="hl"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>{% include t.html v=R.intensive.schedule_text %}</span></span></li>
             </ul>
-            <p class="day__note"><a href="#intensive"><span lang="ru">Подробнее об&nbsp;интенсиве</span><span lang="en">More about the intensive</span></a></p>
+            <p class="day__note"><a href="{% if R.chapters.intensive %}intensive.html{% else %}#intensive{% endif %}"><span lang="ru">Подробнее об&nbsp;интенсиве</span><span lang="en">More about the intensive</span></a></p>
           </article>
           {%- endif %}
 

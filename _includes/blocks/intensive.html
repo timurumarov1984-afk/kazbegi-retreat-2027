@@ -1,20 +1,28 @@
 {%- if g_int -%}
 {%- assign N = R.intensive -%}
-    <!-- ===================== INTENSIVE: отдельный блок (intensive) ===================== -->
+    <!-- ===================== INTENSIVE: отдельное полноценное событие (intensive) ===================== -->
     <section class="section intensive" id="intensive">
       <div class="container intensive__grid">
         <div>
           <p class="kicker reveal">{% include t.html v=N.name %} · <span class="nowrap"><span lang="ru">{{ g_int_ru }}</span><span lang="en">{{ g_int_en }}</span></span>{% if N.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</p>
+          {%- if include.h1 %}
+          <h1 class="h2 reveal" data-delay="1">{% include t.html v=N.title %}</h1>
+          {%- else %}
           <h2 class="h2 reveal" data-delay="1">{% include t.html v=N.title %}</h2>
+          {%- endif %}
           <p class="lead reveal" data-delay="2">{% include t.html v=N.lead %}</p>
+          {%- if R.retreat.live.badge %}
+          <p class="intensive__live reveal" data-delay="2"><span class="live-dot" aria-hidden="true"></span>{% include t.html v=R.retreat.live.badge %}</p>
+          {%- endif %}
           {%- if N.note %}
           <p class="note reveal" data-delay="2">{% include t.html v=N.note %}</p>
           {%- endif %}
-          <p class="reveal" data-delay="3">
-            <a class="btn btn--outline" href="apply.html">
+          <p class="intensive__actions reveal" data-delay="3">
+            <a class="btn btn--light" href="apply.html">
               <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
               <svg aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
+            <a class="btn btn--outline" href="index.html#schedule"><span lang="ru">Расписание ретрита</span><span lang="en">Retreat schedule</span></a>
           </p>
         </div>
         <dl class="intensive__facts reveal" data-delay="1">
@@ -26,5 +34,8 @@
           {%- endfor %}
         </dl>
       </div>
+      {%- if include.h1 %}
+      {% include identity/schedule.html %}
+      {%- endif %}
     </section>
 {%- endif -%}
