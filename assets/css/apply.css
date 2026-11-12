@@ -285,3 +285,9 @@ input[type="date"].input { min-height: 52px; }
 
 fieldset.qstep { min-width: 0; margin: 0; padding: 0; border: 0; }
 .step-head h2:focus { outline: none; }
+
+/* narrow phones: the brand stays on one line next to the language switch */
+@media (max-width: 420px) {
+  .apply-header .brand__sub { display: none; }
+  .apply-header .brand__name { white-space: nowrap; }
+}

@@ -1849,5 +1849,8 @@ h2.gallery__title { font-size: clamp(22px, 2vw, 28px); }
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
-@media (max-width: 760px) { .draft-ribbon { bottom: calc(92px + env(safe-area-inset-bottom)); } }
+/* on phones the mark sits just under the header, centred — over the photo, away from the text and buttons */
+@media (max-width: 760px) {
+  .draft-ribbon { left: 50%; bottom: auto; top: calc(var(--header-h) + 6px); transform: translateX(-50%); font-size: 9.5px; white-space: nowrap; }
+}
 .form-draft-note { margin: 0 0 18px; }
