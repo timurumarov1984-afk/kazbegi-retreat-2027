@@ -6,7 +6,8 @@
    Отправка:
    - если задан form.endpoint (Apps Script, см. apps-script/README.md) — заявка уходит туда; скрипт передаёт её
      в Google-форму, сохраняет копию и присылает письмо; «Спасибо» показывается только после подтверждения;
-   - если endpoint пуст — заявка уходит напрямую в Google-форму (браузер не может узнать, приняла ли её форма). */
+   - если endpoint пуст — заявка не отправляется: человек видит ошибку и запасные пути (почта, Telegram, Google-форма).
+     «Спасибо» без подтверждённой записи сайт не показывает никогда. */
 (function () {
   'use strict';
 
@@ -378,11 +379,9 @@
         .then(function (res) { done(!!(res && res.ok)); })
         .catch(function () { done(false); });
     } else {
-      // directly to the Google Form: the browser can't see whether the form accepted it
-      if (window.console) console.warn('Анкета: form.endpoint не задан — статус отправки неизвестен (см. apps-script/README.md)');
-      fetch(FORM.google_form, { method: 'POST', mode: 'no-cors', body: body })
-        .then(function () { done(true); })
-        .catch(function () { done(false); });
+      // без приёмника нельзя узнать, приняла ли форма заявку, — «спасибо» не показываем никогда
+      if (window.console) console.error('Анкета: не задан form.endpoint — заявка не отправлена (см. apps-script/README.md)');
+      done(false);
     }
   }
   form.addEventListener('submit', function (e) {

@@ -5,7 +5,7 @@
         {% include guide-cards.html skip=include.skip %}
         <div class="more__cta">
           <a class="btn btn--lg" href="apply.html"><span lang="ru">Подать заявку</span><span lang="en">Apply</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn--lg btn--outline" href="index.html"><span lang="ru">На главную</span><span lang="en">Main page</span></a>
+          <a class="btn btn--lg btn--outline" href="index.html#{{ page.back | default: 'guide' }}" data-back><span lang="ru">На главную</span><span lang="en">Main page</span></a>
         </div>
       </div>
     </section>

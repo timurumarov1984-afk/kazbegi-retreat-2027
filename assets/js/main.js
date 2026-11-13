@@ -198,8 +198,8 @@
     var tiers = Array.prototype.slice.call(tiersEl.querySelectorAll('.tier'));
     var cur = null;
     tiers.forEach(function (t) {
-      var until = new Date(t.dataset.until + 'T23:59:59');
-      var past = until < today;
+      var until = t.dataset.until ? new Date(t.dataset.until + 'T23:59:59') : null;
+      var past = until ? until < today : false;
       t.classList.toggle('is-past', past);
       t.classList.remove('is-current');
       if (!past && !cur) cur = t;
@@ -211,8 +211,8 @@
       cur.classList.add('is-current');
       if (priceEl) priceEl.textContent = money(cur.dataset.price);
       var idx = tiers.indexOf(cur), next = tiers[idx + 1];
-      var days = Math.ceil((new Date(cur.dataset.until + 'T23:59:59') - today) / 86400000);
-      if (countEl && next && days <= 60) {
+      var days = cur.dataset.until ? Math.ceil((new Date(cur.dataset.until + 'T23:59:59') - today) / 86400000) : 0;
+      if (countEl && next && cur.dataset.until && days <= 60) {
         countEl.innerHTML = '<span lang="ru">До повышения цены — ' + days + ' ' + ruDays(days) + '</span><span lang="en">' + days + ' day' + (days === 1 ? '' : 's') + ' until the price goes up</span>';
         countEl.hidden = false;
       }
@@ -224,6 +224,54 @@
   }
   function money(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
   function ruDays(n) { var a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'день' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'дня' : 'дней'; }
+
+  /* ---------- Main page: remember the spot before leaving, return to it exactly ----------
+     The browser restores the scroll position before the web font has loaded, so on return it lands
+     a few hundred pixels off. We save the block that was at the top of the screen and its offset,
+     and put it back once fonts and layout are ready. */
+  if (document.querySelector('.hero')) {
+    var SPOT = 'home-spot';
+    try { history.scrollRestoration = 'manual'; } catch (e) { /* old browser */ }
+    var saveSpot = function () {
+      var secs = document.querySelectorAll('main > section[id]'), best = null;
+      Array.prototype.forEach.call(secs, function (sec) {
+        var t = sec.getBoundingClientRect().top;
+        if (t <= 140 && (!best || t > best.top)) best = { id: sec.id, top: t };
+      });
+      if (best) { try { sessionStorage.setItem(SPOT, JSON.stringify(best)); } catch (e) { /* private mode */ } }
+    };
+    window.addEventListener('pagehide', saveSpot);
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (a && a.getAttribute('href').charAt(0) !== '#') saveSpot();
+    }, true);
+    var navEntry = window.performance && performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+    var spot = null;
+    try { spot = JSON.parse(sessionStorage.getItem(SPOT) || 'null'); } catch (e) { spot = null; }
+    if (spot && navEntry && (navEntry.type === 'back_forward' || navEntry.type === 'reload') && !location.hash) {
+      var putBack = function () {
+        var el = document.getElementById(spot.id);
+        if (el) window.scrollTo({ top: Math.round(el.getBoundingClientRect().top + window.scrollY - spot.top), behavior: 'instant' });
+      };
+      putBack();
+      var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+      ready.then(function () { putBack(); setTimeout(putBack, 200); setTimeout(putBack, 600); });
+      window.addEventListener('load', putBack);
+    }
+  }
+
+  /* ---------- «На главную» returns to the same place on the main page ---------- */
+  document.querySelectorAll('[data-back]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      try {
+        var ref = document.referrer ? new URL(document.referrer) : null;
+        if (ref && ref.origin === location.origin && /(\/|\/index\.html)$/.test(ref.pathname) && history.length > 1) {
+          e.preventDefault();
+          history.back();
+        }
+      } catch (err) { /* follow the link to the block on the main page */ }
+    });
+  });
 
   /* ---------- Gallery arrows ---------- */
   document.querySelectorAll('[data-scroll]').forEach(function (btn) {

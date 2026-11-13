@@ -1,6 +1,7 @@
 {%- assign Rm = R.rooms -%}
 {%- if Rm -%}
-    <!-- ===================== STAY: rooms.mode = through_us (бронь через нас) или hotel_site (на сайте отеля) ===================== -->
+{%- assign vf = g_vat | divided_by: 100.0 | plus: 1 -%}
+    <!-- ===================== STAY: где жить, номера и цены, как платить (rooms) ===================== -->
     <section class="section stay" id="stay">
       <div class="container">
         <div class="section-head">
@@ -8,17 +9,16 @@
             <p class="kicker reveal">{% include t.html v=Rm.kicker %}</p>
             {% if include.h1 %}<h1 class="h2 reveal" data-delay="1">{% include t.html v=Rm.title %}</h1>{% else %}<h2 class="h2 reveal" data-delay="1">{% include t.html v=Rm.title %}</h2>{% endif %}
           </div>
-          <div class="reveal" data-delay="2">
-            <p class="lead">{% include t.html v=Rm.lead %}</p>
-            {%- if Rm.nearby %}
-            <p class="stay__nearby"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>{% include t.html v=Rm.nearby %}</span></p>
-            {%- endif %}
-          </div>
+          <p class="lead reveal" data-delay="2">{% include t.html v=Rm.lead %}</p>
         </div>
+
+        {% include stay-options.html %}
 
         <div class="rooms">
           {%- for c in Rm.categories %}
-          {%- assign cd = forloop.index0 | modulo: 3 %}
+          {%- assign cd = forloop.index0 | modulo: 3 -%}
+          {%- assign c_min = 999999 -%}
+          {%- for v in c.variants -%}{%- if v.single and v.single != "" and v.single < c_min -%}{%- assign c_min = v.single -%}{%- endif -%}{%- endfor %}
           <article class="room reveal"{% if cd > 0 %} data-delay="{{ cd }}"{% endif %}>
             <div class="room__img">{% include img.html p=c.photo %}</div>
             <div class="room__body">
@@ -29,8 +29,8 @@
                 {%- endif %}
               </div>
               <div class="room__price">
-                {%- if c.night and c.night != "" -%}
-                <b><span lang="ru">от </span><span lang="en">from </span>{% include money.html n=c.night %}&nbsp;{{ Rm.currency }}</b>{% include t.html v=Rm.price_label %}
+                {%- if c_min != 999999 -%}
+                <b><span lang="ru">от {{ c_min }}&nbsp;{{ Rm.currency }}</span><span lang="en">from {{ Rm.currency }}{{ c_min }}</span></b>{% include t.html v=Rm.price_label %}
                 {%- else -%}
                 <b class="room__tbd"><span lang="ru">цена уточняется</span><span lang="en">price tbc</span></b>
                 {%- endif -%}
@@ -39,9 +39,32 @@
             {%- if c.text %}
             <p class="room__text">{% include t.html v=c.text %}</p>
             {%- endif %}
-            {%- if Rm.mode == "through_us" and c.night and c.night != "" %}
-            {%- assign c_total = c.night | times: g_nights %}
-            <p class="room__total"><span lang="ru">За {{ g_nights }} ночей, {{ g_checkin_ru }} – {{ g_checkout_ru }}:</span><span lang="en">For {{ g_nights }} nights, {{ g_checkin_en }} – {{ g_checkout_en }}:</span> <b><span lang="ru">от </span><span lang="en">from </span>{% include money.html n=c_total %}&nbsp;{{ Rm.currency }}</b></p>
+            {%- if c.variants %}
+            <ul class="room__variants">
+              {%- for v in c.variants %}
+              <li>
+                <span class="room__vname">{% include t.html v=v.name %}</span>
+                {%- if v.single and v.single != "" %}
+                {%- assign sv = v.single | times: vf -%}{%- assign dv = v.double | times: vf %}
+                <span class="room__vprice">
+                  <b><span lang="ru">{{ v.single }} / {{ v.double }}&nbsp;{{ Rm.currency }}</span><span lang="en">{{ Rm.currency }}{{ v.single }} / {{ Rm.currency }}{{ v.double }}</span></b>
+                  {%- if g_vat > 0 %}
+                  <small><span lang="ru">с НДС {% include price2.html n=sv lang="ru" %} / {% include price2.html n=dv lang="ru" %}&nbsp;{{ Rm.currency }}</span><span lang="en">incl. VAT {{ Rm.currency }}{% include price2.html n=sv lang="en" %} / {{ Rm.currency }}{% include price2.html n=dv lang="en" %}</span></small>
+                  {%- endif %}
+                </span>
+                {%- else %}
+                <span class="room__vprice"><span class="tbd"><span lang="ru">уточняется</span><span lang="en">tbc</span></span></span>
+                {%- endif %}
+              </li>
+              {%- endfor %}
+            </ul>
+            {%- if c_min != 999999 and g_nights > 0 %}
+            {%- assign c_total = c_min | times: g_nights | times: vf %}
+            <p class="room__total"><span lang="ru">{{ g_nights }} ночей, {{ g_checkin_ru }} – {{ g_checkout_ru }}{% if g_vat > 0 %}, с НДС{% endif %}: <b>от {% include price2.html n=c_total lang="ru" %}&nbsp;{{ Rm.currency }}</b></span><span lang="en">{{ g_nights }} nights, {{ g_checkin_en }} – {{ g_checkout_en }}{% if g_vat > 0 %}, incl. VAT{% endif %}: <b>from {{ Rm.currency }}{% include price2.html n=c_total lang="en" %}</b></span></p>
+            {%- endif %}
+            {%- endif %}
+            {%- if c.url and c.url != "" %}
+            <p class="room__link"><a class="link-arrow" href="{{ c.url }}" target="_blank" rel="noopener"><span lang="ru">Номер на сайте отеля</span><span lang="en">This room on the hotel website</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
             {%- endif %}
           </article>
           {%- endfor %}
@@ -51,8 +74,15 @@
         <p class="note reveal">{% include t.html v=Rm.price_note %}</p>
         {%- endif %}
 
+        {%- if Rm.payment %}
+        <div class="stay__payment reveal">
+          <svg aria-hidden="true"><use href="#i-check"/></svg>
+          <p>{% include t.html v=Rm.payment %}</p>
+        </div>
+        {%- endif %}
+
         {%- if Rm.mode == "through_us" and Rm.steps %}
-        <ol class="booking-steps reveal">
+        <ol class="booking-steps booking-steps--n{{ Rm.steps.size }} reveal">
           {%- for s in Rm.steps %}
           <li><span class="booking-steps__n">{{ forloop.index }}</span><span>{% include t.html v=s %}</span></li>
           {%- endfor %}
@@ -68,7 +98,7 @@
           {%- for b in Rm.info %}
           <div>
             <b>{% include t.html v=b.title %}</b>
-            {% include t.html v=b.text %}
+            {% if b.text and b.text != "" %}{% include t.html v=b.text %}{% else %}<span class="tbd"><span lang="ru">Уточняется — после договора с&nbsp;отелем.</span><span lang="en">To be confirmed once the hotel contract is signed.</span></span>{% endif %}
           </div>
           {%- endfor %}
         </div>

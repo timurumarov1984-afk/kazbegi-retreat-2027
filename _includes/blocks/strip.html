@@ -1,0 +1,20 @@
+{%- assign St = R.strip -%}
+{%- if St and St.photos -%}
+    <!-- ===================== STRIP: лента фото места (strip) ===================== -->
+    <section class="section strip" id="nature">
+      <div class="container strip__head">
+        <h2 class="h2 reveal">{% include t.html v=St.title %}</h2>
+        {%- if St.text %}
+        <p class="lead reveal" data-delay="1">{% include t.html v=St.text %}</p>
+        {%- endif %}
+      </div>
+      <div class="container">
+        <div class="strip__track">
+          {%- for p in St.photos %}
+          {%- assign sd = forloop.index0 | modulo: 4 %}
+          <figure class="strip__item reveal"{% if sd > 0 %} data-delay="{{ sd }}"{% endif %}>{% include img.html p=p %}{% if p.caption %}<figcaption>{% include t.html v=p.caption %}</figcaption>{% endif %}</figure>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+{%- endif -%}

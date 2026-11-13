@@ -1,5 +1,6 @@
 ---
 layout: default
+back: guide
 body_class: subpage
 name_ru: Как добраться
 name_en: Getting there
@@ -8,7 +9,7 @@ name_en: Getting there
 {%- assign T = R.travel -%}
 {%- assign V = R.venue -%}
 <main id="main">
-    <div class="container subpage__back"><a class="link-back" href="index.html"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span lang="ru">На главную</span><span lang="en">Back to the main page</span></a></div>
+    <div class="container subpage__back"><a class="link-back" href="index.html#{{ page.back }}" data-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span lang="ru">На главную</span><span lang="en">Back to the main page</span></a></div>
     <!-- ===================== TRAVEL (travel) ===================== -->
     <section class="section travel" id="travel">
       <div class="container travel__grid">

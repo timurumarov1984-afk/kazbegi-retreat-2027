@@ -1,0 +1,16 @@
+{%- comment -%} Дни интенсива (intensive.days) — в расписании и на странице интенсива {%- endcomment -%}
+<div class="days days--intensive">
+            {%- for d in R.intensive.days %}
+            <article class="day day--int">
+              <p class="day__label"><span lang="ru">День {{ forloop.index }}</span><span lang="en">Day {{ forloop.index }}</span></p>
+              <h3 class="day__date"><span lang="ru">{% include fmt-date.html d=d.date lang="ru" %}</span><span lang="en">{% include fmt-date.html d=d.date lang="en" %}</span></h3>
+              <p class="day__hours">{% include t.html v=d.hours %}</p>
+              <p class="day__time">{% if d.time and d.time != "" %}{{ d.time }}{% else %}<span lang="ru">часы уточняются</span><span lang="en">hours tbc</span>{% endif %}</p>
+            </article>
+            {%- endfor %}
+            <article class="day day--int day--out">
+              <p class="day__label"><span lang="ru">Выезд</span><span lang="en">Departure</span></p>
+              <h3 class="day__date"><span lang="ru">{{ g_intout_ru }}</span><span lang="en">{{ g_intout_en }}</span></h3>
+              <p class="day__time">{% if R.intensive.checkout.time and R.intensive.checkout.time != "" %}<span lang="ru">до {{ R.intensive.checkout.time }}</span><span lang="en">by {{ R.intensive.checkout.time }}</span>{% else %}<span lang="ru">время уточняется</span><span lang="en">time tbc</span>{% endif %}</p>
+            </article>
+          </div>

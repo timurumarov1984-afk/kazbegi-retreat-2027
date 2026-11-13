@@ -35,4 +35,8 @@
 {%- assign g_s1 = R.retreat.checkin.date | date: "%s" | plus: 0 -%}
 {%- assign g_s2 = R.retreat.checkout.date | date: "%s" | plus: 0 -%}
 {%- assign g_nights = g_s2 | minus: g_s1 | plus: 3600 | divided_by: 86400 -%}
+{%- assign g_rooms_from = 999999 -%}
+{%- for c in R.rooms.categories -%}{%- for v in c.variants -%}{%- if v.single and v.single != "" -%}{%- if v.single < g_rooms_from -%}{%- assign g_rooms_from = v.single -%}{%- endif -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+{%- if g_rooms_from == 999999 -%}{%- assign g_rooms_from = "" -%}{%- endif -%}
+{%- assign g_vat = R.rooms.vat | default: 0 -%}
 {%- if R.site.url and R.site.url != "" -%}{%- assign g_base = R.site.url -%}{%- else -%}{%- assign g_base = "" -%}{%- endif -%}

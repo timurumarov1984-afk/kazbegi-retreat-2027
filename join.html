@@ -1,5 +1,6 @@
 ---
 layout: default
+back: guide
 body_class: subpage
 name_ru: Как попасть на ретрит
 name_en: How to join
@@ -7,7 +8,7 @@ name_en: How to join
 {%- include globals.html -%}
 {%- assign J = R.join -%}
 <main id="main">
-    <div class="container subpage__back"><a class="link-back" href="index.html"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span lang="ru">На главную</span><span lang="en">Back to the main page</span></a></div>
+    <div class="container subpage__back"><a class="link-back" href="index.html#{{ page.back }}" data-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span lang="ru">На главную</span><span lang="en">Back to the main page</span></a></div>
     <!-- ===================== HOW TO JOIN (join.steps) ===================== -->
     <section class="section join" id="apply">
       <div class="container">

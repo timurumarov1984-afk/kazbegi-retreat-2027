@@ -1854,3 +1854,159 @@ h2.gallery__title { font-size: clamp(22px, 2vw, 28px); }
   .draft-ribbon { left: 50%; bottom: auto; top: calc(var(--header-h) + 6px); transform: translateX(-50%); font-size: 9.5px; white-space: nowrap; }
 }
 .form-draft-note { margin: 0 0 18px; }
+
+/* ==========================================================================
+   Organizers' round 2 (12 Nov): schedule split, accommodation with prices,
+   nature strip, calmer sizes on large screens
+   ========================================================================== */
+
+/* "Planned in person only" — a solid, clearly visible badge */
+.hero__badge--live {
+  background: var(--peach);
+  border-color: transparent;
+  color: var(--ink);
+  font-weight: 700;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.hero__badge--live .live-dot { background: #b0612c; box-shadow: 0 0 0 3px rgba(176, 97, 44, 0.22); }
+
+/* Schedule: the retreat and the intensive as two clearly separate blocks */
+.sched-group { margin-top: clamp(20px, 2.4vw, 32px); }
+.sched-group__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 16px;
+}
+.sched-group__label {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(243, 241, 234, 0.1);
+  color: var(--straw);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.sched-group__label .day__tag { letter-spacing: 0.06em; text-transform: none; }
+.sched-group__dates { font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; letter-spacing: -0.01em; }
+.sched-group__note { color: rgba(243, 241, 234, 0.7); font-size: 14px; }
+.sched-group__more { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; color: var(--peach); font-size: 14px; font-weight: 600; text-decoration: none; }
+.sched-group__more svg { width: 14px; height: 14px; }
+.sched-group--intensive {
+  margin-top: clamp(28px, 3vw, 44px);
+  padding: clamp(18px, 2.2vw, 30px);
+  border: 1px solid rgba(236, 211, 173, 0.45);
+  border-radius: var(--radius-lg);
+  background: rgba(236, 211, 173, 0.07);
+}
+.sched-group--intensive .sched-group__label { background: var(--peach); color: var(--ink); }
+.days--intensive { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.day--int { padding: clamp(16px, 1.6vw, 22px); border-color: rgba(236, 211, 173, 0.32); }
+.day--int .day__date { margin-top: 6px; }
+.day__hours { margin: 10px 0 0; font-size: 17px; font-weight: 600; }
+.day__time { margin: 4px 0 0; color: var(--peach); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.day--out .day__time { color: rgba(243, 241, 234, 0.6); font-weight: 500; }
+
+/* Intensive page: its schedule and where to stay */
+.intensive__more { padding-top: clamp(28px, 3vw, 44px); }
+.intensive__sub { margin: clamp(28px, 3vw, 40px) 0 16px; font-size: clamp(20px, 1.8vw, 26px); }
+.intensive__stay-link { margin-top: 14px; color: var(--peach); }
+
+/* Where to stay: three options, the same for the retreat and the intensive */
+.stay-options { margin: 0 0 clamp(28px, 3vw, 40px); }
+.stay-options__title { margin-bottom: 14px; font-size: clamp(18px, 1.5vw, 22px); }
+.stay-options__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.stay-option { display: grid; gap: 6px; align-content: start; padding: 18px 20px; border: 1px solid var(--line); border-radius: 18px; background: #f6efe3; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+.stay-option b { color: var(--ink); font-size: 16px; }
+.stay-option .link-arrow { justify-self: start; margin-top: 4px; font-size: 13.5px; }
+.stay-option--main { background: var(--forest); border-color: transparent; color: rgba(243, 241, 234, 0.82); }
+.stay-option--main b { color: var(--peach); }
+.stay-options--dark .stay-option { background: rgba(243, 241, 234, 0.05); border-color: rgba(243, 241, 234, 0.16); color: rgba(243, 241, 234, 0.75); }
+.stay-options--dark .stay-option b { color: var(--cream); }
+.stay-options--dark .stay-option--main { background: var(--peach); color: rgba(28, 33, 29, 0.8); }
+.stay-options--dark .stay-option--main b { color: var(--ink); }
+.stay-options--dark .link-arrow { color: var(--peach); }
+
+/* Room categories: variants with prices for one / two guests and with VAT */
+.room__variants { list-style: none; margin: 0; padding: 0 clamp(18px, 2vw, 24px); }
+.room__variants li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.room__vname { color: var(--ink-soft); }
+.room__vprice { display: grid; justify-items: end; text-align: right; white-space: nowrap; }
+.room__vprice b { color: var(--ink); font-size: 15px; font-weight: 600; }
+.room__vprice small { color: var(--ink-soft); font-size: 12px; }
+.room__total { padding-top: 12px; border-top: 1px solid var(--line); margin: 0 clamp(18px, 2vw, 24px); padding-left: 0; padding-right: 0; }
+.room__link { margin: 0; padding: 4px clamp(18px, 2vw, 24px) clamp(18px, 2vw, 24px); }
+.room__link .link-arrow { font-size: 14px; }
+.room .room__price b { font-size: clamp(20px, 1.7vw, 24px); }
+.stay__payment {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: clamp(22px, 2.4vw, 32px);
+  padding: clamp(18px, 2vw, 26px) clamp(20px, 2.2vw, 30px);
+  border-radius: 18px;
+  background: var(--forest);
+  color: rgba(243, 241, 234, 0.9);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.6;
+}
+.stay__payment svg { flex: none; width: 22px; height: 22px; margin-top: 2px; color: var(--peach); }
+.stay__payment p { margin: 0; }
+.stay__info .tbd { color: var(--ink-soft); font-style: italic; font-weight: 400; }
+.booking-steps--n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Pricing: what's included, "from" price, accommodation hint */
+.plan__subhead { margin: 22px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
+.plan__list--incl { margin-top: 8px; }
+.plan__list--incl svg { width: 14px; height: 14px; margin-top: 6px; }
+.plan__from { font-size: 0.45em; font-weight: 500; letter-spacing: 0; vertical-align: 0.35em; opacity: 0.8; }
+.pricing__stay { display: flex; gap: 12px; align-items: flex-start; margin: clamp(18px, 2vw, 26px) 0 0; padding: 16px 20px; border: 1px solid var(--line); border-radius: 16px; color: var(--ink-soft); font-size: 15px; }
+.pricing__stay svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--accent); }
+.pricing__stay .link-arrow { margin-left: 6px; white-space: nowrap; }
+
+/* Nature strip */
+.strip__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 40px; margin-bottom: clamp(22px, 2.6vw, 36px); }
+.strip__head .h2 { margin-top: 0; }
+.strip__head .lead { max-width: 46ch; margin: 0; }
+.strip__track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(10px, 1.1vw, 16px); }
+.strip__item { position: relative; margin: 0; overflow: hidden; border-radius: 18px; aspect-ratio: 3 / 4; background: var(--sand); }
+.strip__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.strip__item:hover img { transform: scale(1.05); }
+.strip__item figcaption { position: absolute; left: 10px; bottom: 10px; padding: 5px 11px; border-radius: 999px; background: rgba(243, 241, 234, 0.9); color: var(--ink); font-size: 12px; font-weight: 600; }
+
+@media (max-width: 1100px) {
+  .days--intensive { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .stay-options__grid, .booking-steps--n3 { grid-template-columns: minmax(0, 1fr); }
+  .strip__track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
+  .strip__track::-webkit-scrollbar { display: none; }
+  .strip__item { flex: 0 0 min(62%, 300px); scroll-snap-align: start; }
+  .sched-group__more { margin-left: 0; }
+}
+@media (max-width: 600px) {
+  .days--intensive { grid-template-columns: minmax(0, 1fr); }
+  .room__variants li { flex-wrap: wrap; }
+}
+
+/* Large screens (1440–1920 px): calmer sizes and spacing */
+:root { --section-y: clamp(72px, 7.5vw, 120px); }
+.h2 { font-size: clamp(28px, 2.9vw, 44px); }
+.lead { font-size: clamp(16px, 1.1vw, 18px); }
+.hero h1 { font-size: clamp(36px, 4.4vw, 66px); }
+.final h2 { font-size: clamp(30px, 3.6vw, 52px); }
+.plan__price { font-size: clamp(36px, 3.4vw, 50px); }
+.event-tile__dates { font-size: clamp(22px, 1.9vw, 28px); }
+.mosaic { grid-template-rows: repeat(2, clamp(200px, 19vw, 280px)); }
+.gallery__item { height: clamp(280px, 30vw, 440px); }
+.about__grid { gap: clamp(40px, 5.5vw, 96px); }
+.day { padding: clamp(22px, 2vw, 30px); }
+@media (min-width: 1500px) {
+  body { font-size: 16px; }
+  .hero__lead { font-size: 18px; }
+}
+
+.room__price b span { font-size: inherit; color: inherit; }

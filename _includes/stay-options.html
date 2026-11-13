@@ -1,0 +1,19 @@
+{%- comment -%} Где можно жить (rooms.options): одинаково для ретрита и интенсива. title — заголовок над карточками (необязательно) {%- endcomment -%}
+{%- if R.rooms.options -%}
+<div class="stay-options reveal{% if include.dark %} stay-options--dark{% endif %}">
+          {%- if include.title %}
+          <h3 class="stay-options__title">{{ include.title }}</h3>
+          {%- endif %}
+          <div class="stay-options__grid">
+            {%- for o in R.rooms.options %}
+            <div class="stay-option{% if forloop.first %} stay-option--main{% endif %}">
+              <b>{% include t.html v=o.title %}</b>
+              <span>{% include t.html v=o.text %}</span>
+              {%- if o.url and o.url != "" %}
+              <a class="link-arrow" href="{{ o.url }}" target="_blank" rel="noopener"><span lang="ru">Сайт отеля</span><span lang="en">Hotel website</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              {%- endif %}
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+{%- endif -%}

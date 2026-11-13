@@ -86,7 +86,8 @@ name_en: Application
       "checkout_time": {{ g_checkout_time | jsonify }},
       "rules": {{ g_rules | jsonify }},
       "email": {{ g_email | jsonify }},
-      "telegram": {{ g_telegram | jsonify }}
+      "telegram": {{ g_telegram | jsonify }},
+      "rooms_from": {{ g_rooms_from | jsonify }}
     },
     "dates": { "arrival": {{ R.retreat.checkin.date | jsonify }}, "departure": {{ R.retreat.checkout.date | jsonify }} }
   }</script>

@@ -1,5 +1,5 @@
 {%- assign S = R.schedule -%}
-    <!-- ===================== SCHEDULE ===================== -->
+    <!-- ===================== SCHEDULE: ретрит и интенсив — два отдельных блока ===================== -->
     <section class="section schedule" id="schedule">
       <div class="container">
         <div class="section-head">
@@ -10,53 +10,62 @@
           <p class="lead reveal" data-delay="2">{% include t.html v=S.lead %}</p>
         </div>
 
-        <div class="days{% if g_int %} days--4{% endif %}">
-          <article class="day reveal">
-            <p class="day__label"><span lang="ru">Заезд</span><span lang="en">Arrival</span></p>
-            <h3 class="day__date"><span lang="ru">{{ g_checkin_ru }}</span><span lang="en">{{ g_checkin_en }}</span></h3>
-            <ul class="timeline">
-              <li><time><span lang="ru">с {{ g_checkin_time }}</span><span lang="en">from {{ g_checkin_time }}</span></time><span>{% include t.html v=S.arrival.text %}</span></li>
-            </ul>
-            {%- if S.arrival.note %}
-            <p class="day__note">{% include t.html v=S.arrival.note %}</p>
-            {%- endif %}
-          </article>
-
-          <article class="day day--main reveal" data-delay="1">
-            <p class="day__label"><span lang="ru">Дни практики</span><span lang="en">Practice days</span></p>
-            <h3 class="day__date"><span lang="ru">{{ g_dshort_ru }}</span><span lang="en">{{ g_dshort_en }}</span></h3>
-            <ul class="timeline">
-              {%- for r in S.day %}
-              <li><time>{% include t.html v=r.time %}</time>{% if r.master %}<span class="hl"><svg aria-hidden="true"><use href="#i-{% if r.master == 'evening' %}moon{% else %}sun{% endif %}"/></svg><span>{% include t.html v=r.what %}</span></span>{% else %}<span>{% include t.html v=r.what %}{% if r.note %} <small class="timeline__note">{% include t.html v=r.note %}</small>{% endif %}</span>{% endif %}</li>
-              {%- endfor %}
-            </ul>
-          </article>
-
-          {%- if g_int %}
-          <article class="day day--intensive reveal" data-delay="2">
-            <p class="day__label">{% include t.html v=R.intensive.name %}{% if R.intensive.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</p>
-            <h3 class="day__date"><span lang="ru">{{ g_int_ru }}</span><span lang="en">{{ g_int_en }}</span></h3>
-            <ul class="timeline">
-              <li><time><span lang="ru">3 дня</span><span lang="en">3 days</span></time><span class="hl"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>{% include t.html v=R.intensive.schedule_text %}</span></span></li>
-            </ul>
-            <p class="day__note"><a href="{% if R.chapters.intensive %}intensive.html{% else %}#intensive{% endif %}"><span lang="ru">Подробнее об&nbsp;интенсиве</span><span lang="en">More about the intensive</span></a></p>
-          </article>
-          {%- endif %}
-
-          <article class="day reveal" data-delay="3">
-            <p class="day__label"><span lang="ru">Выезд</span><span lang="en">Departure</span></p>
-            <h3 class="day__date"><span lang="ru">{{ g_checkout_ru }}</span><span lang="en">{{ g_checkout_en }}</span></h3>
-            <ul class="timeline">
-              <li><time><span lang="ru">до {{ g_checkout_time }}</span><span lang="en">by {{ g_checkout_time }}</span></time><span>{% include t.html v=S.departure.text %}</span></li>
-              {%- if g_int and g_intout_ru != "" %}
-              <li><time><span lang="ru">{{ g_intout_ru }}</span><span lang="en">{{ g_intout_en }}</span></time><span><span lang="ru">после интенсива, до&nbsp;{{ R.intensive.checkout.time }}</span><span lang="en">after the intensive, by {{ R.intensive.checkout.time }}</span></span></li>
+        <div class="sched-group sched-group--retreat">
+          <div class="sched-group__head reveal">
+            <span class="sched-group__label">{% include t.html v=R.retreat.tile.label %}</span>
+            <b class="sched-group__dates"><span lang="ru">{{ g_dshort_ru }}</span><span lang="en">{{ g_dshort_en }}</span></b>
+            <span class="sched-group__note">{% include t.html v=R.retreat.tile.text %}</span>
+          </div>
+          <div class="days">
+            <article class="day reveal">
+              <p class="day__label"><span lang="ru">Заезд</span><span lang="en">Arrival</span></p>
+              <h3 class="day__date"><span lang="ru">{{ g_checkin_ru }}</span><span lang="en">{{ g_checkin_en }}</span></h3>
+              <ul class="timeline">
+                <li><time>{% if g_checkin_time != "" %}<span lang="ru">с {{ g_checkin_time }}</span><span lang="en">from {{ g_checkin_time }}</span>{% else %}<span lang="ru">время уточняется</span><span lang="en">time tbc</span>{% endif %}</time><span>{% include t.html v=S.arrival.text %}</span></li>
+              </ul>
+              {%- if S.arrival.note %}
+              <p class="day__note">{% include t.html v=S.arrival.note %}</p>
               {%- endif %}
-            </ul>
-            {%- if S.departure.note %}
-            <p class="day__note">{% include t.html v=S.departure.note %}</p>
-            {%- endif %}
-          </article>
+            </article>
+
+            <article class="day day--main reveal" data-delay="1">
+              <p class="day__label"><span lang="ru">Дни практики</span><span lang="en">Practice days</span></p>
+              <h3 class="day__date"><span lang="ru">{{ g_dshort_ru }}</span><span lang="en">{{ g_dshort_en }}</span></h3>
+              <ul class="timeline">
+                {%- for r in S.day %}
+                <li><time>{% include t.html v=r.time %}</time>{% if r.master %}<span class="hl"><svg aria-hidden="true"><use href="#i-{% if r.master == 'evening' %}moon{% else %}sun{% endif %}"/></svg><span>{% include t.html v=r.what %}</span></span>{% else %}<span>{% include t.html v=r.what %}{% if r.note %} <small class="timeline__note">{% include t.html v=r.note %}</small>{% endif %}</span>{% endif %}</li>
+                {%- endfor %}
+              </ul>
+            </article>
+
+            <article class="day reveal" data-delay="2">
+              <p class="day__label"><span lang="ru">Выезд</span><span lang="en">Departure</span></p>
+              <h3 class="day__date"><span lang="ru">{{ g_checkout_ru }}</span><span lang="en">{{ g_checkout_en }}</span></h3>
+              <ul class="timeline">
+                <li><time>{% if g_checkout_time != "" %}<span lang="ru">до {{ g_checkout_time }}</span><span lang="en">by {{ g_checkout_time }}</span>{% else %}<span lang="ru">время уточняется</span><span lang="en">time tbc</span>{% endif %}</time><span>{% include t.html v=S.departure.text %}</span></li>
+              </ul>
+              {%- if S.departure.note %}
+              <p class="day__note">{% include t.html v=S.departure.note %}</p>
+              {%- endif %}
+            </article>
+          </div>
         </div>
+
+        {%- if g_int %}
+        <div class="sched-group sched-group--intensive reveal">
+          <div class="sched-group__head">
+            <span class="sched-group__label">{% include t.html v=R.intensive.tile.label %}{% if R.intensive.provisional %} <span class="day__tag"><span lang="ru">предварительно</span><span lang="en">provisional</span></span>{% endif %}</span>
+            <b class="sched-group__dates"><span lang="ru">{{ g_int_ru }}</span><span lang="en">{{ g_int_en }}</span></b>
+            {%- if R.intensive.open_note %}
+            <span class="sched-group__note">{% include t.html v=R.intensive.open_note %}</span>
+            {%- endif %}
+            {%- if R.chapters.intensive %}
+            <a class="sched-group__more" href="intensive.html"><span lang="ru">Об интенсиве</span><span lang="en">About the intensive</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            {%- endif %}
+          </div>
+          {% include intensive-days.html %}
+        </div>
+        {%- endif %}
 
         {%- for n in S.notes %}
         <p class="note reveal">{% include t.html v=n %}</p>

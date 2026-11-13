@@ -24,11 +24,12 @@ async function readSource(p) {
 
 /* 1. Вопросы сайта */
 const text = await readSource(src);
-let formAction, extra, fields, presets = {};
+let formAction, extra, fields, presets = {}, formState = null;
 const cfgMatch = text.match(/<script id="form-config" type="application\/json">([\s\S]*?)<\/script>/);
 if (cfgMatch) {
   const cfg = JSON.parse(cfgMatch[1]).form;
   formAction = cfg.google_form; extra = cfg.extra || {}; presets = cfg.presets || {};
+  formState = { enabled: cfg.enabled !== false, endpoint: cfg.endpoint || '' };
   fields = (cfg.steps || []).flatMap(s => s.fields || []).filter(f => f.entry);
   fields.forEach(f => { if (typeof f.options === 'string') f.options = presets[f.options] || []; });
 } else {
@@ -107,6 +108,8 @@ for (const q of formQ) {
     ? `обязательный вопрос формы «${q.title}» (entry.${q.entry}) сайт не задаёт — Google отклонит каждую заявку`
     : `вопрос формы «${q.title}» (entry.${q.entry}) сайт не задаёт (он необязательный)`);
 }
+if (formState && formState.enabled && !formState.endpoint) errors.push('анкета включена (form.enabled), но приёмник не подключён (form.endpoint пуст) — заявки не уйдут; см. apps-script/README.md');
+if (formState && !formState.enabled) warns.push('анкета выключена (form.enabled: false) — черновик, заявки не отправляются');
 const expected = Array.from({ length: breaks + 1 }, (_, i) => i).join(',');
 if (extra.pageHistory && extra.pageHistory !== expected) errors.push(`pageHistory на сайте «${extra.pageHistory}», а у формы ${breaks + 1} страниц — нужно «${expected}»`);
 

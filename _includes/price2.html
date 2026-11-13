@@ -1,0 +1,7 @@
+{%- comment -%} Цена с центами: 188.8 → 188,80 (en: 188.80); тысячи — через money.html {%- endcomment -%}
+{%- assign p2 = include.n | times: 100 | round -%}
+{%- assign p2i = p2 | divided_by: 100 -%}
+{%- assign p2c = p2 | modulo: 100 -%}
+{%- if p2c < 10 -%}{%- assign p2c = p2c | prepend: "0" -%}{%- endif -%}
+{% include money.html n=p2i lang=include.lang %}{% if include.lang == "en" %}.{% else %},{% endif %}{{ p2c }}
+{%- comment -%} без пробела в конце {%- endcomment -%}

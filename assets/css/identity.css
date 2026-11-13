@@ -122,3 +122,10 @@
 .stay__nearby { background: #f6efe3; }
 .booking-steps li { background: rgba(246, 239, 227, 0.55); }
 .cocreate .chips li { background: rgba(246, 239, 227, 0.6); }
+
+/* Greener: soft meadow green for «Как это было» and the photo strip */
+:root { --sage: #dfe4d1; }
+.memories, .strip { background-color: var(--sage); }
+.memories .mosaic__item, .strip__item { background: #cfd6bd; }
+.place { background-image: var(--grain); background-size: 720px 360px; background-color: var(--linen); }
+.place .kz-watermark { opacity: 0.1; }

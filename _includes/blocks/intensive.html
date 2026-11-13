@@ -22,7 +22,7 @@
               <span lang="ru">Подать заявку</span><span lang="en">Apply</span>
               <svg aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
-            <a class="btn btn--outline" href="index.html#schedule"><span lang="ru">Расписание ретрита</span><span lang="en">Retreat schedule</span></a>
+            <a class="btn btn--outline" href="index.html#pricing"><span lang="ru">Стоимость</span><span lang="en">Pricing</span></a>
           </p>
         </div>
         <dl class="intensive__facts reveal" data-delay="1">
@@ -35,6 +35,15 @@
         </dl>
       </div>
       {%- if include.h1 %}
+      <div class="container intensive__more">
+        <h2 class="intensive__sub reveal"><span lang="ru">Расписание интенсива</span><span lang="en">Intensive schedule</span></h2>
+        {% include intensive-days.html %}
+        <h2 class="intensive__sub reveal"><span lang="ru">Где жить на&nbsp;интенсиве</span><span lang="en">Where to stay for the intensive</span></h2>
+        {% include stay-options.html dark=true %}
+        {%- if R.chapters.stay %}
+        <p class="reveal"><a class="link-arrow intensive__stay-link" href="stay.html"><span lang="ru">Номера и цены Rooms Kazbegi</span><span lang="en">Rooms and rates at Rooms Kazbegi</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        {%- endif %}
+      </div>
       {% include identity/schedule.html %}
       {%- endif %}
     </section>
