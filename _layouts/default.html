@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 {%- if R.identity.css %}
   {%- if R.identity.font %}
-  {%- capture ka_text -%}{{ R.identity.watermark }}{{ R.identity.panorama.peak_ka }}{{ R.identity.panorama.church_ka }}{{ R.venue.ring }}{%- endcapture %}
+  {%- capture ka_text -%}{{ R.identity.watermark }}{{ R.identity.panorama.peak_ka }}{{ R.identity.panorama.church_ka }}{{ R.venue.ring }}{%- for pr in R.practices -%}{{ pr[1].art.ka }}{%- endfor -%}{%- endcapture %}
   <link href="https://fonts.googleapis.com/css2?family={{ R.identity.font | replace: ' ', '+' }}:wght@400;500&display=swap&text={{ ka_text | url_encode }}" rel="stylesheet">
   {%- endif %}
   <link rel="stylesheet" href="assets/css/{{ R.identity.css }}">

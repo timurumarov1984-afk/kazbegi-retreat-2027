@@ -1971,8 +1971,9 @@ h2.gallery__title { font-size: clamp(22px, 2vw, 28px); }
 .strip__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 40px; margin-bottom: clamp(22px, 2.6vw, 36px); }
 .strip__head .h2 { margin-top: 0; }
 .strip__head .lead { max-width: 46ch; margin: 0; }
-.strip__track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(10px, 1.1vw, 16px); }
-.strip__item { position: relative; margin: 0; overflow: hidden; border-radius: 18px; aspect-ratio: 3 / 4; background: var(--sand); }
+.strip__track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(240px, 23vw, 380px); gap: clamp(10px, 1.1vw, 16px); }
+.strip__item { position: relative; margin: 0; overflow: hidden; border-radius: 18px; background: var(--sand); }
+.strip__item--wide { grid-column: span 2; }
 .strip__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .strip__item:hover img { transform: scale(1.05); }
 .strip__item figcaption { position: absolute; left: 10px; bottom: 10px; padding: 5px 11px; border-radius: 999px; background: rgba(243, 241, 234, 0.9); color: var(--ink); font-size: 12px; font-weight: 600; }
@@ -1982,9 +1983,9 @@ h2.gallery__title { font-size: clamp(22px, 2vw, 28px); }
 }
 @media (max-width: 960px) {
   .stay-options__grid, .booking-steps--n3 { grid-template-columns: minmax(0, 1fr); }
-  .strip__track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
-  .strip__track::-webkit-scrollbar { display: none; }
-  .strip__item { flex: 0 0 min(62%, 300px); scroll-snap-align: start; }
+  .strip__track { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
+  .strip__item { aspect-ratio: 3 / 4; }
+  .strip__item--wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
   .sched-group__more { margin-left: 0; }
 }
 @media (max-width: 600px) {
@@ -2010,3 +2011,39 @@ h2.gallery__title { font-size: clamp(22px, 2vw, 28px); }
 }
 
 .room__price b span { font-size: inherit; color: inherit; }
+
+/* Card illustration instead of a photo (practices.*.art → _includes/art.html) */
+.card__img--art { background: #1e2a23; }
+.card__img--art .art { display: block; width: 100%; height: 100%; transition: transform 1.2s var(--ease); }
+.card:hover .card__img--art .art { transform: scale(1.04); }
+.art__s, .art__wave, .art__smoke path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.art__s { stroke: #ecd3ad; stroke-width: 1.6; }
+.art__wave { stroke-width: 1.9; }
+.art__soft { opacity: 0.4; }
+.art__ridge { opacity: 0.55; }
+.art__ridge--faint { opacity: 0.26; }
+.art__dash { stroke-dasharray: 2 7; opacity: 0.4; }
+.art__sun { fill: rgba(236, 211, 173, 0.09); opacity: 0.75; }
+.art__mat { stroke-width: 3; opacity: 0.5; }
+.art__fig { fill: #ecd3ad; opacity: 0.92; }
+.art__limb { fill: none; stroke: #ecd3ad; stroke-linecap: round; stroke-linejoin: round; }
+.art__ring1 { fill: rgba(236, 211, 173, 0.1); opacity: 0.8; }
+.art__ring2 { opacity: 0.45; }
+.art__ring3 { opacity: 0.25; stroke-dasharray: 2 6; }
+.art__rings { transform-box: view-box; transform-origin: 320px 200px; animation: art-breathe 9s ease-in-out infinite; }
+@keyframes art-breathe { 0%, 100% { transform: scale(0.93); } 50% { transform: scale(1.06); } }
+.art__dot { fill: #ecd3ad; }
+.art__tick { stroke-width: 1.2; opacity: 0.6; }
+.art__mark, .art__note { font-family: var(--font-body); font-size: 15px; font-weight: 600; letter-spacing: 0.16em; fill: rgba(236, 211, 173, 0.86); }
+.art__ka { font-family: var(--font-ka, serif); font-size: 19px; fill: rgba(236, 211, 173, 0.62); }
+.art__body { stroke-width: 1.8; }
+.art__spine circle { fill: #ecd3ad; opacity: 0.7; }
+.art__zone { stroke-dasharray: 3 6; opacity: 0.7; }
+.art__hands { fill: #ecd3ad; opacity: 0.92; }
+.art__stars circle { fill: #ecd3ad; opacity: 0.55; }
+.art__moon { fill: #ecd3ad; opacity: 0.85; }
+.art__box { fill: rgba(20, 28, 23, 0.4); }
+.art__embers circle { fill: #e9a96b; opacity: 0.9; }
+.art__rim { stroke-width: 2.4; }
+.art__meat rect { fill: #3b2d22; stroke-width: 1.5; }
+@media (prefers-reduced-motion: reduce) { .art__rings { animation: none; } }

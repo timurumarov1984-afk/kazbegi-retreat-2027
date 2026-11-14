@@ -35,11 +35,11 @@ home:                          # блоки главной и их порядо�
 
 chapters:                      # главы — отдельные страницы (кнопки в меню и на главной); удалите строку — кнопок не будет
   intensive: { title: { ru: "Интенсив", en: "Intensive" }, text: { ru: "{intensive_dates} · три дня углублённой практики с Мастером", en: "{intensive_dates} · three days of deeper practice with the Master" }, photo: { src: "card-intensive.webp", pos: "50% 30%" } }
-  stay: { title: { ru: "Проживание", en: "Accommodation" }, text: { ru: "Номера Rooms Kazbegi, цены для группы, атмосфера отеля", en: "Rooms at Rooms Kazbegi, group rates, the feel of the hotel" }, photo: { src: "room-view.webp", pos: "30% 50%" } }
+  stay: { title: { ru: "Проживание", en: "Accommodation" }, text: { ru: "Номера Rooms Kazbegi, цены для группы, атмосфера отеля", en: "Rooms at Rooms Kazbegi, group rates, the feel of the hotel" }, photo: { src: "corridor.webp", pos: "50% 62%" } }
   leisure: { title: { ru: "Досуг", en: "Leisure" }, text: { ru: "Горы, кухня, спа и вечера сотворчества", en: "Mountains, food, the spa and evenings of co-creation" }, photo: { src: "card-leisure.webp" } }
-  join: { title: { ru: "Как попасть на ретрит", en: "How to join" }, text: { ru: "{steps} шагов — от заявки до чата участников", en: "{steps} steps — from the application to the participants’ chat" }, photo: { src: "card-mentors.webp" } }
-  travel: { title: { ru: "Как добраться", en: "Getting there" }, text: { ru: "Дорога из Тбилиси, карта и что взять с собой", en: "The road from Tbilisi, the map and what to bring" }, photo: { src: "hero-2.webp", pos: "45% 50%" } }
-  faq: { title: { ru: "Частые вопросы", en: "FAQ" }, text: { ru: "Оплата, проживание, организация и связь", en: "Payment, accommodation, organisation and contact" }, photo: { src: "breakfast.webp" } }
+  join: { title: { ru: "Как попасть на ретрит", en: "How to join" }, text: { ru: "{steps} шагов — от заявки до чата участников", en: "{steps} steps — from the application to the participants’ chat" }, photo: { src: "card-join.webp", pos: "35% 30%" } }
+  travel: { title: { ru: "Как добраться", en: "Getting there" }, text: { ru: "Дорога из Тбилиси, карта и что взять с собой", en: "The road from Tbilisi, the map and what to bring" }, photo: { src: "card-travel.webp" } }
+  faq: { title: { ru: "Частые вопросы", en: "FAQ" }, text: { ru: "Оплата, проживание, организация и связь", en: "Payment, accommodation, organisation and contact" }, photo: { src: "card-faq.webp", pos: "50% 30%" } }
 
 # ----------------------------------------------------------------------------- первый экран
 retreat:
@@ -71,15 +71,15 @@ retreat:
     - { value: { ru: "≈3 часа", en: "≈3 hours" }, text: { ru: "на машине от Тбилиси", en: "by car from Tbilisi" } }
   hero:
     photos:                    # 1–4 фото, сменяют друг друга; m — вертикальный кадр для телефона
-      - { src: "hero-1.webp", m: "hero-1-m.webp", pos: "55% 50%" }
-      - { src: "hero-2.webp", m: "hero-2-m.webp" }
+      - { src: "hero-1.webp", m: "hero-1-m.webp" }
+      - { src: "hero-2.webp", m: "hero-2-m.webp", pos: "64% 40%" }
       - { src: "hero-3.webp", m: "hero-3-m.webp" }
       - { src: "hero-4.webp", m: "hero-4-m.webp", pos: "50% 60%" }
     # video: { src: "hero.mp4", mobile: "hero-mobile.mp4", poster: "hero-poster.webp", poster_m: "hero-poster-m.webp" }
     #        ↑ уберите «#», когда будет клип: файлы в assets/video/ — тогда вместо фото будет видео
     lqip:                      # служебное: размытое превью первого фото, пока оно грузится (можно удалить)
-      d: "UklGRhoBAABXRUJQVlA4IA4BAABQBgCdASogABYAPu1gqE2ppaOiMAgBMB2JZQC4S1HKsEc6pd1zk26Dx7aNtcTO7o6Y4qMUTdNokfsSKAD+td15ugE5930e8aEpWuYcR0aM6Py08JW5HstehXovFqfa8UdyDHMTyZ+NmS+xaYDEAbWugN0USqasxCJfeixrBacDekaLQpb5omTEjTt/wv7+z98eoONNHn2kVi3RZpVtJaduhJ+hPxUjhbLtxUUg+IqZW2FwQRQnEFD1+zMw7EcNJJZ/uyfaEjVRfTyIlo8KzCippaASYWLezdu/8uxnjyrSRcA8qleXHTeSFOh54l2tuL4Jwj3rp5JWlfRnuFGZSgeili/VnJTeyfPfXOSjQAA="
-      m: "UklGRtgAAABXRUJQVlA4IMwAAAAwBgCdASoSAB4APu1krE+ppSQiMBgIATAdiWUAsQzu3AAlcCTmky3KUL7lF80lk9d+LtqeZq2svgkAAP7rPYhXJAn859f7y57Ab1FdUA1yV0+2KamoeDHmxk3Ofe/55j3JUyvoT5fhXljB3DAsWP8Zh1cco+uSlFBGqwHVIFjeyHGmU482FDVVlDWR6y6Fir9NYrgL91wOoHOl3LXjvpUMh+gf52qK+Sah/WcVj7jsb5opJch9F1L+mYo9zxQi2i2vuLOgKRzsA5MgHAA="
+      d: "UklGRoAAAABXRUJQVlA4IHQAAACQBQCdASogABIAPu1mqk+ppSOiMBgIATAdiWUAuwAyw8bm5Sq5B/Y0W+OGWw+vQY/PhrwQAAD+4MNGxvN4WhOU24x2tidzJuGQP/Pt2SWVO/Yf0YfnfFQJf1uyJg4kFhT4yngQqTQU2/nA1MF/an0LonEAAA=="
+      m: "UklGRpQAAABXRUJQVlA4IIgAAADQBACdASoSACAAPu1qq08ppiOiMBgIATAdiUAWnQFVfUmKNS30KllVClg1soK3gAD9HBLX4FB1FYHJ6n/shMxby5ikopqPTyOPdHUXnBoiRPhe9HMEB8ix23lOPoF4rka7LYEk05jJYZFk4is7wooIiFPWqCDdiJIf43WkL5UpKwIbq2sOEfgA"
 
 # ----------------------------------------------------------------------------- характер места
 #  Графика и детали, которые есть только у этого ретрита: линия Казбека, грузинские буквы, дерево и лофт.
@@ -120,7 +120,7 @@ memories:
   photos:                      # ровно 5: широкое, широкое, высокое, вертикальное, вертикальное
     - { src: "memories-1.webp", alt: { ru: "Общее фото участников ретрита", en: "Group photo of the retreat participants" } }
     - { src: "memories-2.webp", alt: { ru: "Разговор за столом", en: "Talking at the table" } }
-    - { src: "memories-3.webp", pos: "50% 30%", alt: { ru: "Улыбки после практики", en: "Smiles after a session" } }
+    - { src: "memories-3.webp", pos: "62% 30%", alt: { ru: "Тишина практики", en: "The stillness of practice" } }
     - { src: "memories-4.webp", pos: "50% 70%", alt: { ru: "Отдых на лугу под горами", en: "Resting on a meadow beneath the mountains" } }
     - { src: "memories-5.webp", alt: { ru: "Практика в зале", en: "Practice in the hall" } }
   video: ""                    # видео с прошлого ретрита: файл в assets/video/, например "memories.mp4" — появится кнопка «Смотреть видео»
@@ -139,7 +139,7 @@ practices:                     # каталог карточек; lead — кт�
   practice:
     title: { ru: "Групповые практики", en: "Group practice" }
     text: { ru: "С Мастером и его учениками — утром и вечером, каждый день.", en: "With the Master and his students — morning and evening, every day." }
-    photo: { src: "card-practice.webp", pos: "50% 40%", alt: { ru: "Мастер на занятии в зале", en: "The Master during a session in the hall" } }
+    photo: { src: "card-practice.webp", pos: "50% 28%", alt: { ru: "Мастер ведёт занятие", en: "The Master leading a session" } }
   mentors:
     title: { ru: "Наставничество", en: "Mentorship" }
     text: { ru: "1–2 встречи с наставником перед началом и поддержка на самом ретрите.", en: "1–2 meetings with a mentor before the start and support during the retreat." }
@@ -152,7 +152,7 @@ practices:                     # каталог карточек; lead — кт�
       ru: "Пространство, где можно перестать бороться с собой и расслабить контроль. Тело становится надёжной опорой для более глубокого внутреннего опыта."
       en: "A space to stop fighting yourself and loosen control. The body becomes a steady support for deeper inner experience."
     lead: { name: { ru: "Дарья", en: "Daria" }, about: "" }   # описание пришлют организаторы
-    photo: { src: "body-practice.webp", pos: "50% 60%", alt: { ru: "Утренняя практика на лугу", en: "Morning practice on a meadow" } }
+    art: { name: "yoga", ka: "იოგა", note: { ru: "утром, 07:00–08:00", en: "mornings, 7–8 am" } }   # своего фото нет — иллюстрация (_includes/art.html)
   breathwork:
     title: { ru: "Breathwork", en: "Breathwork" }
     tag: { ru: "включено", en: "included" }
@@ -161,7 +161,7 @@ practices:                     # каталог карточек; lead — кт�
       ru: "Психологические и медитативные путешествия: через тело участники отпускают напряжение и эмоциональные паттерны и входят в более глубокие состояния осознанности."
       en: "Psychological and meditative journeys: through the body, participants release tension and emotional patterns and enter deeper states of awareness."
     lead: { name: "", about: "" }
-    photo: { src: "card-breathwork.webp", pos: "50% 35%", alt: { ru: "Медитация в зале", en: "Meditation in the hall" } }
+    art: { name: "breath", ka: "სუნთქვა", note: { ru: "связное дыхание", en: "connected breathing" } }
   massage:
     title: { ru: "Массаж", en: "Massage" }
     tag: { ru: "за отдельную плату", en: "paid separately" }
@@ -171,7 +171,7 @@ practices:                     # каталог карточек; lead — кт�
       about:                   # текст из Telegram пришлют организаторы
         ru: "Работа с внутренними органами, мышцами, тканями, связками, сухожилиями и внутренними цепями. Техники настроены на разблокировку систем, восстановление кровотока, иннервации тканей и течения энергий."
         en: "Work with the internal organs, muscles, tissues, ligaments, tendons and inner chains. The techniques unblock the body’s systems and restore circulation, the innervation of tissues and the flow of energy."
-    photo: { src: "card-massage.webp", alt: { ru: "Свет на деревянном полу", en: "Light on a wooden floor" } }
+    art: { name: "massage", ka: "მასაჟი" }
   fire:
     title: { ru: "Вечерние костры", en: "Evening bonfires" }
     text: { ru: "Посиделки у огня с рефлексией, музыкой и творчеством.", en: "Gatherings by the fire with reflection, music and creativity." }
@@ -180,7 +180,7 @@ practices:                     # каталог карточек; lead — кт�
     title: { ru: "Барбекю", en: "Barbecue" }
     tag: { ru: "входит в стоимость", en: "included" }
     text: { ru: "Один совместный вечер-барбекю на территории отеля. Дата уточняется.", en: "One shared barbecue evening on the hotel grounds. Date to be confirmed." }
-    photo: { src: "card-bbq.webp", alt: { ru: "Общий ужин", en: "A shared dinner" } }
+    art: { name: "bbq", ka: "მწვადი", note: { ru: "один вечер", en: "one evening" } }
 
 # ----------------------------------------------------------------------------- расписание — ретрит и интенсив отдельными блоками
 schedule:
@@ -239,13 +239,14 @@ intensive:
 # ----------------------------------------------------------------------------- лента фото «Казбеги летом» (блок strip на главной)
 strip:
   title: { ru: "Казбеги *летом*", en: "Kazbegi *in summer*" }
-  text: { ru: "Луга, облака над перевалом, церковь Гергети над посёлком и тишина гор — вот что будет вокруг практики.", en: "Meadows, clouds over the pass, Gergeti Church above the village and the quiet of the mountains — this is what surrounds the practice." }
-  photos:                      # 3–6 фото, вертикальные 3:4
-    - { src: "strip-1.webp", alt: { ru: "Церковь Гергети над лесом", en: "Gergeti Church above the forest" }, caption: { ru: "Гергети", en: "Gergeti" } }
-    - { src: "strip-2.webp", alt: { ru: "Цветы у старого сарая", en: "Wildflowers by an old shed" }, caption: { ru: "Цветы у старого сарая", en: "Wildflowers by an old shed" } }
-    - { src: "strip-3.webp", alt: { ru: "Облака над вершинами", en: "Clouds over the peaks" }, caption: { ru: "Облака над перевалом", en: "Clouds over the pass" } }
-    - { src: "strip-4.webp", alt: { ru: "Горы и лес", en: "Mountains and forest" }, caption: { ru: "Лес у подножия", en: "Forest at the foot" } }
-    - { src: "strip-5.webp", alt: { ru: "Долина Степанцминды", en: "The Stepantsminda valley" }, caption: { ru: "Долина", en: "The valley" } }
+  text: { ru: "Луга, кони на склонах, церковь Гергети над посёлком и облака над вершинами — вот что будет вокруг практики.", en: "Meadows, horses on the slopes, Gergeti Church above the village and clouds over the peaks — this is what surrounds the practice." }
+  photos:                      # 4–8 фото: вертикальные 3:4; wide: true — широкое 16:9 на две колонки
+    - { src: "strip-1.webp", wide: true, alt: { ru: "Долина Степанцминды", en: "The Stepantsminda valley" }, caption: { ru: "Долина Степанцминды", en: "Stepantsminda valley" } }
+    - { src: "strip-2.webp", pos: "50% 0%", alt: { ru: "Церковь Гергети над лесом", en: "Gergeti Church above the forest" }, caption: { ru: "Гергети", en: "Gergeti" } }
+    - { src: "strip-3.webp", pos: "50% 72%", alt: { ru: "Кони на горном склоне", en: "Horses on a mountain slope" }, caption: { ru: "Кони на склоне", en: "Horses on the slope" } }
+    - { src: "strip-4.webp", alt: { ru: "Облака над вершинами", en: "Clouds over the peaks" }, caption: { ru: "Облака над вершинами", en: "Clouds over the peaks" } }
+    - { src: "strip-5.webp", alt: { ru: "Зелёные скалы над долиной", en: "Green cliffs above the valley" }, caption: { ru: "Зелёные склоны", en: "Green slopes" } }
+    - { src: "strip-6.webp", wide: true, alt: { ru: "Вершины в облаках", en: "Peaks in the clouds" }, caption: { ru: "Вершины в облаках", en: "Peaks in the clouds" } }
 
 # ----------------------------------------------------------------------------- место
 venue:
@@ -267,13 +268,14 @@ venue:
     - { ru: "≈3 часа на машине от Тбилиси", en: "≈3 hours by car from Tbilisi" }
     - { ru: "Номера с завтраком и специальные цены для группы", en: "Rooms with breakfast and special rates for the group" }
     - { ru: "Спа с бассейном и видом на горы", en: "A spa with a pool and mountain views" }
-  photo: { src: "facade.webp", alt: { ru: "Rooms Kazbegi на фоне гор", en: "Rooms Kazbegi against the mountains" } }
+  photo: { src: "terrace.webp", alt: { ru: "Разговор на террасе с видом на горы", en: "A conversation on the terrace with a mountain view" } }
   ring: "ROOMS KAZBEGI ✦ მყინვარწვერი ✦ 5054 M ✦"   # текст на вращающемся круге
   gallery:
     title: { ru: "Атмосфера Rooms", en: "The feel of Rooms" }
     photos:
       - { src: "lounge.webp", w: 1400, h: 934, alt: { ru: "Лаунж с видом на Казбек", en: "Lounge with a view of Kazbek" }, caption: { ru: "Лаунж с видом на Казбек", en: "Lounge facing Kazbek" } }
-      - { src: "window-view.webp", w: 1400, h: 788, alt: { ru: "Вид из окна на долину", en: "The valley from a window" }, caption: { ru: "Вид из окна", en: "The view from a window" } }
+      - { src: "corridor.webp", w: 900, h: 1600, alt: { ru: "Коридор с грузинским ковром", en: "A corridor with a Georgian carpet" }, caption: { ru: "Коридоры", en: "Corridors" } }
+      - { src: "terrace.webp", w: 1000, h: 1250, alt: { ru: "Терраса с видом на горы", en: "The terrace with a mountain view" }, caption: { ru: "Терраса", en: "The terrace" } }
       - { src: "pool.webp", w: 1400, h: 934, alt: { ru: "Бассейн с панорамой гор", en: "Pool with a mountain panorama" }, caption: { ru: "Бассейн и спа", en: "Pool and spa" } }
       - { src: "library-bar.webp", w: 1400, h: 934, alt: { ru: "Лобби-бар", en: "Lobby bar" }, caption: { ru: "Лобби-бар", en: "Lobby bar" } }
       - { src: "food.webp", w: 1400, h: 1050, alt: { ru: "Грузинская кухня", en: "Georgian food" }, caption: "Kazbegi Kitchen" }
@@ -355,12 +357,12 @@ activities:
     ru: "Примеры дополнительных активностей за отдельную плату. Их организуют отель или местные турагентства — на месте вариантов будет гораздо больше."
     en: "Examples of optional activities, paid separately. They are run by the hotel or local agencies — there will be many more options on site."
   items:
-    - { photo: "hiking.webp", title: { ru: "Пешие прогулки", en: "Hiking" }, text: { ru: "С проводником от отеля или самостоятельно — например, к церкви Гергети над посёлком.", en: "With a hotel guide or on your own — for example, up to Gergeti Church above the village." } }
+    - { photo: "strip-2.webp", title: { ru: "Пешие прогулки", en: "Hiking" }, text: { ru: "С проводником от отеля или самостоятельно — например, к церкви Гергети над посёлком.", en: "With a hotel guide or on your own — for example, up to Gergeti Church above the village." } }
     - { photo: "cooking.webp", title: { ru: "Кулинарные мастер-классы", en: "Cooking classes" }, text: { ru: "Приготовим хинкали или хачапури.", en: "We’ll make khinkali or khachapuri." } }
-    - { photo: "horses.webp", title: { ru: "Верховая езда", en: "Horse riding" }, text: { ru: "С гидом от отеля — в первозданные природные места.", en: "With a hotel guide — into untouched nature." } }
+    - { photo: "strip-3.webp", pos: "50% 75%", title: { ru: "Верховая езда", en: "Horse riding" }, text: { ru: "С гидом от отеля — в первозданные природные места.", en: "With a hotel guide — into untouched nature." } }
     - { photo: "spa.webp", title: { ru: "Спа", en: "Spa" }, text: { ru: "Бассейн, сауны и процедуры в отеле с невероятными видами.", en: "A pool, saunas and treatments at the hotel, with incredible views." } }
     - { photo: "offroad.webp", title: { ru: "Офф-роуд", en: "Off-road" }, text: { ru: "По труднодоступным и самым красивым местам.", en: "To the remotest and most beautiful places." } }
-    - { photo: "window.webp", pos: "50% 40%", title: { ru: "Частное занятие с Мастером", en: "Private session with the Master" }, text: { ru: "При наличии времени и возможности, по предварительной договорённости: {private}.", en: "When time allows, by appointment: {private}." } }
+    - { photo: "master-session.webp", pos: "62% 30%", title: { ru: "Частное занятие с Мастером", en: "Private session with the Master" }, text: { ru: "При наличии времени и возможности, по предварительной договорённости: {private}.", en: "When time allows, by appointment: {private}." } }
 
 # ----------------------------------------------------------------------------- сотворчество
 cocreate:
@@ -369,7 +371,7 @@ cocreate:
   lead:
     ru: "Участники ретритов — яркие и талантливые люди. В кругу единомышленников особенно хорошо раскрывается ценность творчества и дарения. Если хочется чем-то поделиться — мы с радостью поддержим и поможем с организацией."
     en: "Retreat participants are bright, talented people, and among kindred spirits the value of creativity and giving truly opens up. If you’d like to share something, we’ll gladly support you and help organise it."
-  photo: { src: "fireplace.webp", alt: { ru: "Вечер у камина", en: "An evening by the fireplace" } }
+  photo: { src: "cocreate.webp", pos: "50% 30%", alt: { ru: "Улыбка в кругу единомышленников", en: "A smile among kindred spirits" } }
   chips:
     - { ru: "Музыка", en: "Music" }
     - { ru: "Вечера у костра", en: "Evenings by the fire" }
@@ -589,7 +591,7 @@ final:
   kicker: { ru: "{dates} · Казбеги", en: "{dates} · Kazbegi" }
   title: { ru: "Глубокой и качественной *практики*", en: "Wishing you a deep and true *practice*" }
   text: { ru: "Количество мест ограничено — заполните заявку, и мы свяжемся с вами.", en: "Places are limited — fill in the application and we’ll get in touch." }
-  photo: { src: "final.webp", m: "final-m.webp", pos: "62% 40%" }
+  photo: { src: "final.webp", m: "final-m.webp", pos: "50% 50%" }
 
 footer:
   about: { ru: "Ретрит с Мастером Камильпашой в Rooms Kazbegi. {dates}, интенсив {intensive_dates}. Степанцминда, Грузия.", en: "Retreat with Master Kamilpasha at Rooms Kazbegi. {dates}, intensive {intensive_dates}. Stepantsminda, Georgia." }
@@ -607,7 +609,7 @@ form:
   title: { ru: "Заявка *на ретрит*", en: "Apply for *the retreat*" }
   meta: { ru: "{dates} · Rooms Kazbegi, Степанцминда, Грузия", en: "{dates} · Rooms Kazbegi, Stepantsminda, Georgia" }
   intro: { ru: "Заполни анкету максимально подробно и осознанно. После неё команда организаторов свяжется с тобой по почте или в Telegram.", en: "Please fill in the form as fully and thoughtfully as you can. The organising team will then contact you by email or Telegram." }
-  photo: { src: "kz-slope.webp" }
+  photo: { src: "apply.webp", alt: { ru: "Горы Казбеги", en: "The Kazbegi mountains" } }
   presets:                     # общие варианты ответов
     yes_no: [{ v: "Да", ru: "Да", en: "Yes" }, { v: "Нет", ru: "Нет", en: "No" }]
     times: [{ v: "1" }, { v: "2" }, { v: "3" }, { v: "4" }, { v: "> 5", ru: "Больше 5", en: "More than 5" }]

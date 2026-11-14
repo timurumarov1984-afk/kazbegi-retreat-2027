@@ -12,7 +12,7 @@
         <div class="strip__track">
           {%- for p in St.photos %}
           {%- assign sd = forloop.index0 | modulo: 4 %}
-          <figure class="strip__item reveal"{% if sd > 0 %} data-delay="{{ sd }}"{% endif %}>{% include img.html p=p %}{% if p.caption %}<figcaption>{% include t.html v=p.caption %}</figcaption>{% endif %}</figure>
+          <figure class="strip__item{% if p.wide %} strip__item--wide{% endif %} reveal"{% if sd > 0 %} data-delay="{{ sd }}"{% endif %}>{% include img.html p=p %}{% if p.caption %}<figcaption>{% include t.html v=p.caption %}</figcaption>{% endif %}</figure>
           {%- endfor %}
         </div>
       </div>

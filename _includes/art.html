@@ -1,0 +1,104 @@
+{%- comment -%}
+  Иллюстрация вместо фото — для карточек, у которых нет подходящего снимка.
+  В _data/retreat.yml у карточки: art: { name: yoga | breath | massage | bbq, ka: "слово по-грузински", note: { ru, en } }
+  Линии — в цвет «персика», фон — тёмно-зелёный, внизу линия гор. Подписи вдох/выдох и всё тело/зонально — здесь.
+{%- endcomment -%}
+{%- assign A = include.a -%}
+{%- assign an = A.name -%}
+<svg class="art art--{{ an }}" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="art-bg-{{ an }}" x1="0" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2c3b31"/><stop offset="1" stop-color="#1a251e"/></linearGradient>
+    <radialGradient id="art-glow-{{ an }}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ecd3ad" stop-opacity="0.34"/><stop offset="1" stop-color="#ecd3ad" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#art-bg-{{ an }})"/>
+{%- case an -%}
+{%- when "yoga" %}
+  <circle cx="320" cy="226" r="104" class="art__s art__dash"/>
+  <circle cx="320" cy="226" r="80" class="art__s art__sun"/>
+  <path d="M0.0 296.6 L20.0 295.1 L24.1 295.8 L34.7 300.6 L41.4 307.5 L53.4 313.3 L62.8 319.8 L70.8 321.9 L90.9 322.1 L110.9 320.3 L128.3 323.1 L143.0 320.4 L159.0 320.1 L179.0 314.3 L191.1 309.0 L209.8 303.9 L231.1 294.2 L247.2 288.6 L256.5 280.0 L275.2 268.7 L288.6 259.0 L298.0 249.5 L308.6 243.3 L328.7 239.7 L339.4 239.6 L352.7 242.8 L382.1 257.4 L403.5 264.8 L427.6 281.6 L440.9 287.4 L448.9 288.0 L459.6 290.8 L486.3 290.1 L493.0 294.6 L497.0 295.8 L509.1 292.8 L515.7 294.2 L525.1 293.2 L530.4 295.1 L541.1 293.2 L550.5 296.0 L563.8 305.0 L579.9 311.4 L587.9 317.4 L597.2 319.1 L607.9 323.0 L617.3 323.8 L640.0 329.2 L640 400 L0 400 Z" fill="url(#art-bg-{{ an }})"/>
+  <path d="M0.0 296.6 L20.0 295.1 L24.1 295.8 L34.7 300.6 L41.4 307.5 L53.4 313.3 L62.8 319.8 L70.8 321.9 L90.9 322.1 L110.9 320.3 L128.3 323.1 L143.0 320.4 L159.0 320.1 L179.0 314.3 L191.1 309.0 L209.8 303.9 L231.1 294.2 L247.2 288.6 L256.5 280.0 L275.2 268.7 L288.6 259.0 L298.0 249.5 L308.6 243.3 L328.7 239.7 L339.4 239.6 L352.7 242.8 L382.1 257.4 L403.5 264.8 L427.6 281.6 L440.9 287.4 L448.9 288.0 L459.6 290.8 L486.3 290.1 L493.0 294.6 L497.0 295.8 L509.1 292.8 L515.7 294.2 L525.1 293.2 L530.4 295.1 L541.1 293.2 L550.5 296.0 L563.8 305.0 L579.9 311.4 L587.9 317.4 L597.2 319.1 L607.9 323.0 L617.3 323.8 L640.0 329.2" class="art__s art__ridge"/>
+  <path d="M256 342 H384" class="art__s art__mat"/>
+  <g class="art__fig">
+    <circle cx="320" cy="124" r="12.5"/>
+    <rect x="315.5" y="132" width="9" height="20" rx="4"/>
+    <path d="M303 151 Q320 144 337 151 L332 196 Q329 213 336 232 L304 232 Q311 213 308 196 Z"/>
+    <path class="art__limb" d="M307 154 L290 114" style="stroke-width:8.5"/>
+    <path class="art__limb" d="M290 114 L317 82" style="stroke-width:7.5"/>
+    <path class="art__limb" d="M333 154 L350 114" style="stroke-width:8.5"/>
+    <path class="art__limb" d="M350 114 L323 82" style="stroke-width:7.5"/>
+    <ellipse cx="320" cy="77" rx="5.5" ry="10"/>
+    <path class="art__limb" d="M313 230 L314 285" style="stroke-width:12.5"/>
+    <path class="art__limb" d="M314 285 L315 333" style="stroke-width:9"/>
+    <path class="art__limb" d="M315 336 H330" style="stroke-width:6"/>
+    <path class="art__limb" d="M328 232 L362 262" style="stroke-width:11.5"/>
+    <path class="art__limb" d="M362 262 L321 287" style="stroke-width:9"/>
+  </g>
+{%- when "breath" %}
+  <g class="art__rings">
+    <circle cx="320" cy="200" r="100" class="art__s art__ring3"/>
+    <circle cx="320" cy="200" r="72" class="art__s art__ring2"/>
+    <circle cx="320" cy="200" r="44" class="art__s art__ring1"/>
+  </g>
+  <linearGradient id="art-fade-{{ an }}" x1="24" y1="0" x2="616" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ecd3ad" stop-opacity="0"/><stop offset="0.16" stop-color="#ecd3ad" stop-opacity="0.95"/><stop offset="0.84" stop-color="#ecd3ad" stop-opacity="0.95"/><stop offset="1" stop-color="#ecd3ad" stop-opacity="0"/></linearGradient>
+  <path d="M24.0 229.6 L28.0 230.0 L32.0 229.3 L36.0 227.5 L40.0 224.7 L44.0 221.0 L48.0 216.4 L52.0 211.3 L56.0 205.8 L60.0 200.0 L64.0 194.2 L68.0 188.7 L72.0 183.6 L76.0 179.0 L80.0 175.3 L84.0 172.5 L88.0 170.7 L92.0 170.0 L96.0 170.4 L100.0 171.9 L104.0 174.5 L108.0 178.0 L112.0 182.4 L116.0 187.4 L120.0 192.8 L124.0 198.6 L128.0 204.3 L132.0 210.0 L136.0 215.2 L140.0 219.9 L144.0 223.8 L148.0 226.9 L152.0 228.9 L156.0 229.9 L160.0 229.8 L164.0 228.5 L168.0 226.2 L172.0 222.9 L176.0 218.8 L180.0 213.9 L184.0 208.6 L188.0 202.9 L192.0 197.1 L196.0 191.4 L200.0 186.1 L204.0 181.2 L208.0 177.1 L212.0 173.8 L216.0 171.5 L220.0 170.2 L224.0 170.1 L228.0 171.1 L232.0 173.1 L236.0 176.2 L240.0 180.1 L244.0 184.8 L248.0 190.0 L252.0 195.7 L256.0 201.4 L260.0 207.2 L264.0 212.6 L268.0 217.6 L272.0 222.0 L276.0 225.5 L280.0 228.1 L284.0 229.6 L288.0 230.0 L292.0 229.3 L296.0 227.5 L300.0 224.7 L304.0 221.0 L308.0 216.4 L312.0 211.3 L316.0 205.8 L320.0 200.0 L324.0 194.2 L328.0 188.7 L332.0 183.6 L336.0 179.0 L340.0 175.3 L344.0 172.5 L348.0 170.7 L352.0 170.0 L356.0 170.4 L360.0 171.9 L364.0 174.5 L368.0 178.0 L372.0 182.4 L376.0 187.4 L380.0 192.8 L384.0 198.6 L388.0 204.3 L392.0 210.0 L396.0 215.2 L400.0 219.9 L404.0 223.8 L408.0 226.9 L412.0 228.9 L416.0 229.9 L420.0 229.8 L424.0 228.5 L428.0 226.2 L432.0 222.9 L436.0 218.8 L440.0 213.9 L444.0 208.6 L448.0 202.9 L452.0 197.1 L456.0 191.4 L460.0 186.1 L464.0 181.2 L468.0 177.1 L472.0 173.8 L476.0 171.5 L480.0 170.2 L484.0 170.1 L488.0 171.1 L492.0 173.1 L496.0 176.2 L500.0 180.1 L504.0 184.8 L508.0 190.0 L512.0 195.7 L516.0 201.4 L520.0 207.2 L524.0 212.6 L528.0 217.6 L532.0 222.0 L536.0 225.5 L540.0 228.1 L544.0 229.6 L548.0 230.0 L552.0 229.3 L556.0 227.5 L560.0 224.7 L564.0 221.0 L568.0 216.4 L572.0 211.3 L576.0 205.8 L580.0 200.0 L584.0 194.2 L588.0 188.7 L592.0 183.6 L596.0 179.0 L600.0 175.3 L604.0 172.5 L608.0 170.7 L612.0 170.0 L616.0 170.4" class="art__wave" stroke="url(#art-fade-{{ an }})"/>
+  <circle cx="482.5" cy="170" r="3.5" class="art__dot"/>
+  <path d="M482.5 161 V146" class="art__s art__tick"/>
+  <text x="482.5" y="136" text-anchor="middle" class="art__mark" lang="ru">ВДОХ</text><text x="482.5" y="136" text-anchor="middle" class="art__mark" lang="en">INHALE</text>
+  <circle cx="157.5" cy="230" r="3.5" class="art__dot"/>
+  <path d="M157.5 239 V254" class="art__s art__tick"/>
+  <text x="157.5" y="274" text-anchor="middle" class="art__mark" lang="ru">ВЫДОХ</text><text x="157.5" y="274" text-anchor="middle" class="art__mark" lang="en">EXHALE</text>
+{%- when "massage" %}
+  <circle cx="320" cy="50" r="19" class="art__s art__body"/>
+  <g id="art-torso-{{ an }}" class="art__s art__body">
+    <path d="M309 72 C309 82 308 90 305 97 C296 109 272 116 254 121 C236 127 226 141 226 162 C227 186 236 200 246 212 C259 232 266 252 268 270 C270 292 264 314 256 340"/>
+    <path d="M290 142 C276 164 278 190 296 203" class="art__soft"/>
+  </g>
+  <use href="#art-torso-{{ an }}" transform="translate(640 0) scale(-1 1)"/>
+  <path d="M258 342 Q320 352 382 342" class="art__s art__soft"/>
+  <g class="art__spine">{% for i in (0..18) %}<circle cx="320" cy="{{ i | times: 12 | plus: 112 }}" r="1.8"/>{% endfor %}</g>
+  <ellipse cx="320" cy="122" rx="68" ry="24" class="art__s art__zone"/>
+  <g class="art__hands">
+    <g transform="translate(290 228) rotate(-12) scale(-0.8 0.8)"><rect x="-20" y="-40" width="40" height="46" rx="15"/><rect x="-20" y="-78" width="10" height="48" rx="5"/><rect x="-8.5" y="-84" width="10" height="52" rx="5"/><rect x="3" y="-80" width="10" height="48" rx="5"/><rect x="13.5" y="-68" width="8.5" height="38" rx="4.25"/><rect x="-5.5" y="-36" width="11" height="36" rx="5.5" transform="translate(-15 -8) rotate(-40)"/></g>
+    <g transform="translate(350 228) rotate(12) scale(0.8 0.8)"><rect x="-20" y="-40" width="40" height="46" rx="15"/><rect x="-20" y="-78" width="10" height="48" rx="5"/><rect x="-8.5" y="-84" width="10" height="52" rx="5"/><rect x="3" y="-80" width="10" height="48" rx="5"/><rect x="13.5" y="-68" width="8.5" height="38" rx="4.25"/><rect x="-5.5" y="-36" width="11" height="36" rx="5.5" transform="translate(-15 -8) rotate(-40)"/></g>
+  </g>
+  <path d="M388 114 L434 96" class="art__s art__tick"/>
+  <text x="442" y="100" class="art__mark" lang="ru">ЗОНАЛЬНО</text><text x="442" y="100" class="art__mark" lang="en">TARGETED</text>
+  <path d="M264 280 L214 300" class="art__s art__tick"/>
+  <text x="206" y="308" text-anchor="end" class="art__mark" lang="ru">ВСЁ ТЕЛО</text><text x="206" y="308" text-anchor="end" class="art__mark" lang="en">FULL BODY</text>
+{%- when "bbq" %}
+  <g class="art__stars"><circle cx="402" cy="62" r="1.4"/><circle cx="548" cy="132" r="1.2"/><circle cx="196" cy="118" r="1.3"/><circle cx="430" cy="150" r="1"/><circle cx="560" cy="58" r="1.1"/><circle cx="252" cy="70" r="1"/></g>
+  <mask id="art-moon-{{ an }}"><rect width="640" height="400" fill="#fff"/><circle cx="484" cy="86" r="21" fill="#000"/></mask>
+  <circle cx="472" cy="94" r="24" class="art__moon" mask="url(#art-moon-{{ an }})"/>
+  <path d="M0.0 296.6 L20.0 295.1 L24.1 295.8 L34.7 300.6 L41.4 307.5 L53.4 313.3 L62.8 319.8 L70.8 321.9 L90.9 322.1 L110.9 320.3 L128.3 323.1 L143.0 320.4 L159.0 320.1 L179.0 314.3 L191.1 309.0 L209.8 303.9 L231.1 294.2 L247.2 288.6 L256.5 280.0 L275.2 268.7 L288.6 259.0 L298.0 249.5 L308.6 243.3 L328.7 239.7 L339.4 239.6 L352.7 242.8 L382.1 257.4 L403.5 264.8 L427.6 281.6 L440.9 287.4 L448.9 288.0 L459.6 290.8 L486.3 290.1 L493.0 294.6 L497.0 295.8 L509.1 292.8 L515.7 294.2 L525.1 293.2 L530.4 295.1 L541.1 293.2 L550.5 296.0 L563.8 305.0 L579.9 311.4 L587.9 317.4 L597.2 319.1 L607.9 323.0 L617.3 323.8 L640.0 329.2 L640 400 L0 400 Z" fill="url(#art-bg-{{ an }})"/>
+  <path d="M0.0 296.6 L20.0 295.1 L24.1 295.8 L34.7 300.6 L41.4 307.5 L53.4 313.3 L62.8 319.8 L70.8 321.9 L90.9 322.1 L110.9 320.3 L128.3 323.1 L143.0 320.4 L159.0 320.1 L179.0 314.3 L191.1 309.0 L209.8 303.9 L231.1 294.2 L247.2 288.6 L256.5 280.0 L275.2 268.7 L288.6 259.0 L298.0 249.5 L308.6 243.3 L328.7 239.7 L339.4 239.6 L352.7 242.8 L382.1 257.4 L403.5 264.8 L427.6 281.6 L440.9 287.4 L448.9 288.0 L459.6 290.8 L486.3 290.1 L493.0 294.6 L497.0 295.8 L509.1 292.8 L515.7 294.2 L525.1 293.2 L530.4 295.1 L541.1 293.2 L550.5 296.0 L563.8 305.0 L579.9 311.4 L587.9 317.4 L597.2 319.1 L607.9 323.0 L617.3 323.8 L640.0 329.2" class="art__s art__ridge art__ridge--faint"/>
+  <linearGradient id="art-smoke-{{ an }}" x1="0" y1="214" x2="0" y2="96" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ecd3ad" stop-opacity="0.7"/><stop offset="1" stop-color="#ecd3ad" stop-opacity="0"/></linearGradient>
+  <g fill="none" stroke="url(#art-smoke-{{ an }})" stroke-width="1.6" stroke-linecap="round" class="art__smoke">
+    <path d="M292 214 C280 194 304 178 292 158 C282 142 300 128 290 110"/>
+    <path d="M322 208 C334 188 310 172 324 150 C334 134 316 118 328 98"/>
+    <path d="M352 214 C342 196 364 182 352 164 C344 150 360 138 350 122"/>
+  </g>
+  <ellipse cx="320" cy="250" rx="130" ry="34" fill="url(#art-glow-{{ an }})"/>
+  <path d="M252 292 L242 340 M388 292 L398 340" class="art__s"/>
+  <path d="M270 292 L268 328 M370 292 L372 328" class="art__s art__soft"/>
+  <path d="M234 254 H406 L394 292 H246 Z" class="art__s art__box"/>
+  <g class="art__embers"><circle cx="262" cy="270" r="2.6"/><circle cx="281" cy="276" r="1.8"/><circle cx="300" cy="268" r="2.2"/><circle cx="322" cy="278" r="2.8"/><circle cx="343" cy="270" r="1.9"/><circle cx="362" cy="277" r="2.4"/><circle cx="380" cy="269" r="1.7"/></g>
+  <path d="M224 254 H416" class="art__s art__rim"/>
+  <g class="art__s art__skewers">
+    <path d="M214 240 H428 M214 224 H428"/>
+    <circle cx="207" cy="240" r="6"/><circle cx="207" cy="224" r="6"/>
+  </g>
+  <g class="art__s art__meat">
+    <rect x="248" y="232" width="26" height="16" rx="6"/><rect x="282" y="231" width="24" height="18" rx="7"/><rect x="314" y="232" width="27" height="16" rx="6"/><rect x="349" y="231" width="24" height="18" rx="7"/><rect x="381" y="232" width="25" height="16" rx="6"/>
+    <rect x="262" y="216" width="25" height="16" rx="6"/><rect x="295" y="215" width="26" height="18" rx="7"/><rect x="329" y="216" width="24" height="16" rx="6"/><rect x="361" y="215" width="26" height="18" rx="7"/>
+  </g>
+{%- endcase %}
+  <g class="art__label">
+  {%- if A.note %}
+    {%- assign a_ru = A.note.ru | default: A.note -%}{%- assign a_en = A.note.en | default: a_ru %}
+    <text x="96" y="70" class="art__note" lang="ru">{{ a_ru | upcase | escape }}</text><text x="96" y="70" class="art__note" lang="en">{{ a_en | upcase | escape }}</text>
+  {%- endif %}
+  {%- if A.ka %}
+    <text x="96" y="{% if A.note %}97{% else %}74{% endif %}" class="art__ka" lang="ka">{{ A.ka | escape }}</text>
+  {%- endif %}
+  </g>
+</svg>

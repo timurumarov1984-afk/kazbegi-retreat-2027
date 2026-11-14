@@ -18,7 +18,11 @@
           {%- assign card_n = card_n | plus: 1 -%}
           {%- assign card_d = card_n | minus: 1 | modulo: 3 %}
           <article class="card reveal"{% if card_d > 0 %} data-delay="{{ card_d }}"{% endif %}>
+            {%- if c.art and c.art.name %}
+            <div class="card__img card__img--art">{% include art.html a=c.art %}</div>
+            {%- else %}
             <div class="card__img">{% include img.html p=c.photo %}</div>
+            {%- endif %}
             <div class="card__body">
               <span class="card__num">{% if card_n < 10 %}0{% endif %}{{ card_n }}</span>
               <h3>{% include t.html v=c.title %}</h3>
